@@ -1,6 +1,6 @@
 import Container from '@/shared/components/Container/Container';
 import Reveal from '@/shared/components/Reveal/Reveal';
-import { VISION_ITEMS } from '@/features/career/constants';
+import { VISION_ITEMS } from '@/features/career/constants/career.constant';
 
 const VisionSection = () => {
   return (

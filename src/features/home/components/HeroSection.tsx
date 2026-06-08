@@ -8,7 +8,7 @@ import {
   TRAIL_LIFETIME,
   TRAIL_SPAWN_DELAY,
 } from '@/shared/constants';
-import type { TrailImage } from '@/features/home/types/trailimage.type';
+import type { TrailImage } from '@/features/home/types/home.type';
 import { useScrollToTop } from '@/shared/hooks/useScrollToTop';
 
 const HeroSection: React.FC = () => {

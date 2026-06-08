@@ -6,8 +6,8 @@ import Container from '@/shared/components/Container/Container';
 import Reveal from '@/shared/components/Reveal/Reveal';
 import InputField from '@/shared/components/InputField/InputField';
 
-import { PORTALS } from '@/features/login/constants';
-import type { Portal } from '@/features/login/types/index.type';
+import { PORTALS } from '@/features/login/constants/login.constant';
+import type { Portal } from '@/features/login/types/login.type';
 import OtpInput from '@/features/login/components/OtpInput/OtpInput';
 
 const LoginPage = () => {

@@ -11,10 +11,13 @@ import { useLocation } from 'react-router-dom';
 
 import Container from '@/shared/components/Container/Container';
 import Reveal from '@/shared/components/Reveal/Reveal';
-import type { ApplicationFormState } from '@/features/application-form/types/index.type';
-import { STEP_ICONS, STEPS } from '@/features/application-form/constants';
-import type { Opening } from '@/features/career/types/index.type';
-import { OPENINGS } from '@/features/career/constants';
+import type { ApplicationFormState } from '@/features/application-form/types/application-form.type';
+import {
+  STEP_ICONS,
+  STEPS,
+} from '@/features/application-form/constants/application-form.constant';
+import type { Opening } from '@/features/career/types/career.type';
+import { OPENINGS } from '@/features/career/constants/career.constant';
 import {
   scrollToTop,
   validatePhotoFile,

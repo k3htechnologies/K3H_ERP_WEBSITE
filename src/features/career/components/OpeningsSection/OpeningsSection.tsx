@@ -7,9 +7,9 @@ import Container from '@/shared/components/Container/Container';
 import { useFetch } from '@/shared/hooks/useFetch';
 import Reveal from '@/shared/components/Reveal/Reveal';
 
-import type { Category, Opening } from '@/features/career/types/index.type';
-import { CarrerApi } from '@/features/career/api/api.type';
-import { OPENINGS, TABS } from '@/features/career/constants';
+import type { Category, Opening } from '@/features/career/types/career.type';
+import { CarrerApi } from '@/features/career/api/career.api';
+import { OPENINGS, TABS } from '@/features/career/constants/career.constant';
 
 import { ROUTES } from '@/app/router/routePaths';
 

@@ -1,4 +1,8 @@
-import type { Category, Opening, VisionItem } from "@/features/career/types/index.type";
+import type {
+  Category,
+  Opening,
+  VisionItem,
+} from '@/features/career/types/career.type';
 
 export const VISION_ITEMS: VisionItem[] = [
   {
@@ -21,12 +25,7 @@ export const VISION_ITEMS: VisionItem[] = [
   },
 ];
 
-export const TABS: Category[] = [
-  'All',
-  'Brokerage',
-  'Creative',
-  'Operations',
-];
+export const TABS: Category[] = ['All', 'Brokerage', 'Creative', 'Operations'];
 
 export const OPENINGS: Opening[] = [
   {

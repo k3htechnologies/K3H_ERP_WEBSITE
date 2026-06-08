@@ -3,7 +3,7 @@ import { Mail, MapPin, Loader2 } from 'lucide-react';
 
 import Container from '@/shared/components/Container/Container';
 import Reveal from '@/shared/components/Reveal/Reveal';
-import type { FormData, FormErrors } from '@/features/career/types/index.type';
+import type { FormData, FormErrors } from '@/features/career/types/career.type';
 import { EMAIL_REGEX, MOBILE_REGEX } from '@/shared/constants';
 
 const ContactSection = () => {

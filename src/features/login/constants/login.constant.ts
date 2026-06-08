@@ -1,5 +1,5 @@
 import { isDevelopment } from '@/app/config';
-import type { Portal } from '@/features/login/types/index.type';
+import type { Portal } from '@/features/login/types/login.type';
 
 export const PORTALS: Portal[] = [
   {
@@ -16,7 +16,9 @@ export const PORTALS: Portal[] = [
     subtitle: 'Customer Corner',
     description: 'Track projects, documents and support requests.',
     authType: 'redirect',
-    redirectUrl: isDevelopment() ? 'http://localhost:4000/login?role=customer' : '',
+    redirectUrl: isDevelopment()
+      ? 'http://localhost:4000/login?role=customer'
+      : '',
   },
   {
     id: 'vendor',
@@ -24,7 +26,9 @@ export const PORTALS: Portal[] = [
     subtitle: "Vendor's Connect",
     description: 'Manage procurement, invoices and communications.',
     authType: 'redirect',
-    redirectUrl: isDevelopment() ? 'http://localhost:4000/login?role=vendor' : '',
+    redirectUrl: isDevelopment()
+      ? 'http://localhost:4000/login?role=vendor'
+      : '',
   },
 
   {
@@ -33,7 +37,9 @@ export const PORTALS: Portal[] = [
     subtitle: 'C.P Portal',
     description: 'Access channel partner tools and opportunities.',
     authType: 'redirect',
-    redirectUrl: isDevelopment() ? 'http://localhost:4000/login?role=partner' : '',
+    redirectUrl: isDevelopment()
+      ? 'http://localhost:4000/login?role=partner'
+      : '',
   },
 
   {
@@ -42,6 +48,8 @@ export const PORTALS: Portal[] = [
     subtitle: 'Consultant Hub',
     description: 'Review plans, submissions and project resources.',
     authType: 'redirect',
-    redirectUrl: isDevelopment() ? 'http://localhost:4000/login?role=architect' : '',
+    redirectUrl: isDevelopment()
+      ? 'http://localhost:4000/login?role=architect'
+      : '',
   },
 ];
