@@ -49,6 +49,12 @@ export const NAV_ITEMS = [
     image:
       'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1200&auto=format&fit=crop',
   },
+  {
+    title: 'LOGIN',
+    link: `/${ROUTES.LOGIN}`,
+    image:
+      'https://images.unsplash.com/photo-1511818966892-d7d671e672a2?q=80&w=1200&auto=format&fit=crop',
+  }
 ];
 
 export const FOOTER_LINKS = [

@@ -17,7 +17,7 @@ export const PORTALS: Portal[] = [
     description: 'Track projects, documents and support requests.',
     authType: 'redirect',
     redirectUrl: isDevelopment()
-      ? 'http://localhost:4000/login?role=customer'
+      ? 'http://localhost:3000/login?role=customer'
       : '',
   },
   {
