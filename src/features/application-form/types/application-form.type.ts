@@ -1,4 +1,8 @@
-export type Step = 'Basic Details' | 'Education' | 'Experience' | 'Salary & Final';
+export type Step =
+  | 'Basic Details'
+  | 'Education'
+  | 'Experience'
+  | 'Salary & Final';
 
 export interface ApplicationFormState {
   position: string;
@@ -14,6 +18,7 @@ export interface ApplicationFormState {
   company: string;
   currentRole: string;
   experience: string;
+  skills: string;
   reasonForChange: string;
   currentSalary: string;
   expectedSalary: string;

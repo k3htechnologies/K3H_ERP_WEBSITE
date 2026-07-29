@@ -1,30 +1,31 @@
-import { config } from "@/app/config";
-import { ApiClientError } from "@/app/http/error";
-import { RetryPolicy } from "@/app/http/retry";
+import { config } from '@/app/config';
+import { ApiClientError } from '@/app/http/error';
+import { RetryPolicy } from '@/app/http/retry';
 import type {
   ApiConfig,
   ApiResponse,
   RequestConfig,
   RequestOptions,
-} from "@/app/http/types";
-import { registerInterceptors } from "@/app/http/interceptors";
-import { authManager } from "./authManager";
+} from '@/app/http/types';
+import { registerInterceptors } from '@/app/http/interceptors';
+import { authManager } from '@/app/http/authManager';
 
 export class ApiClient {
+  private apiKey: string;
   private baseURL: string;
   private timeout: number;
   private defaultHeaders: Record<string, string>;
   private requestInterceptors: ((config: RequestConfig) => RequestConfig)[] =
     [];
   private responseInterceptors: ((
-    response: Response,
+    response: Response
   ) => Promise<Response> | Response)[] = [];
 
   constructor(config: ApiConfig) {
+    this.apiKey = config.apiKey;
     this.baseURL = config.baseURL;
     this.timeout = config.timeout || 30000;
     this.defaultHeaders = {
-      "Content-Type": "application/json",
       ...config.headers,
     };
   }
@@ -34,7 +35,7 @@ export class ApiClient {
   }
 
   addResponseInterceptor(
-    interceptor: (response: Response) => Promise<Response> | Response | any,
+    interceptor: (response: Response) => Promise<Response> | Response | any
   ) {
     this.responseInterceptors.push(interceptor);
   }
@@ -43,18 +44,23 @@ export class ApiClient {
   async request<T = unknown>(
     method: string,
     path: string,
-    options: RequestOptions = {},
+    options: RequestOptions = {}
   ): Promise<ApiResponse<T>> {
+    const isFormData = options.body instanceof FormData;
     let config: RequestConfig = {
       method,
       url: `${this.baseURL}${path}`,
       headers: {
         ...this.defaultHeaders,
         ...options.headers,
+        Apikey: this.apiKey,
       },
       body: options.body,
       signal: options.signal,
     };
+    if (!isFormData && options.body) {
+      config.headers['Content-Type'] = 'application/json';
+    }
 
     for (const interceptor of this.requestInterceptors) {
       config = interceptor(config);
@@ -83,7 +89,7 @@ export class ApiClient {
           response = await this.executeRequest(retryConfig, controller);
         } catch {
           authManager.logout();
-          throw new ApiClientError(401, "Session expired", response);
+          throw new ApiClientError(401, 'Session expired', response);
         }
       }
 
@@ -96,24 +102,25 @@ export class ApiClient {
 
         throw new ApiClientError(
           response.status,
-          errorData?.message || response.statusText || "Request failed",
+          errorData?.message || response.statusText || 'Request failed',
           response,
-          errorData,
+          errorData
         );
       }
 
-      let data: T | null = null;
-      const contentType = response.headers.get("content-type");
+      let data: ApiResponse<T> | null = null;
+      const contentType = response.headers.get('content-type');
 
       if (
         response.status !== 204 &&
-        contentType?.includes("application/json")
+        contentType?.includes('application/json')
       ) {
-        data = (await response.json()) as T;
+        data = (await response.json()) as ApiResponse<T>;
       }
 
       return {
-        data,
+        ...data,
+        Data: data?.Data as T | null,
         status: response.status,
         headers: response.headers,
       };
@@ -126,12 +133,12 @@ export class ApiClient {
 
   private async executeRequest(
     config: RequestConfig,
-    controller: AbortController,
+    controller: AbortController
   ): Promise<Response> {
     let response = await fetch(config.url, {
       method: config.method,
       headers: config.headers,
-      body: config.body ? JSON.stringify(config.body) : undefined,
+      body: this.prepareBody(config.body),
       signal: config.signal || controller.signal,
     });
 
@@ -143,19 +150,19 @@ export class ApiClient {
   }
 
   get<T>(path: string, options?: RequestOptions) {
-    return this.request<T>("GET", path, options);
+    return this.request<T>('GET', path, options);
   }
 
   post<T>(path: string, body?: unknown, options?: RequestOptions) {
-    return this.request<T>("POST", path, { ...options, body });
+    return this.request<T>('POST', path, { ...options, body });
   }
 
   put<T>(path: string, body?: unknown, options?: RequestOptions) {
-    return this.request<T>("PUT", path, { ...options, body });
+    return this.request<T>('PUT', path, { ...options, body });
   }
 
   delete<T>(path: string, options?: RequestOptions) {
-    return this.request<T>("DELETE", path, options);
+    return this.request<T>('DELETE', path, options);
   }
 
   async fetchDataWithRetry<T>(path: string) {
@@ -164,7 +171,7 @@ export class ApiClient {
       (error) => {
         // Retry on network errors and 5xx errors
         return error.isNetworkError() || error.isServerError();
-      },
+      }
     );
   }
 
@@ -174,19 +181,28 @@ export class ApiClient {
     }
 
     if (error instanceof Error) {
-      if (error.name === "AbortError") {
-        return new ApiClientError(0, "Request timeout or cancelled", null);
+      if (error.name === 'AbortError') {
+        return new ApiClientError(0, 'Request timeout or cancelled', null);
       }
       return new ApiClientError(0, error.message, null);
     }
 
-    return new ApiClientError(0, "Unknown error occurred", null);
+    return new ApiClientError(0, 'Unknown error occurred', null);
+  }
+
+  private prepareBody(body: unknown) {
+    if (!body) return undefined;
+    if (body instanceof FormData) {
+      return body;
+    }
+    return JSON.stringify(body);
   }
 }
 
 export const apiClient = new ApiClient({
   baseURL: config.apiBaseUrl,
   timeout: 30000,
+  apiKey: config.apiKey,
 });
 registerInterceptors();
 

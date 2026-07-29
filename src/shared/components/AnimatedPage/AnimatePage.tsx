@@ -1,7 +1,8 @@
 import React from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
-import type { AnimateRouteOptions } from './AnimatedPage.type';
+
+import type { AnimateRouteOptions } from '@/shared/components/AnimatedPage/AnimatedPage.type';
 
 const defaultOptions: AnimateRouteOptions = {
   duration: 0.6,

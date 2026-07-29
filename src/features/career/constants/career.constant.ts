@@ -29,7 +29,7 @@ export const TABS: Category[] = ['All', 'Brokerage', 'Creative', 'Operations'];
 
 export const OPENINGS: Opening[] = [
   {
-    id: 1,
+    id: 11,
     title: 'Senior Property Advisor',
     category: 'Brokerage',
     location: 'Mumbai',

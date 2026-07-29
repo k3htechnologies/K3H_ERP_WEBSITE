@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import type { InputFieldProps } from './InputField.type';
+import type { InputFieldProps } from '@/shared/components/InputField/InputField.type';
 
 const InputField = ({
   label,
@@ -9,16 +9,15 @@ const InputField = ({
   onChange,
   error,
   type = 'text',
-  disabled = false
+  disabled = false,
+  mandatory = false,
 }: InputFieldProps) => {
   return (
     <div>
-      {/* LABEL */}
-      <label className="dm-sans text-[11px] font-semibold uppercase tracking-widest text-[#43474F]">
+      <label className="text-montserrat text-[11px] font-semibold uppercase tracking-widest text-primary-sub">
         {label}
+        {mandatory && <span className="ml-1 text-red-500">*</span>}
       </label>
-
-      {/* INPUT */}
       <input
         type={type}
         name={name}
@@ -34,8 +33,6 @@ const InputField = ({
           }
         `}
       />
-
-      {/* ERROR */}
       {error && (
         <motion.p
           initial={{

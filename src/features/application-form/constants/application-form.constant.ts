@@ -4,7 +4,7 @@ import {
   IndianRupee,
   User2,
 } from 'lucide-react';
-import type { Step } from '../types/application-form.type';
+import type { Step } from '@/features/application-form/types/application-form.type';
 
 export const STEPS: Step[] = [
   'Basic Details',

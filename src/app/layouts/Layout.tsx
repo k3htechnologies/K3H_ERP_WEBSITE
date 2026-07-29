@@ -1,14 +1,25 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
-import NavBar from '@/app/layouts/NavBar';
+import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '@/app/layouts/Footer';
+import Navbar from '@/app/layouts/NavBar';
 
 const Layout: React.FC = () => {
+  const { pathname } = useLocation();
+
+  const isLightTheme = [
+    '/home',
+    '/contact',
+    '/login',
+    '/lifestyle',
+    '/application-form',
+  ].some((route) => pathname.startsWith(route));
   return (
     <>
-        <NavBar />
+      <Navbar vanish theme={isLightTheme ? 'light' : 'dark'} />
+      <div className="max-h-full max-w-full bg-white">
         <Outlet />
         <Footer />
+      </div>
     </>
   );
 };

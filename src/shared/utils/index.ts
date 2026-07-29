@@ -1,36 +1,35 @@
-import { FILE_ISSUE } from "../constants";
+import { FILE_ISSUE } from '@/shared/constants';
 
 export const scrollToTop = () => {
-  window.scrollTo(0,0);
+  window.scrollTo(0, 0);
 };
 
-export const validatePhotoFile = (file: File) : {status : boolean, issue : string} => {
-  const validTypes = [
-    'image/jpeg',
-    'image/png',
-    'image/webp',
-    'image/avif'
-  ];
+export const validatePhotoFile = (
+  file: File
+): { status: boolean; issue: string } => {
+  const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
   const maxSize = 5 * 1024 * 1024;
   if (!validTypes.includes(file.type)) {
     return {
-      status : false,
-      issue : FILE_ISSUE.FORMAT
+      status: false,
+      issue: FILE_ISSUE.FORMAT,
     };
   }
   if (file.size > maxSize) {
     return {
-      status : false,
-      issue : FILE_ISSUE.SIZE
+      status: false,
+      issue: FILE_ISSUE.SIZE,
     };
   }
   return {
-    status : true,
-    issue : 'Success'
+    status: true,
+    issue: 'Success',
   };
 };
 
-export const validateResumeFile = (file: File) : {status : boolean, issue : string} => {
+export const validateResumeFile = (
+  file: File
+): { status: boolean; issue: string } => {
   const validTypes = [
     'application/pdf',
     'application/msword',
@@ -39,18 +38,26 @@ export const validateResumeFile = (file: File) : {status : boolean, issue : stri
   const maxSize = 5 * 1024 * 1024;
   if (!validTypes.includes(file.type)) {
     return {
-      status : false,
-      issue : FILE_ISSUE.FORMAT
+      status: false,
+      issue: FILE_ISSUE.FORMAT,
     };
   }
   if (file.size > maxSize) {
     return {
-      status : false,
-      issue : FILE_ISSUE.SIZE
+      status: false,
+      issue: FILE_ISSUE.SIZE,
     };
   }
   return {
-    status : true,
-    issue : 'Success'
+    status: true,
+    issue: 'Success',
   };
+};
+
+export const generateId = () => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 };

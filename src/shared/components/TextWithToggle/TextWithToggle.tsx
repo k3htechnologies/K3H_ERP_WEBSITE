@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { TextWithToggleProps } from './TextWithToggle.type';
+import type { TextWithToggleProps } from '@/shared/components/TextWithToggle/TextWithToggle.type';
 
 const TextWithToggle: React.FC<TextWithToggleProps> = ({
   text,
@@ -9,7 +9,7 @@ const TextWithToggle: React.FC<TextWithToggleProps> = ({
   textClassName = '',
   defaultOpen = false,
   onToggle,
-  ref = null
+  ref = null,
 }) => {
   const [isOpen, setIsOpen] = useState(defaultOpen);
 
@@ -27,7 +27,7 @@ const TextWithToggle: React.FC<TextWithToggleProps> = ({
       style={{
         gap: `${gap}px`,
       }}
-     ref={ref}
+      ref={ref}
     >
       <span className={textClassName}>{text}</span>
 

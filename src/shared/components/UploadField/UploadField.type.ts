@@ -6,4 +6,5 @@ export interface UploadFieldProps {
   onUpload: (file: File) => void;
   onRemove: () => void;
   previewUrl?: string;
+  mandatory?: boolean;
 }

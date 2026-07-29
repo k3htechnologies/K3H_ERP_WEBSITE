@@ -13,17 +13,3 @@ export interface Opening {
   location: string;
   description: string;
 }
-
-export interface FormData {
-  fullName: string;
-  email: string;
-  mobile: string;
-  portfolio: string;
-}
-
-export interface FormErrors {
-  fullName?: string;
-  email?: string;
-  mobile?: string;
-  portfolio?: string;
-}

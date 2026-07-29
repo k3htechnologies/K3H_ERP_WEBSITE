@@ -1,4 +1,3 @@
-
 export interface InputFieldProps {
   label: string;
   name: string;
@@ -8,4 +7,5 @@ export interface InputFieldProps {
   error?: string;
   type?: string;
   disabled?: boolean;
-};
+  mandatory?: boolean;
+}

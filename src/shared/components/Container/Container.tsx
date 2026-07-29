@@ -1,18 +1,16 @@
-import type { ContainerProps } from "./Container.type";
+import type { ContainerProps } from '@/shared/components/Container/Container.type';
 
-const Container = ({
-  children,
-  className = '',
-}: ContainerProps) => {
+const Container = ({ children, className = '' }: ContainerProps) => {
   return (
     <div
       className={`
         mx-auto
         w-full
-        max-w-7xl
         px-4
         sm:px-6
-        lg:px-8
+        lg:px-20
+        py-6
+        md:py-10
         ${className}
       `}
     >

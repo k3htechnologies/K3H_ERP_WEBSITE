@@ -1,23 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Camera,
-  FileText,
-} from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 
-import Container from '@/shared/components/Container/Container';
 import Reveal from '@/shared/components/Reveal/Reveal';
 import type { ApplicationFormState } from '@/features/application-form/types/application-form.type';
 import {
   STEP_ICONS,
   STEPS,
 } from '@/features/application-form/constants/application-form.constant';
-import type { Opening } from '@/features/career/types/career.type';
-import { OPENINGS } from '@/features/career/constants/career.constant';
 import {
   scrollToTop,
   validatePhotoFile,
@@ -26,14 +17,18 @@ import {
 import { EMAIL_REGEX, FILE_ISSUE, MOBILE_REGEX } from '@/shared/constants';
 import Modal from '@/shared/components/Modal/Modal';
 import InputField from '@/shared/components/InputField/InputField';
-import { useScrollToTop } from '@/shared/hooks/useScrollToTop';
 import UploadField from '@/shared/components/UploadField/UploadField';
+import Container from '@/shared/components/Container/Container';
+import { ApplicationFormService } from '@/features/application-form/service/application-form.service';
+import { createFormData } from '@/shared/utils/createFormData';
+import AsyncDropdown, {
+  type DropdownOption,
+  type LoadOptionsResult,
+} from '@/shared/components/AsyncDropdown/AsyncDropdown';
 
 const ApplicationFormPage = () => {
-  useScrollToTop();
+  const [job, setJob] = useState<DropdownOption | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
-  const [openings, setOpenings] = useState<Opening[]>([]);
-  const [isLoadingOpenings, setIsLoadingOpenings] = useState(false);
   const [formData, setFormData] = useState<ApplicationFormState>({
     position: '',
     referredBy: '',
@@ -48,6 +43,7 @@ const ApplicationFormPage = () => {
     company: '',
     currentRole: '',
     experience: '',
+    skills: '',
     reasonForChange: '',
     currentSalary: '',
     expectedSalary: '',
@@ -57,8 +53,8 @@ const ApplicationFormPage = () => {
   const [photoPreview, setPhotoPreview] = useState<string>('');
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [resumePreviewUrl, setResumePreviewUrl] = useState('');
-  const [isDraggingPhoto, setIsDraggingPhoto] = useState(false);
-  const [isDraggingResume, setIsDraggingResume] = useState(false);
+  // const [isDraggingPhoto, setIsDraggingPhoto] = useState(false);
+  // const [isDraggingResume, setIsDraggingResume] = useState(false);
   const [modalState, setModalState] = useState({
     isOpen: false,
     title: '',
@@ -71,34 +67,17 @@ const ApplicationFormPage = () => {
   const location = useLocation();
 
   useEffect(() => {
-    const fetchOpenings = async () => {
-      try {
-        setIsLoadingOpenings(true);
-        // const response = await fetch('/api/openings');
-        // if (!response.ok) {
-        //   throw new Error('Failed to fetch openings');
-        // }
-        // const data = await response.json();
-
-        // currently using static data
-        setOpenings(OPENINGS);
-
-        // if coming from job openings section then set the value of position
-        if (location.state && location.state.position) {
-          setFormData((prev) => ({
-            ...prev,
-            position: location.state.position,
-          }));
-        }
-      } catch (error) {
-        console.error(error);
-      } finally {
-        setIsLoadingOpenings(false);
-      }
-    };
-
-    fetchOpenings();
-  }, []);
+    if (location.state && location.state.JobOpeningMasterId) {
+      setJob({
+        id: location.state.JobOpeningMasterId,
+        label: location.state.JobRoleName,
+      });
+      setFormData((prev) => ({
+        ...prev,
+        position: location.state.position,
+      }));
+    }
+  }, [location.state]);
 
   useEffect(() => {
     return () => {
@@ -156,13 +135,13 @@ const ApplicationFormPage = () => {
     setPhotoPreview(imageUrl);
   };
 
-  const handlePhotoDrop = (e: React.DragEvent<HTMLLabelElement>) => {
-    e.preventDefault();
-    setIsDraggingPhoto(false);
-    const file = e.dataTransfer.files?.[0];
-    if (!file) return;
-    handlePhotoUpload(file);
-  };
+  // const handlePhotoDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+  //   e.preventDefault();
+  //   setIsDraggingPhoto(false);
+  //   const file = e.dataTransfer.files?.[0];
+  //   if (!file) return;
+  //   handlePhotoUpload(file);
+  // };
 
   const removePhoto = () => {
     setProfilePhoto(null);
@@ -196,13 +175,13 @@ const ApplicationFormPage = () => {
     setResumePreviewUrl(fileUrl);
   };
 
-  const handleResumeDrop = (e: React.DragEvent<HTMLLabelElement>) => {
-    e.preventDefault();
-    setIsDraggingResume(false);
-    const file = e.dataTransfer.files?.[0];
-    if (!file) return;
-    handleResumeUpload(file);
-  };
+  // const handleResumeDrop = (e: React.DragEvent<HTMLLabelElement>) => {
+  //   e.preventDefault();
+  //   setIsDraggingResume(false);
+  //   const file = e.dataTransfer.files?.[0];
+  //   if (!file) return;
+  //   handleResumeUpload(file);
+  // };
 
   const removeResume = () => {
     if (resumePreviewUrl) {
@@ -220,7 +199,7 @@ const ApplicationFormPage = () => {
     switch (currentStep) {
       // BASIC DETAILS
       case 0:
-        if (!formData.position) newErrors.position = 'Position is required';
+        if (!job) newErrors.position = 'Position is required';
 
         if (!formData.referredBy.trim())
           newErrors.referredBy = 'This field is required';
@@ -278,6 +257,8 @@ const ApplicationFormPage = () => {
         if (!formData.reasonForChange.trim())
           newErrors.reasonForChange = 'Reason is required';
 
+        if (!formData.skills.trim()) newErrors.skills = 'Skills are required';
+
         break;
 
       // SALARY
@@ -318,34 +299,38 @@ const ApplicationFormPage = () => {
     if (!isValid) return;
     try {
       setIsSubmitting(true);
-      const payload = new FormData();
-      Object.entries(formData).forEach(([key, value]) => {
-        payload.append(key, value);
+      const request: FormData = createFormData({
+        CareerId: '0',
+        UniqueKey: '3fa85f64-5717-4562-b3fc-2c963f66afa6',
+        JobOpeningMasterId: job?.id,
+        ResumeUrl: resumeFile,
+        Photograph: profilePhoto,
+        SourceId: formData.referredBy,
+        FullName: formData.fullName,
+        MobileNo: formData.mobile,
+        Email: formData.email,
+        HighestQualification: formData.qualification,
+        UniversityInstitution: formData.university,
+        GraduationYear: formData.graduationYear,
+        PercentageCgpa: formData.percentage,
+        CurrentCompany: formData.company,
+        CurrentRole: formData.currentRole,
+        YearsOfExperience: formData.experience,
+        ReasonForChange: formData.reasonForChange,
+        Skills: formData.skills,
+        CurrentSalary: formData.currentSalary,
+        ExpectedSalary: formData.expectedSalary,
+        NoticePeriod: formData.noticePeriod,
       });
-      if (profilePhoto) {
-        payload.append('profilePhoto', profilePhoto);
+      const response =
+        await ApplicationFormService.apiCallApplicationSubmit(request);
+      if (response && response.IsSuccess) {
+        setModalState({
+          isOpen: true,
+          title: 'Application Submitted',
+          description: 'Your application has been successfully submitted.',
+        });
       }
-      if (resumeFile) {
-        payload.append('resume', resumeFile);
-      }
-      // API CALL
-      // const response = await fetch('/api/apply', {
-      //   method: 'POST',
-      //   body: payload,
-      // });
-
-      // if (!response.ok) {
-      //   throw new Error('Submission failed');
-      // }
-
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      setModalState({
-        isOpen: true,
-        title: 'Application Submitted',
-        description: 'Your application has been successfully submitted.',
-      });
-      // console.log(payload);
     } catch (error) {
       // console.error(error);
       setModalState({
@@ -377,6 +362,7 @@ const ApplicationFormPage = () => {
       percentage: '',
       company: '',
       currentRole: '',
+      skills: '',
       experience: '',
       reasonForChange: '',
       currentSalary: '',
@@ -386,6 +372,37 @@ const ApplicationFormPage = () => {
     setCurrentStep(0);
     removePhoto();
     removeResume();
+  };
+
+  const loadJobs = async ({
+    page,
+    pageSize,
+    keyword,
+  }: {
+    page: number;
+    pageSize: number;
+    keyword: string;
+  }): Promise<LoadOptionsResult> => {
+    const response = await ApplicationFormService.apiCallFetchJobListing({
+      pageNumber: page,
+      pageSize,
+      roleName: keyword,
+    });
+    if (response && response.Data && response.Data.length) {
+      const data: DropdownOption[] = response?.Data.map((job) => ({
+        id: String(job.JobOpeningMasterId),
+        label: job.JobRoleName,
+        subtitle: job.WorkLocation,
+      }));
+      return {
+        data,
+        totalRecords: response.TotalNumberOfRecord ?? 0,
+      };
+    }
+    return {
+      data: [],
+      totalRecords: 0,
+    };
   };
 
   const renderStepContent = () => {
@@ -402,9 +419,10 @@ const ApplicationFormPage = () => {
               onUpload={handleResumeUpload}
               onRemove={removeResume}
               previewUrl={resumePreviewUrl}
+              mandatory={true}
             />
             {/* <div className="md:col-span-1">
-              <label className=" dm-sans text-[11px] font-semibold uppercase tracking-widest text-[#43474F]">
+              <label className=" text-montserrat text-[11px] font-semibold uppercase tracking-widest text-primary-sub">
                 Upload Resume
               </label>
               {!resumeFile ? (
@@ -482,7 +500,6 @@ const ApplicationFormPage = () => {
                 </div>
               )}
             </div> */}
-
             {/* UPLOAD PHOTO*/}
             <UploadField
               label="Upload Photograph"
@@ -492,9 +509,10 @@ const ApplicationFormPage = () => {
               previewUrl={photoPreview}
               onUpload={handlePhotoUpload}
               onRemove={removePhoto}
+              mandatory={true}
             />
             {/* <div className="md:col-span-1">
-              <label className=" dm-sans text-[11px] font-semibold uppercase tracking-widest text-[#43474F]">
+              <label className=" text-montserrat text-[11px] font-semibold uppercase tracking-widest text-primary-sub">
                 Upload Photograph
               </label>
 
@@ -564,64 +582,16 @@ const ApplicationFormPage = () => {
               )}
             </div> */}
 
-            <div>
-              <label className="dm-sans text-[11px] font-semibold uppercase tracking-widest text-[#43474F]">
-                Position Applied For
-              </label>
-
-              <div className="relative mt-3">
-                <select
-                  name="position"
-                  value={formData.position}
-                  onChange={(e) => {
-                    setFormData((prev) => ({
-                      ...prev,
-                      position: e.target.value,
-                    }));
-                    setErrors((prev) => ({
-                      ...prev,
-                      position: '',
-                    }));
-                  }}
-                  disabled={isLoadingOpenings}
-                  className={` h-14 w-full appearance-none border-b px-4 pr-10 text-sm text-text outline-none transition-all duration-300 disabled:cursor-not-allowed disabled:bg-[#F5F5F5]
-                    ${
-                      errors.position
-                        ? 'border-red-400 focus:border-red-500'
-                        : 'border-black/10 focus:border-primary'
-                    }
-                  `}
-                >
-                  <option value="">
-                    {isLoadingOpenings
-                      ? 'Loading positions...'
-                      : 'Select Position'}
-                  </option>
-
-                  {openings.map((opening) => (
-                    <option key={opening.id} value={opening.id}>
-                      {opening.title}
-                    </option>
-                  ))}
-                </select>
-
-                <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2">
-                  <ChevronDown size={18} className="text-[#7E848C]" />
-                </div>
-              </div>
-
-              {/* ERROR */}
-              {errors.position && (
-                <motion.p
-                  initial={{ opacity: 0, y: -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="mt-2 text-xs font-medium text-red-500"
-                >
-                  {errors.position}
-                </motion.p>
-              )}
-            </div>
-
+            <AsyncDropdown
+              label="Position Applied For"
+              placeholder="Choose a position"
+              loadOptions={loadJobs}
+              value={job}
+              onChange={setJob}
+              mandatory={true}
+              error={errors.position}
+              defaultValue={job}
+            />
             <InputField
               label="Sourced Through / Referred By"
               name="referredBy"
@@ -629,8 +599,8 @@ const ApplicationFormPage = () => {
               value={formData.referredBy}
               onChange={handleChange}
               error={errors.referredBy}
+              mandatory={true}
             />
-
             <InputField
               label="Full Name"
               name="fullName"
@@ -638,8 +608,8 @@ const ApplicationFormPage = () => {
               value={formData.fullName}
               onChange={handleChange}
               error={errors.fullName}
+              mandatory={true}
             />
-
             <InputField
               label="Address"
               name="address"
@@ -647,8 +617,8 @@ const ApplicationFormPage = () => {
               value={formData.address}
               onChange={handleChange}
               error={errors.address}
+              mandatory={true}
             />
-
             <InputField
               label="Mobile No."
               name="mobile"
@@ -656,8 +626,9 @@ const ApplicationFormPage = () => {
               value={formData.mobile}
               onChange={handleChange}
               error={errors.mobile}
+              mandatory={true}
+              type="tel"
             />
-
             <InputField
               label="Email Address"
               name="email"
@@ -666,6 +637,7 @@ const ApplicationFormPage = () => {
               value={formData.email}
               onChange={handleChange}
               error={errors.email}
+              mandatory={true}
             />
           </div>
         );
@@ -680,6 +652,7 @@ const ApplicationFormPage = () => {
               value={formData.qualification}
               onChange={handleChange}
               error={errors.qualification}
+              mandatory={true}
             />
 
             <InputField
@@ -689,6 +662,7 @@ const ApplicationFormPage = () => {
               value={formData.university}
               onChange={handleChange}
               error={errors.university}
+              mandatory={true}
             />
 
             <InputField
@@ -698,6 +672,7 @@ const ApplicationFormPage = () => {
               value={formData.graduationYear}
               onChange={handleChange}
               error={errors.graduationYear}
+              mandatory={true}
             />
 
             <InputField
@@ -707,6 +682,7 @@ const ApplicationFormPage = () => {
               value={formData.percentage}
               onChange={handleChange}
               error={errors.percentage}
+              mandatory={true}
             />
           </div>
         );
@@ -721,6 +697,7 @@ const ApplicationFormPage = () => {
               value={formData.company}
               onChange={handleChange}
               error={errors.company}
+              mandatory={true}
             />
 
             <InputField
@@ -730,6 +707,7 @@ const ApplicationFormPage = () => {
               value={formData.currentRole}
               onChange={handleChange}
               error={errors.currentRole}
+              mandatory={true}
             />
 
             <InputField
@@ -739,6 +717,7 @@ const ApplicationFormPage = () => {
               value={formData.experience}
               onChange={handleChange}
               error={errors.experience}
+              mandatory={true}
             />
 
             <InputField
@@ -748,6 +727,17 @@ const ApplicationFormPage = () => {
               value={formData.reasonForChange}
               onChange={handleChange}
               error={errors.reasonForChange}
+              mandatory={true}
+            />
+
+            <InputField
+              label="Years Of Experience"
+              name="skills"
+              placeholder="JavaScript, Java"
+              value={formData.skills}
+              onChange={handleChange}
+              error={errors.skills}
+              mandatory={true}
             />
           </div>
         );
@@ -762,6 +752,7 @@ const ApplicationFormPage = () => {
               value={formData.currentSalary}
               onChange={handleChange}
               error={errors.currentSalary}
+              mandatory={true}
             />
 
             <InputField
@@ -771,6 +762,7 @@ const ApplicationFormPage = () => {
               value={formData.expectedSalary}
               onChange={handleChange}
               error={errors.expectedSalary}
+              mandatory={true}
             />
 
             <InputField
@@ -780,6 +772,7 @@ const ApplicationFormPage = () => {
               value={formData.noticePeriod}
               onChange={handleChange}
               error={errors.noticePeriod}
+              mandatory={true}
             />
           </div>
         );
@@ -790,22 +783,22 @@ const ApplicationFormPage = () => {
   };
 
   return (
-    <section className="bg-[#FBF9F8] py-6 md:py-10">
+    <section className="bg-[#FBF9F8] py-6 md:py-12">
       <Container>
         <Reveal>
           <div className="overflow-hidden border border-black/5 bg-white">
             {/* TOP LOGO BAR */}
-            <div className="border-b border-black/5 px-6 py-5 md:px-10">
+            {/* <div className="border-b border-black/5 px-6 py-5 md:px-10">
               <img
                 src="logo-horizontal.png"
                 alt="H.Rishabraj"
                 className="h-8 w-auto"
               />
-            </div>
+            </div> */}
 
             {/* CONTENT */}
             <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14">
-              <h1 className="font-heading text-3xl leading-none text-text md:text-5xl">
+              <h1 className="font-heading-anton text-3xl leading-none text-text md:text-4xl">
                 Start or complete your application
               </h1>
 
@@ -831,7 +824,10 @@ const ApplicationFormPage = () => {
                       const Icon = STEP_ICONS[step];
                       const isActive = currentStep >= index;
                       return (
-                        <div key={step} className="flex items-center gap-2">
+                        <div
+                          key={step}
+                          className="flex items-center gap-2 text-montserrat"
+                        >
                           <Icon
                             size={14}
                             className={

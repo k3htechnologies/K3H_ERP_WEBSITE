@@ -94,87 +94,87 @@ const LoginPage = () => {
   };
 
   return (
-    <section className="bg-[#FBF9F8] py-6 md:py-10">
-      <Container>
-        <Reveal>
-          <div className="overflow-hidden border border-black/5 bg-white">
-            <div className="border-b border-black/5 px-6 py-5 md:px-10">
-              <img
-                src="/logo-horizontal.png"
-                alt="Logo"
-                className="h-8 w-auto"
-              />
-            </div>
-            {/* CONTENT */}
-            <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14">
-              <h1 className="font-heading text-3xl leading-none text-text md:text-5xl">
-                Login To Your Portal
-              </h1>
-              <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#76777D]">
-                Securely access employee services, customer resources, vendor
-                tools, channel partner management and consultant collaboration
-                portals.
-              </p>
+    <Container>
+      <Reveal>
+        <div className="overflow-hidden border border-black/5 bg-white mt-16">
+          <div className="border-b border-black/5 px-6 py-5 md:px-10">
+            <img
+              src="/Hrishabraj-logo-dark.svg"
+              alt="Logo"
+              className="h-14 w-auto"
+            />
+          </div>
+          {/* CONTENT */}
+          <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14">
+            <h1 className="font-heading text-3xl leading-none text-text md:text-5xl">
+              Login To Your Portal
+            </h1>
+            <p className="mt-4 max-w-3xl text-sm leading-relaxed text-[#76777D] text-montserrat">
+              Securely access employee services, customer resources, vendor
+              tools, channel partner management and consultant collaboration
+              portals.
+            </p>
 
-              <div className="mt-12 grid gap-8 lg:grid-cols-[320px_1fr]">
-                {/* LEFT PANEL */}
-                <div className="space-y-3">
-                  {PORTALS.map((portal) => {
-                    const active = portal.id === activePortal.id;
-                    return (
-                      <button
-                        key={portal.id}
-                        onClick={() => handlePortalChange(portal)}
-                        className={` w-full border p-5 text-left transition-all duration-300
+            <div className="mt-12 grid gap-8 lg:grid-cols-[320px_1fr]">
+              {/* LEFT PANEL */}
+              <div className="space-y-3">
+                {PORTALS.map((portal) => {
+                  const active = portal.id === activePortal.id;
+                  return (
+                    <button
+                      key={portal.id}
+                      onClick={() => handlePortalChange(portal)}
+                      className={` w-full border p-5 text-left transition-all duration-300
                           ${
                             active
                               ? 'border-primary bg-primary text-white'
                               : 'border-black/10 bg-white hover:border-primary'
                           }
                         `}
-                      >
-                        <p className="text-[10px] font-semibold uppercase tracking-[0.18em]">
-                          {portal.subtitle}
-                        </p>
-                        <h3 className="mt-2 text-sm font-semibold">
-                          {portal.title}
-                        </h3>
-                      </button>
-                    );
-                  })}
-                </div>
-                {/* RIGHT PANEL */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activePortal.id}
-                    initial={{
-                      opacity: 0,
-                      x: 20,
-                    }}
-                    animate={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    exit={{
-                      opacity: 0,
-                      x: -20,
-                    }}
-                    transition={{
-                      duration: 0.25,
-                    }}
-                    className="border border-black/5 bg-white p-8 lg:p-10"
-                  >
-                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary">
-                      {activePortal.subtitle}
-                    </p>
-                    <h2 className="mt-3 font-heading text-4xl text-text">
-                      {activePortal.title}
-                    </h2>
-                    <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#76777D]">
-                      {activePortal.description}
-                    </p>
-                    {/* CUSTOMER */}
-                    {activePortal.authType === 'redirect' ? (
+                    >
+                      <p className="text-[10px] font-semibold uppercase tracking-[0.18em] font-heading">
+                        {portal.subtitle}
+                      </p>
+                      <h3 className="mt-2 text-sm text-montserrat">
+                        {portal.title}
+                      </h3>
+                    </button>
+                  );
+                })}
+              </div>
+              {/* RIGHT PANEL */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activePortal.id}
+                  initial={{
+                    opacity: 0,
+                    x: 20,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    x: 0,
+                  }}
+                  exit={{
+                    opacity: 0,
+                    x: -20,
+                  }}
+                  transition={{
+                    duration: 0.25,
+                  }}
+                  className="border border-black/5 bg-white p-8 lg:p-10"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary text-montserrat">
+                    {activePortal.subtitle}
+                  </p>
+                  <h2 className="mt-3 font-heading text-4xl text-text">
+                    {activePortal.title}
+                  </h2>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-[#76777D] text-montserrat">
+                    {activePortal.description}
+                  </p>
+                  {/* CUSTOMER */}
+                  {activePortal.active ? (
+                    activePortal.authType === 'redirect' ? (
                       <div className="mt-10">
                         <button
                           onClick={() => {
@@ -186,7 +186,7 @@ const LoginPage = () => {
                               );
                             }
                           }}
-                          className=" inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white "
+                          className=" inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white text-montserrat"
                         >
                           Open {getButtooLabel()} Portal
                           <ArrowRight size={18} />
@@ -220,7 +220,7 @@ const LoginPage = () => {
                           {otpSent && (
                             <Reveal>
                               <div>
-                                <label className="dm-sans text-[11px] font-semibold uppercase tracking-widest text-[#43474F]">
+                                <label className="text-montserrat text-[11px] font-semibold uppercase tracking-widest text-primary-sub">
                                   One Time Password
                                 </label>
 
@@ -284,15 +284,25 @@ const LoginPage = () => {
                           )}
                         </div>
                       </>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
-              </div>
+                    )
+                  ) : (
+                    <div className="mt-10">
+                      <button
+                        disabled
+                        className=" inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white cursor-none text-montserrat"
+                      >
+                        Coming soon...
+                        <ArrowRight size={18} />
+                      </button>
+                    </div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
-        </Reveal>
-      </Container>
-    </section>
+        </div>
+      </Reveal>
+    </Container>
   );
 };
 

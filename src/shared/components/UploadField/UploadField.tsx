@@ -1,5 +1,5 @@
 import { Eye, Upload, Trash2 } from 'lucide-react';
-import type { UploadFieldProps } from './UploadField.type';
+import type { UploadFieldProps } from '@/shared/components/UploadField/UploadField.type';
 
 const UploadField = ({
   label,
@@ -9,11 +9,13 @@ const UploadField = ({
   onUpload,
   onRemove,
   previewUrl,
+  mandatory = false,
 }: UploadFieldProps) => {
   return (
     <div>
-      <label className="dm-sans text-[11px] font-semibold uppercase tracking-widest text-[#43474F]">
+      <label className="text-montserrat text-[11px] font-semibold uppercase tracking-widest text-primary-sub">
         {label}
+        {mandatory && <span className="ml-1 text-red-500">*</span>}
       </label>
 
       <div

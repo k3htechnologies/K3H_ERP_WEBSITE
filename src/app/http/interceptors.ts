@@ -2,16 +2,16 @@ import { isDevelopment } from '@/app/config';
 import { apiClient } from '@/app/http/api-client';
 
 export const registerInterceptors = () => {
-  apiClient.addRequestInterceptor((config) => {
-    const token = localStorage.getItem('auth_token');
-    return {
-      ...config,
-      headers: {
-        ...config.headers,
-        Authorization: token ? `Bearer ${token}` : '',
-      },
-    };
-  });
+  // apiClient.addRequestInterceptor((config) => {
+  //   const token = localStorage.getItem('auth_token');
+  //   return {
+  //     ...config,
+  //     headers: {
+  //       ...config.headers,
+  //       Authorization: token ? `Bearer ${token}` : '',
+  //     },
+  //   };
+  // });
 
   apiClient.addRequestInterceptor((config) => {
     if (isDevelopment()) {

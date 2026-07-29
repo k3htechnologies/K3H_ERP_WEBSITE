@@ -1,6 +1,11 @@
 import { isDevelopment } from '@/app/config';
 import type { Portal } from '@/features/login/types/login.type';
 
+const DEV_LOGIN_BASE_ROUTE = 'http://localhost:3000/login';
+const PROD_LOGIN_BASE_ROUTE = '';
+const DEV_ERP_URL = 'http://10.8.2.9:411';
+const PROD_ERP_URL = 'https://erp.k3htechnologies.com';
+
 export const PORTALS: Portal[] = [
   {
     id: 'employee',
@@ -8,7 +13,8 @@ export const PORTALS: Portal[] = [
     subtitle: 'Workspace',
     description: 'Access employee workspace and internal resources.',
     authType: 'redirect',
-    redirectUrl: isDevelopment() ? 'http://localhost:3000/sign-in' : '',
+    redirectUrl: isDevelopment() ? DEV_ERP_URL : PROD_ERP_URL,
+    active: true,
   },
   {
     id: 'customer',
@@ -17,8 +23,9 @@ export const PORTALS: Portal[] = [
     description: 'Track projects, documents and support requests.',
     authType: 'redirect',
     redirectUrl: isDevelopment()
-      ? 'http://localhost:3000/login?role=customer'
-      : '',
+      ? `${DEV_LOGIN_BASE_ROUTE}?role=CUSTOMER`
+      : `${PROD_LOGIN_BASE_ROUTE}?role=CUSTOMER`,
+    active: false,
   },
   {
     id: 'vendor',
@@ -27,8 +34,9 @@ export const PORTALS: Portal[] = [
     description: 'Manage procurement, invoices and communications.',
     authType: 'redirect',
     redirectUrl: isDevelopment()
-      ? 'http://localhost:4000/login?role=vendor'
-      : '',
+      ? `${DEV_LOGIN_BASE_ROUTE}?role=VENDOR`
+      : `${PROD_LOGIN_BASE_ROUTE}?role=VENDOR`,
+    active: false,
   },
 
   {
@@ -38,8 +46,9 @@ export const PORTALS: Portal[] = [
     description: 'Access channel partner tools and opportunities.',
     authType: 'redirect',
     redirectUrl: isDevelopment()
-      ? 'http://localhost:4000/login?role=partner'
-      : '',
+      ? `${DEV_LOGIN_BASE_ROUTE}?role=CP`
+      : `${PROD_LOGIN_BASE_ROUTE}?role=CP`,
+    active: true,
   },
 
   {
@@ -49,7 +58,8 @@ export const PORTALS: Portal[] = [
     description: 'Review plans, submissions and project resources.',
     authType: 'redirect',
     redirectUrl: isDevelopment()
-      ? 'http://localhost:4000/login?role=architect'
-      : '',
+      ? `${DEV_LOGIN_BASE_ROUTE}?role=ARCHITECT`
+      : `${PROD_LOGIN_BASE_ROUTE}?role=ARCHITECT`,
+    active: false,
   },
 ];

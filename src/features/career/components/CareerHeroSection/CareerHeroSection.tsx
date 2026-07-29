@@ -1,11 +1,9 @@
 import { ROUTES } from '@/app/router/routePaths';
 import { useReveal } from '@/shared/hooks/useReveal';
-import { useScrollToTop } from '@/shared/hooks/useScrollToTop';
 import { scrollToTop } from '@/shared/utils';
 import { useNavigate } from 'react-router-dom';
 
 const CareerHero = () => {
-  useScrollToTop();
   const { ref, isVisible } = useReveal<HTMLDivElement>();
   const navigate = useNavigate();
 
@@ -37,13 +35,13 @@ const CareerHero = () => {
       <div className="absolute inset-0 bg-black/45" />
 
       {/* Logo */}
-      <div className="absolute left-1/2 top-10 z-20 -translate-x-1/2">
+      {/* <div className="absolute left-1/2 top-10 z-20 -translate-x-1/2">
         <img
           src="logo-white.png"
           alt="logo"
           className="h-16 w-auto object-contain"
         />
-      </div>
+      </div> */}
 
       {/* Content */}
       <div className="relative z-10 flex h-full items-center justify-center px-6">
@@ -59,10 +57,10 @@ const CareerHero = () => {
             }
           `}
         >
-          <h1 className="font-heading text-5xl font-black text-white md:text-7xl lg:text-7xl tracking-wider">
+          <h1 className="font-heading text-3xl font-black text-white md:text-4xl lg:text-[4rem] tracking-wider">
             Build The Future With Us
           </h1>
-          <p className="mx-auto my-8 max-w-4xl text-lg leading-relaxed text-gray-200 md:text-2xl dm-sans">
+          <p className="mx-auto my-8 max-w-4xl text-lg leading-relaxed text-gray-200 md:text-xl text-montserrat">
             Join a team that shapes iconic landmarks and creates spaces where
             memories are made. Your vision, our legacy.
           </p>

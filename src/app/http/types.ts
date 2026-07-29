@@ -1,4 +1,5 @@
 export interface ApiConfig {
+  apiKey: string;
   baseURL: string;
   timeout?: number;
   headers?: Record<string, string>;
@@ -10,8 +11,14 @@ export interface ApiError {
   data?: unknown;
 }
 
-export interface ApiResponse<T = unknown> {
-  data: T | null;
+export interface ApiResponse<T = any> {
+  SuccessMessage?: string[];
+  ErrorMessage?: string[];
+  WarningMessage?: string[];
+  Data: T | null;
+  IsSuccess?: boolean;
+  TotalNumberOfRecord?: number;
+  HttpStatusCode?: number;
   status: number;
   headers: Headers;
 }
