@@ -200,7 +200,8 @@ export default function Navbar({
 
   // Lock body scroll while the mobile menu is open so the page behind it doesn't scroll.
   useEffect(() => {
-    if (menuOpen) {
+    const isMobile = window.innerWidth < 640;
+    if (isMobile && menuOpen) {
       const original = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
       return () => {

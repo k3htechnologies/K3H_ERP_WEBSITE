@@ -1,8 +1,8 @@
 import { isDevelopment } from '@/app/config';
 import type { Portal } from '@/features/login/types/login.type';
 
-const DEV_LOGIN_BASE_ROUTE = 'http://localhost:3000/login';
-const PROD_LOGIN_BASE_ROUTE = '';
+const DEV_LOGIN_BASE_ROUTE = 'http://10.8.2.9:422/login';
+const PROD_LOGIN_BASE_ROUTE = 'http://10.8.2.9:422/login';
 const DEV_ERP_URL = 'http://10.8.2.9:411';
 const PROD_ERP_URL = 'https://erp.k3htechnologies.com';
 
