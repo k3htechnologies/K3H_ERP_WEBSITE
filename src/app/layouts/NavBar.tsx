@@ -171,15 +171,24 @@ export default function Navbar({
     const updateVisibility = () => {
       const current = window.scrollY;
 
+      // if (current < 20) {
+      //   setVisible(true);
+      //   setMiddleLogoVisibility(true);
+      // } else
+      //    if (current > lastScrollY.current) {
+      //   setVisible(false);
+      //   setMiddleLogoVisibility(false);
+      // } else {
+      //   setVisible(true);
+      //   setMiddleLogoVisibility(true);
+      // }
+
       if (current < 20) {
         setVisible(true);
         setMiddleLogoVisibility(true);
-      } else if (current > lastScrollY.current) {
+      } else {
         setVisible(false);
         setMiddleLogoVisibility(false);
-      } else {
-        setVisible(true);
-        setMiddleLogoVisibility(true);
       }
 
       lastScrollY.current = current;
@@ -221,8 +230,6 @@ export default function Navbar({
         }}
         transition={vanishTransition}
       >
-        {/* Static background panel — never fades, never blurs.
-            Only its contents (logo/nav) animate individually below. */}
         <div
           className="relative"
           style={{
@@ -258,9 +265,6 @@ export default function Navbar({
                 </AnimatePresence>
               </motion.div>
             </div>
-
-            {/* Desktop / tablet nav — unchanged behavior, just hidden below lg since
-                the mobile menu below takes over that role on small screens. */}
             <div className="hidden lg:flex justify-center">
               <motion.div
                 animate={{
@@ -286,10 +290,10 @@ export default function Navbar({
                               to={item.to}
                               onClick={() => setMenuOpen(false)}
                               className={({ isActive }) =>
-                                `text-xs font-medium uppercase tracking-[0.18em] transition-colors ${
+                                ` font-medium uppercase tracking-[0.18em] transition-colors ${
                                   isActive
-                                    ? 'text-primary'
-                                    : `${t.textIdle} ${t.textHover}`
+                                    ? 'rounded-full bg-primary text-white px-3.5 py-1.5 text-sm'
+                                    : `${t.textIdle} ${t.textHover} text-xs`
                                 }`
                               }
                             >
@@ -304,7 +308,6 @@ export default function Navbar({
               </motion.div>
             </div>
 
-            {/* Always visible — no opacity/blur/scale animation tied to menuOpen */}
             <div className="flex items-center justify-end gap-3 sm:gap-4">
               {!currentPath.includes('project/') && (
                 <button
@@ -319,7 +322,7 @@ export default function Navbar({
                 onClick={() => setMenuOpen((p) => !p)}
                 aria-label={menuOpen ? 'Close menu' : 'Open menu'}
                 aria-expanded={menuOpen}
-                className={`flex h-11 w-11 shrink-0 items-center justify-center border ${t.buttonBorder} ${t.buttonBg} ${t.buttonText} transition-colors duration-200 ${t.buttonHoverBg} ${t.buttonHoverText} focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70`}
+                className={`flex h-9 w-9 shrink-0 items-center justify-center border ${t.buttonBorder} ${t.buttonBg} ${t.buttonText} transition-colors duration-200 ${t.buttonHoverBg} ${t.buttonHoverText} focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/70`}
               >
                 <AnimatePresence mode="wait" initial={false}>
                   {menuOpen ? (
@@ -350,9 +353,6 @@ export default function Navbar({
             </div>
           </div>
 
-          {/* Mobile menu panel — takes over the nav role below lg. Same menuOpen
-              state and same NAV_ITEMS/onClick/route behavior as desktop, just
-              laid out as a full-width stacked list sized for touch. */}
           <AnimatePresence>
             {menuOpen && (
               <motion.div
@@ -408,8 +408,6 @@ export default function Navbar({
         </div>
       </motion.header>
 
-      {/* Floating centered logo — appears only once the navbar has vanished,
-          and only on routes not in CENTER_LOGO_HIDDEN_ROUTES */}
       <AnimatePresence>
         {showCenterLogo && middleLogoVisibility && (
           <motion.div

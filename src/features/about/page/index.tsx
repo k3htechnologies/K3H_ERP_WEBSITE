@@ -20,7 +20,7 @@ const AboutUsPage: React.FC = () => {
       <CorePrinciplesSection />
       <DifferenceSection />
       <AchievementSection />
-      <SectionContainer>
+      <SectionContainer ptClassName='pt-0' pbClassName='pb-0'>
         <EnquirySection />
       </SectionContainer>
     </>

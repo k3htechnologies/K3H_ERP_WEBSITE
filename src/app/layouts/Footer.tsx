@@ -18,11 +18,11 @@ const Footer: React.FC = () => {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-6 xl:grid-cols-12">
             <div className="rounded-lg  p-6 xl:col-span-3 md:col-span-3 sm:col-span-2">
               <div className="max-w-xl">
-                <Reveal>
+                <Reveal className='flex justify-center'>
                   <img
                     src="/Hrishabraj-logo-dark.svg"
                     alt="H.Rishabraj"
-                    className="h-14 w-auto md:w-full md:h-28"
+                    className="h-14 w-auto md:h-28"
                   />
                 </Reveal>
 

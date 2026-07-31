@@ -219,18 +219,18 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
           <Reveal>
             <div className="max-w-xl">
               <p className="text-montserrat text-xl font-semibold uppercase tracking-[0.2em] text-primary">
-                Find Your Perfect Home
+                BEGIN YOUR JOURNEY
               </p>
 
               <h2 className="mt-5 font-heading text-3xl leading-normal text-text md:text-4xl font-bold">
-                Discover a Home <br></br> Crafted Around You
+                Let's Find the Right Home for You
               </h2>
 
               <p className="mt-8 max-w-lg text-montserrat text-sm leading-relaxed text-[#43474F]">
-                Whether you're looking for your dream home or a smart
-                investment, our relationship managers are here to help you with
-                project details, pricing, floor plans, site visits, and
-                exclusive offers.
+                Whether you're searching for your dream residence or your next
+                investment, our relationship managers are here to guide you
+                through every step—from project selection and pricing to site
+                visits and personalized assistance.
               </p>
               <div className="mt-10 space-y-5">
                 <div className="flex items-start gap-4">
@@ -241,7 +241,10 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1D1D1D]">
                       Call us at
                     </p>
-                    <a className="mt-1 text-sm font-medium text-primary">
+                    <a
+                      href="tel:8989724545"
+                      className="mt-1 text-sm font-medium text-primary"
+                    >
                       +91 8989724545
                     </a>
                   </div>

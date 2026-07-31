@@ -86,7 +86,7 @@ export default function ProjectHero() {
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="text-center font-heading text-3xl font-black tracking-wider text-white md:text-5xl lg:text-[3rem] lg:leading-normal lg:mt-16"
+              className="text-center font-heading text-3xl font-black tracking-wider text-white md:text-5xl lg:text-[3rem] lg:leading-normal lg:mt-52"
             >
               Building The Future,
               <br />
@@ -98,7 +98,7 @@ export default function ProjectHero() {
         {/* Bottom Content */}
         <div className="pb-10 md:pb-12 lg:pb-16">
           <Reveal>
-            <p className="text-montserrat mx-auto mb-10 max-w-4xl text-center leading-relaxed text-white text-lg">
+            <p className="text-montserrat mx-auto mb-14 max-w-4xl text-center leading-relaxed text-white text-lg">
               Our portfolio reflects over two decades of creating homes and
               communities
               <br /> that redefine urban living.

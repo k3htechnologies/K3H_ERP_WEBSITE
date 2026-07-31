@@ -78,7 +78,7 @@ const MomentsThatMatterSection = () => {
 
             <div className="absolute inset-0 bg-linear-to-t from-black/75 via-black/20 to-transparent" />
 
-            <div className="absolute bottom-10 left-8 max-w-lg">
+            <div className="absolute bottom-10 lg:left-8 left-4 max-w-lg">
               <span className="rounded px-4 py-2 text-[10px] font-semibold tracking-[0.18em] bg-[#5D5F5F] text-white">
                 {FEATURED_EVENT.badge}
               </span>

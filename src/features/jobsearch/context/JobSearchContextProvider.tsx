@@ -11,15 +11,15 @@ import {
 import type { ApiClientError } from '@/app/http/error';
 import { useFetchJobs } from '@/features/jobsearch/hooks/useFetchJobs';
 import { useFetchDepartments } from '@/features/jobsearch/hooks/useFetchDepartments';
-import type { Option } from '@/shared/components/FilterDropdown/FilterDropdown.type';
+import type { FilterDropdownOption } from '@/shared/components/FilterDropdown/FilterDropdown.type';
 import type { JobOpeningResponse } from '@/features/jobsearch/api/jobsearch.response';
 
 interface JobSearchContextType {
   filters: JobSearchFilters;
 
   locations: string[];
-  departments: Option[];
-  experience: Option[];
+  departments: FilterDropdownOption[];
+  experience: FilterDropdownOption[];
 
   pageNumber: number;
   pageSize: number;
@@ -42,19 +42,19 @@ interface JobSearchContextType {
 
 export interface JobSearchFilters {
   search: string;
-  department: Option;
-  experience: Option;
+  department: FilterDropdownOption;
+  experience: FilterDropdownOption;
   location: string;
 }
 
-const DEFAULT_DEPARTMENT_OPTION: Option = {
+const DEFAULT_DEPARTMENT_OPTION: FilterDropdownOption = {
   label: 'All',
-  value: null,
+  value: '',
 };
 
-const DEFAULT_EXPERIENCE_OPTION: Option = {
+const DEFAULT_EXPERIENCE_OPTION: FilterDropdownOption = {
   label: 'Experience',
-  value: null,
+  value: '',
 };
 
 const DEFAULT_FILTERS: JobSearchFilters = {
@@ -84,7 +84,6 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
       : 0,
     experienceYears: filters.experience.value ? filters.experience.value : '',
   });
-  console.log(data);
   const totalRecords = data?.TotalNumberOfRecord ?? 0;
   const hasMore = pageNumber * PAGE_SIZE < totalRecords;
   const loadMore = useCallback(() => {
@@ -93,11 +92,13 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
     setLoadingMore(true);
     setPageNumber((prev) => prev + 1);
   }, [loading, loadingMore, hasMore]);
+
   useEffect(() => {
     if (!loading) {
       setLoadingMore(false);
     }
   }, [loading]);
+
   useEffect(() => {
     if (!data?.Data) return;
     const latestData = data.Data;

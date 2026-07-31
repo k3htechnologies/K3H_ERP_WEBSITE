@@ -65,9 +65,9 @@ export default function HeroSection() {
           </Reveal> */}
         </div>
         <Reveal>
-          <div className="mb-28 flex items-end justify-between gap-10">
+          <div className="mb-12 flex items-end justify-between gap-10">
             <div>
-              <h2 className="text-4xl leading-tight text-black text-cormorant-garamond font-light">
+              <h2 className="text-4xl leading-tight text-black text-cormorant-garamond font-extrabold">
                 Shaping Mumbai's&nbsp;
                 {/* <br /> */}
                 Finest Landmarks.

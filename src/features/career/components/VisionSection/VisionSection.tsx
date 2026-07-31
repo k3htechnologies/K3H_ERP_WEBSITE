@@ -5,7 +5,7 @@ import Container from '@/shared/components/Container/Container';
 const VisionSection = () => {
   return (
     <Container>
-      <div className="grid gap-16 lg:grid-cols-[0.9fr_1.3fr] lg:gap-24">
+      <div className="grid gap-16 lg:grid-cols-[0.9fr_1.3fr] lg:gap-6">
         {/* LEFT SIDE */}
         <Reveal>
           <div className="max-w-md">
@@ -14,13 +14,13 @@ const VisionSection = () => {
             </p>
 
             <h2 className="max-w-sm font-heading text-2xl uppercase leading-normal md:text-3xl text-[#1D1D1D] font-bold">
-              Where <br></br> Visionaries Find Their Home
+              Where <br></br> Visionaries Build Their Legacy
             </h2>
 
             <p className="mt-12 max-w-sm text-sm text-montserrat leading-relaxed text-[#5f6368]">
-              We don’t just sell properties ,we curate legacies. Our team is a
-              constellation of the industry’s brightest minds working in
-              concert.
+              At H. Rishabraj, every project is an opportunity to shape Mumbai's
+              future. Join a team driven by excellence, innovation, and a shared
+              commitment to creating landmarks that stand the test of time.
             </p>
           </div>
         </Reveal>
@@ -31,9 +31,9 @@ const VisionSection = () => {
             <Reveal
               key={item.id}
               delay={index * 150}
-              className={`
-                  ${index === 2 ? 'md:col-start-2' : ''}
-                `}
+              // className={`
+              //     ${index === 2 ? 'md:col-start-2' : ''}
+              //   `}
             >
               <div className="border-t border-black/10 pt-8 group transition-all">
                 <span className="heading-playfair text-3xl leading-none text-primary md:text-4xl font-bold">

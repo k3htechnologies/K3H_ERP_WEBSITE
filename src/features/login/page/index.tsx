@@ -186,7 +186,7 @@ const LoginPage = () => {
                               );
                             }
                           }}
-                          className=" inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white text-montserrat"
+                          className=" inline-flex lg:h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white text-montserrat"
                         >
                           Open {getButtooLabel()} Portal
                           <ArrowRight size={18} />

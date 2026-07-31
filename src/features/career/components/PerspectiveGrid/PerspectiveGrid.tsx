@@ -203,7 +203,7 @@ const PerspectiveGrid = () => {
               <p
                 className="
                     mt-6
-                    max-w-60
+                    max-w-[95%]
                     text-sm
                     leading-relaxed
                     text-primary-sub

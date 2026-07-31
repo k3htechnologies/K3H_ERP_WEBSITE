@@ -58,11 +58,12 @@ const CareerHero = () => {
           `}
         >
           <h1 className="font-heading text-3xl font-black text-white md:text-4xl lg:text-[4rem] tracking-wider">
-            Build The Future With Us
+            Build the Future With Us
           </h1>
           <p className="mx-auto my-8 max-w-4xl text-lg leading-relaxed text-gray-200 md:text-xl text-montserrat">
-            Join a team that shapes iconic landmarks and creates spaces where
-            memories are made. Your vision, our legacy.
+            Join the team behind Mumbai's next generation of landmarks. Explore
+            opportunities to grow, innovate, and build a career with H.
+            Rishabraj.
           </p>
           <button
             className=" inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all duration-500 hover:bg-primary"

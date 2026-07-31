@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Reveal from '@/shared/components/Reveal/Reveal';
 import type { ApplicationFormState } from '@/features/application-form/types/application-form.type';
 import {
+  getOptionByValue,
+  SALARY_RANGE_OPTIONS,
   STEP_ICONS,
   STEPS,
 } from '@/features/application-form/constants/application-form.constant';
@@ -14,7 +16,7 @@ import {
   validatePhotoFile,
   validateResumeFile,
 } from '@/shared/utils';
-import { EMAIL_REGEX, FILE_ISSUE, MOBILE_REGEX } from '@/shared/constants';
+import { FILE_ISSUE } from '@/shared/constants';
 import Modal from '@/shared/components/Modal/Modal';
 import InputField from '@/shared/components/InputField/InputField';
 import UploadField from '@/shared/components/UploadField/UploadField';
@@ -25,8 +27,20 @@ import AsyncDropdown, {
   type DropdownOption,
   type LoadOptionsResult,
 } from '@/shared/components/AsyncDropdown/AsyncDropdown';
+import type { FilterDropdownOption } from '@/shared/components/FilterDropdown/FilterDropdown.type';
+import FilterDropdown from '@/shared/components/FilterDropdown/FilterDropdown';
+import {
+  formatFieldValue,
+  STEP_FIELDS,
+  validateField,
+  type ApplicationFieldName,
+  type FormValues,
+} from '../utils/ApplicationFormFieldvalidation';
+import { ROUTES } from '@/app/router/routePaths';
 
 const ApplicationFormPage = () => {
+  const navigate = useNavigate();
+
   const [job, setJob] = useState<DropdownOption | null>(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState<ApplicationFormState>({
@@ -97,16 +111,27 @@ const ApplicationFormPage = () => {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    setErrors((prev) => ({
-      ...prev,
-      [name]: '',
-    }));
+    const name = e.target.name as ApplicationFieldName;
+    const value = formatFieldValue(name, e.target.value);
+
+    setFormData((prev) => {
+      const next = { ...prev, [name]: value };
+      const error = validateField(name, value, next as unknown as FormValues);
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
+      return next;
+    });
   };
+
+  const handleRangeChange =
+    (name: ApplicationFieldName) => (option: FilterDropdownOption) => {
+      const value = option.value;
+      setFormData((prev) => {
+        const next = { ...prev, [name]: value };
+        const error = validateField(name, value, next as unknown as FormValues);
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: error }));
+        return next;
+      });
+    };
 
   const handlePhotoUpload = (file: File) => {
     const isValid = validatePhotoFile(file);
@@ -191,91 +216,122 @@ const ApplicationFormPage = () => {
     setResumeFile(null);
   };
 
+  // const validateStep = () => {
+  //   const newErrors: Partial<
+  //     Record<keyof ApplicationFormState | 'photo' | 'resume', string>
+  //   > = {};
+
+  //   switch (currentStep) {
+  //     // BASIC DETAILS
+  //     case 0:
+  //       if (!job) newErrors.position = 'Position is required';
+
+  //       if (!formData.referredBy.trim())
+  //         newErrors.referredBy = 'This field is required';
+
+  //       if (!formData.fullName.trim())
+  //         newErrors.fullName = 'Full name is required';
+
+  //       if (!formData.address.trim()) newErrors.address = 'Address is required';
+
+  //       if (!formData.mobile.trim()) {
+  //         newErrors.mobile = 'Mobile number is required';
+  //       } else if (!MOBILE_REGEX.test(formData.mobile)) {
+  //         newErrors.mobile = 'Enter valid mobile number';
+  //       }
+
+  //       if (!formData.email.trim()) {
+  //         newErrors.email = 'Email is required';
+  //       } else if (!EMAIL_REGEX.test(formData.email)) {
+  //         newErrors.email = 'Enter valid email address';
+  //       }
+
+  //       if (!profilePhoto) newErrors.photo = 'Profile photo is required';
+
+  //       if (!resumeFile) newErrors.resume = 'Resume is required';
+
+  //       break;
+
+  //     // EDUCATION
+  //     case 1:
+  //       if (!formData.qualification.trim())
+  //         newErrors.qualification = 'Qualification is required';
+
+  //       if (!formData.university.trim())
+  //         newErrors.university = 'University is required';
+
+  //       if (!formData.graduationYear.trim())
+  //         newErrors.graduationYear = 'Graduation year is required';
+
+  //       if (!formData.percentage.trim())
+  //         newErrors.percentage = 'Percentage is required';
+
+  //       break;
+
+  //     // EXPERIENCE
+  //     case 2:
+  //       if (!formData.company.trim())
+  //         newErrors.company = 'Company name is required';
+
+  //       if (!formData.currentRole.trim())
+  //         newErrors.currentRole = 'Role is required';
+
+  //       if (!formData.experience.trim())
+  //         newErrors.experience = 'Experience is required';
+
+  //       if (!formData.reasonForChange.trim())
+  //         newErrors.reasonForChange = 'Reason is required';
+
+  //       if (!formData.skills.trim()) newErrors.skills = 'Skills are required';
+
+  //       break;
+
+  //     // SALARY
+  //     case 3:
+  //       if (!formData.currentSalary.trim())
+  //         newErrors.currentSalary = 'Current salary is required';
+
+  //       if (!formData.expectedSalary.trim())
+  //         newErrors.expectedSalary = 'Expected salary is required';
+
+  //       if (!formData.noticePeriod.trim())
+  //         newErrors.noticePeriod = 'Notice period is required';
+
+  //       break;
+  //   }
+  //   setErrors(newErrors);
+  //   return Object.keys(newErrors).length === 0;
+  // };
+
   const validateStep = () => {
-    const newErrors: Partial<
-      Record<keyof ApplicationFormState | 'photo' | 'resume', string>
+    const fields = STEP_FIELDS[currentStep] ?? [];
+
+    const stepErrors: Partial<Record<ApplicationFieldName, string>> = {};
+    fields.forEach((name) => {
+      // Same rule, same function, as handleChange — nothing to keep in sync by hand.
+      stepErrors[name] = validateField(
+        name,
+        formData[name],
+        formData as unknown as FormValues
+      );
+    });
+
+    // Fields that don't live in `formData` (file uploads, async-select) stay as
+    // explicit checks, since they're sourced from separate component state.
+    const extraErrors: Partial<
+      Record<'position' | 'photo' | 'resume', string>
     > = {};
-
-    switch (currentStep) {
-      // BASIC DETAILS
-      case 0:
-        if (!job) newErrors.position = 'Position is required';
-
-        if (!formData.referredBy.trim())
-          newErrors.referredBy = 'This field is required';
-
-        if (!formData.fullName.trim())
-          newErrors.fullName = 'Full name is required';
-
-        if (!formData.address.trim()) newErrors.address = 'Address is required';
-
-        if (!formData.mobile.trim()) {
-          newErrors.mobile = 'Mobile number is required';
-        } else if (!MOBILE_REGEX.test(formData.mobile)) {
-          newErrors.mobile = 'Enter valid mobile number';
-        }
-
-        if (!formData.email.trim()) {
-          newErrors.email = 'Email is required';
-        } else if (!EMAIL_REGEX.test(formData.email)) {
-          newErrors.email = 'Enter valid email address';
-        }
-
-        if (!profilePhoto) newErrors.photo = 'Profile photo is required';
-
-        if (!resumeFile) newErrors.resume = 'Resume is required';
-
-        break;
-
-      // EDUCATION
-      case 1:
-        if (!formData.qualification.trim())
-          newErrors.qualification = 'Qualification is required';
-
-        if (!formData.university.trim())
-          newErrors.university = 'University is required';
-
-        if (!formData.graduationYear.trim())
-          newErrors.graduationYear = 'Graduation year is required';
-
-        if (!formData.percentage.trim())
-          newErrors.percentage = 'Percentage is required';
-
-        break;
-
-      // EXPERIENCE
-      case 2:
-        if (!formData.company.trim())
-          newErrors.company = 'Company name is required';
-
-        if (!formData.currentRole.trim())
-          newErrors.currentRole = 'Role is required';
-
-        if (!formData.experience.trim())
-          newErrors.experience = 'Experience is required';
-
-        if (!formData.reasonForChange.trim())
-          newErrors.reasonForChange = 'Reason is required';
-
-        if (!formData.skills.trim()) newErrors.skills = 'Skills are required';
-
-        break;
-
-      // SALARY
-      case 3:
-        if (!formData.currentSalary.trim())
-          newErrors.currentSalary = 'Current salary is required';
-
-        if (!formData.expectedSalary.trim())
-          newErrors.expectedSalary = 'Expected salary is required';
-
-        if (!formData.noticePeriod.trim())
-          newErrors.noticePeriod = 'Notice period is required';
-
-        break;
+    if (currentStep === 0) {
+      if (!job) extraErrors.position = 'Position is required';
+      if (!profilePhoto) extraErrors.photo = 'Profile photo is required';
+      if (!resumeFile) extraErrors.resume = 'Resume is required';
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+
+    // Overwrite (not merge-append) so a field that now passes clears its old error.
+    setErrors((prev) => ({ ...prev, ...stepErrors, ...extraErrors }));
+
+    const allErrors = { ...stepErrors, ...extraErrors };
+    return Object.values(allErrors).every((error) => !error);
   };
 
   const nextStep = () => {
@@ -372,6 +428,7 @@ const ApplicationFormPage = () => {
     setCurrentStep(0);
     removePhoto();
     removeResume();
+    navigate(`/${ROUTES.CAREER}`);
   };
 
   const loadJobs = async ({
@@ -409,7 +466,7 @@ const ApplicationFormPage = () => {
     switch (currentStep) {
       case 0:
         return (
-          <div className="grid gap-5 md:grid-cols-2">
+          <div className="grid gap-5 md:grid-cols-2 w-full">
             {/* UPLOAD RESUME */}
             <UploadField
               label="Upload Resume"
@@ -622,7 +679,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Mobile No."
               name="mobile"
-              placeholder="+91 9876565656"
+              placeholder="9876565656"
               value={formData.mobile}
               onChange={handleChange}
               error={errors.mobile}
@@ -731,7 +788,7 @@ const ApplicationFormPage = () => {
             />
 
             <InputField
-              label="Years Of Experience"
+              label="Skills"
               name="skills"
               placeholder="JavaScript, Java"
               value={formData.skills}
@@ -745,24 +802,28 @@ const ApplicationFormPage = () => {
       case 3:
         return (
           <div className="grid gap-5 md:grid-cols-2">
-            <InputField
-              label="Current Salary"
+            <FilterDropdown
               name="currentSalary"
-              placeholder="₹12,00,000"
-              value={formData.currentSalary}
-              onChange={handleChange}
+              theme="light"
+              label="Current CTC"
+              mandatory
+              placeholder="e.g. ₹12,00,000"
+              options={SALARY_RANGE_OPTIONS}
+              selectedOption={getOptionByValue(formData.currentSalary)}
+              onChange={handleRangeChange('currentSalary')}
               error={errors.currentSalary}
-              mandatory={true}
             />
 
-            <InputField
-              label="Expected Salary"
+            <FilterDropdown
               name="expectedSalary"
-              placeholder="₹18,00,000"
-              value={formData.expectedSalary}
-              onChange={handleChange}
+              theme="light"
+              label="Expected CTC"
+              mandatory
+              placeholder="e.g. ₹18,00,000"
+              options={SALARY_RANGE_OPTIONS}
+              selectedOption={getOptionByValue(formData.expectedSalary)}
+              onChange={handleRangeChange('expectedSalary')}
               error={errors.expectedSalary}
-              mandatory={true}
             />
 
             <InputField
@@ -805,7 +866,7 @@ const ApplicationFormPage = () => {
               {/* FORM CONTAINER */}
               <div className="mt-12 bg-[#FAFAFA] p-5 md:p-8 lg:p-10">
                 {/* PROGRESS BAR */}
-                <div>
+                <div className='w-full'>
                   <div className="relative h-0.5 w-full bg-black/10">
                     <motion.div
                       animate={{
@@ -849,7 +910,7 @@ const ApplicationFormPage = () => {
                 </div>
 
                 {/* FORM */}
-                <div className="mt-10">
+                <div className="mt-10 w-full">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentStep}
@@ -880,7 +941,7 @@ const ApplicationFormPage = () => {
                     type="button"
                     onClick={previousStep}
                     disabled={currentStep === 0}
-                    className=" inline-flex h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-all duration-300 hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-40"
+                    className={`${currentStep === 0 ? 'invisible' : 'inline-flex'} h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-all duration-300 hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-40`}
                   >
                     <ChevronLeft size={18} />
                     Previous

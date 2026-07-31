@@ -12,8 +12,7 @@ interface ProjectCTAProps {
   backgroundImage?: string;
 }
 
-export default function ProjectCTA({
-}: ProjectCTAProps) {
+export default function ProjectCTA({}: ProjectCTAProps) {
   const prefillRef = useRef<EnquiryPrefillData | undefined>(undefined);
   const { openEnquiryModal } = useEnquiryModal();
   const context = useContext(ProjectDetailsContext);
@@ -58,8 +57,11 @@ export default function ProjectCTA({
       <div className="container relative z-10 mx-auto flex min-h-125 flex-col items-center justify-center px-6 py-24 text-center lg:min-h-150">
         <Reveal>
           <h2 className="max-w-3xl text-cormorant-garamond text-2xl leading-tight text-white lg:text-3xl">
-            Schedule a private site visit today and experience the luxury of
-            Ceremont firsthand.
+            Schedule a private site visit today and experience the luxury of{' '}
+            <br />
+            {context && context.data?.ProjectName
+              ? context.data.ProjectName
+              : 'H.RISHABRAJ'}
           </h2>
         </Reveal>
         <Reveal delay={0.15}>

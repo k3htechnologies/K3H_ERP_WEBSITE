@@ -57,7 +57,7 @@ const UploadField = ({
               {file.name}
             </p>
 
-            <div className="flex items-center gap-2">
+            <div className="flex lg:flex-row flex-col items-center gap-2">
               {previewUrl && (
                 <button
                   type="button"

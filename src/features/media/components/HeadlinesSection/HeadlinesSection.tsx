@@ -110,7 +110,7 @@ const HeadlinesSection = () => {
       }
       sideDescription={
         <Reveal delay={0.15}>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 lg:pl-0 pl-10">
             {HEADLINE_CATEGORIES.map((item) => (
               <button
                 key={item}

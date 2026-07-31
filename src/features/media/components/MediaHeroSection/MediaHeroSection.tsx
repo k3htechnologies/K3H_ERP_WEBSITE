@@ -21,21 +21,18 @@ const MediaHeroSection = () => {
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="text-center font-heading text-3xl font-black tracking-wider text-white md:text-5xl lg:text-[3rem] lg:leading-normal lg:mt-80 mt-96"
+              className="text-center font-heading text-3xl font-black tracking-wider text-white md:text-4xl lg:text-[4rem] lg:leading-normal lg:mt-80 mt-96"
             >
-              Stories That Shape
-              <br />
-              Our Legacy
+              Stories Behind Every Landmark
             </motion.h1>
           </Reveal>
         </div>
         {/* Bottom Content */}
         <div className="pb-40 lg:pb-40">
           <Reveal>
-            <p className="text-montserrat mx-auto mb-10 max-w-4xl text-center leading-relaxed text-white text-lg">
-              Explore the latest insights, architectural innovations, and
-              corporate milestones that define the future of premium urban
-              living at H.Rishabraj.
+            <p className="text-montserrat mx-auto mb-10 max-w-4xl text-center leading-relaxed text-white text-lg md:text-xl">
+              Explore the ideas, milestones, architectural journeys, and
+              defining moments that continue to shape the H. Rishabraj legacy.
             </p>
           </Reveal>
         </div>

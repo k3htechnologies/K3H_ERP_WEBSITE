@@ -15,7 +15,7 @@ const JobListingSection = () => {
   if (loading && data?.length === 0) {
     return (
       <div className="mt-8 grid auto-rows-fr gap-6 lg:grid-cols-2">
-        {Array.from({ length: 6 }).map((_, index) => (
+        {Array.from({ length: 10 }).map((_, index) => (
           <JobCardSkeleton key={index} index={index} />
         ))}
       </div>

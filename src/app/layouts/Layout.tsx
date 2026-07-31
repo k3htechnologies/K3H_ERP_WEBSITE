@@ -10,7 +10,6 @@ const Layout: React.FC = () => {
     '/home',
     '/contact',
     '/login',
-    '/lifestyle',
     '/application-form',
   ].some((route) => pathname.startsWith(route));
   return (

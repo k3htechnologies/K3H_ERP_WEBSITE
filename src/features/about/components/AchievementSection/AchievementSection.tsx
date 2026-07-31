@@ -9,6 +9,7 @@ const AchievementSection = () => {
       bgClassName="bg-white"
       heading="Awards & Recognition"
       footerHeading="Achievements"
+      pbClassName='pb-6'
     >
       <Reveal delay={0.2}>
         <p className="mx-auto mt-10 max-w-3xl text-center text-base leading-relaxed text-primary-sub">

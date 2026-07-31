@@ -14,7 +14,7 @@ const LeadershipSection = () => {
               className="h-100 w-full rounded-xl object-cover lg:h-150"
             />
             <div
-              className="absolute -bottom-12 right-0 w-60 rounded-2xl p-7 text-white shadow-2xl lg:-right-6 lg:w-85"
+              className="absolute lg:-bottom-12 -bottom-40 right-0 rounded-2xl p-7 text-white shadow-2xl lg:-right-6 lg:w-85 w-full"
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,5)',
@@ -38,7 +38,7 @@ const LeadershipSection = () => {
         </Reveal>
         <div>
           <Reveal>
-            <h2 className="font-heading text-xl leading-tight text-white sm:text-3xl lg:text-4xl">
+            <h2 className="font-heading text-xl leading-tight text-white sm:text-3xl lg:text-4xl lg:mt-0 mt-40">
               The <span className="text-primary">Visionary</span>
               <br />
               Behind the Archive
@@ -141,7 +141,7 @@ const LeadershipSection = () => {
               className="h-150 w-full rounded-xl object-cover"
             />
             <div
-              className="absolute -bottom-10 lg:-left-72 w-100 rounded-2xl p-6 text-white shadow-2xl"
+              className="absolute -bottom-10 lg:-left-72 w-full lg:w-100 rounded-2xl p-6 text-white shadow-2xl"
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,1)',

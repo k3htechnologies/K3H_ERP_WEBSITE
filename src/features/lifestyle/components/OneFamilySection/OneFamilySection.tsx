@@ -124,7 +124,7 @@ const OneFamilySection = () => {
               whileHover={{
                 y: -4,
               }}
-              className="absolute -bottom-5 -left-15 rounded-2xl px-7 py-6"
+              className="absolute -bottom-5 md:-left-15 rounded-2xl px-7 py-6"
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 backdropFilter: 'blur(20px)',

@@ -6,11 +6,26 @@ const LifeStyleHeroSection = () => {
   return (
     <section className="relative flex min-h-screen items-end overflow-hidden bg-black">
       {/* Background */}
-      <img
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover"
+      >
+        <source src="/videos/lifestyle-bg.mp4" type="video/mp4" />
+      </video>
+      {/* <img
         src="/lifestyle-hero.jpg"
         alt="Project Background"
         className="absolute inset-0 h-full w-full object-cover"
-      />
+      /> */}
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/30 to-black/60" />
+
+      {/* Extra vignette */}
+      <div className="absolute inset-0 bg-black/20" />
+      
       <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 sm:px-8">
         <div className="flex flex-1 items-center justify-center">
           <Reveal>

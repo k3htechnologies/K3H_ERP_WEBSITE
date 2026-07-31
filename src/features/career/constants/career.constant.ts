@@ -7,21 +7,27 @@ import type {
 export const VISION_ITEMS: VisionItem[] = [
   {
     id: '01',
-    title: 'Global Mentorship',
+    title: 'Meaningful Growth',
     description:
-      'Direct access to our founding partners and a network of international specialists in luxury development.',
+      'Grow alongside experienced leaders through real opportunities, continuous learning, and hands-on project exposure.',
   },
   {
     id: '02',
-    title: 'Iconic Portfolio',
+    title: 'Landmark Projects',
     description:
-      'Represent properties that are works of art, from Manhattan penthouses to private Mediterranean islands.',
+      'Contribute to premium developments that redefine urban living and become enduring landmarks across Mumbai.',
   },
   {
     id: '03',
-    title: 'Cultural Innovation',
+    title: 'People-First Culture',
     description:
-      'A culture of relentless pursuit of excellence, where every voice is heard and every breakthrough celebrated.',
+      'Be part of a collaborative workplace where ideas are valued, talent is nurtured, and success is shared.',
+  },
+  {
+    id: '04',
+    title: 'Purpose-Driven Excellence',
+    description:
+      'Work with a team united by craftsmanship, integrity, and the pursuit of creating spaces that inspire generations.',
   },
 ];
 

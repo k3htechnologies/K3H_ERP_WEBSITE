@@ -182,7 +182,7 @@ const OpeningsSection = () => {
                               className="overflow-hidden"
                             >
                               <div className="pb-8 lg:max-w-[55%]">
-                                <p className=" text-sm leading-relaxed text-[#5f6368] md:text-base">
+                                <p className=" text-sm leading-relaxed text-white/50 md:text-base">
                                   {opening.JobDescription}
                                 </p>
                                 <button
