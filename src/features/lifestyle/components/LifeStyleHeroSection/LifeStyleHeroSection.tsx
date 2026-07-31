@@ -25,7 +25,7 @@ const LifeStyleHeroSection = () => {
 
       {/* Extra vignette */}
       <div className="absolute inset-0 bg-black/20" />
-      
+
       <div className="relative z-20 mx-auto flex min-h-screen w-full max-w-7xl flex-col px-5 sm:px-8">
         <div className="flex flex-1 items-center justify-center">
           <Reveal>
@@ -36,7 +36,7 @@ const LifeStyleHeroSection = () => {
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="text-center font-heading text-3xl font-black tracking-wider text-white md:text-5xl lg:text-[3rem] lg:leading-normal lg:mt-80 mt-96"
+              className="text-center font-heading text-3xl md:text-4xl lg:text-[4rem] font-black tracking-wider text-white lg:leading-normal lg:mt-80 mt-96"
             >
               Live Beyond the Address
             </motion.h1>
@@ -45,7 +45,7 @@ const LifeStyleHeroSection = () => {
         {/* Bottom Content */}
         <div className="pb-40 lg:pb-40">
           <Reveal>
-            <p className="text-montserrat mx-auto mb-10 max-w-4xl text-center leading-relaxed text-white text-lg">
+            <p className="text-montserrat mx-auto mb-10 max-w-4xl text-center leading-relaxed text-white text-lg md:text-xl">
               Where timeless architecture meets meaningful experiences.
               <br /> Designed to elevate every moment of everyday living.
             </p>

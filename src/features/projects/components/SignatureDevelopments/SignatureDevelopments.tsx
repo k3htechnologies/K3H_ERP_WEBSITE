@@ -69,6 +69,7 @@ const SignatureDevelopmentSection = () => {
             />
 
             <div className="absolute inset-0 bg-linear-to-b from-black/40 via-black/20 to-black/70" />
+
             <motion.div
               initial={{
                 opacity: 0,
@@ -100,51 +101,36 @@ const SignatureDevelopmentSection = () => {
                 border: '1px solid rgba(255, 255, 255, 0.2)',
                 backdropFilter: 'blur(35px)',
               }}
-              className="absolute bottom-8 left-8 z-20 w-85 rounded-[28px] p-7 lg:bottom-10 lg:left-10"
+              className="absolute inset-x-4 bottom-4 z-20 rounded-[22px] p-5 sm:inset-x-auto sm:bottom-8 sm:left-8 sm:w-85 sm:rounded-[28px] sm:p-7 lg:bottom-10 lg:left-10"
             >
-              <div className="flex gap-2">
-                <span className="text-montserrat rounded-full border border-primary px-3 py-1 text-[10px] uppercase tracking-wider text-primary">
+              <div className="flex flex-wrap gap-2">
+                <span className="text-montserrat rounded-full border border-primary px-2.5 py-1 text-[9px] uppercase tracking-wider text-primary sm:px-3 sm:text-[10px]">
                   Ongoing Project
                 </span>
 
-                <span className="text-montserrat rounded-full bg-white/10 px-3 py-1 text-[10px] uppercase tracking-wider text-white">
+                <span className="text-montserrat rounded-full bg-white/10 px-2.5 py-1 text-[9px] uppercase tracking-wider text-white sm:px-3 sm:text-[10px]">
                   Elite Series
                 </span>
               </div>
 
-              <h3 className="text-cormorant-garamond mt-6 text-3xl text-white">
+              <h3 className="text-cormorant-garamond mt-4 text-2xl text-white sm:mt-6 sm:text-3xl">
                 Rishabraj Avyaana
               </h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-white/70 text-montserrat">
+              <p className="mt-2 text-xs leading-relaxed text-white/70 text-montserrat sm:mt-3 sm:text-sm">
                 Premium 1, 2 &amp; 3 BHK Residences in the heart of the city.
               </p>
 
-              <div className="mt-8 space-y-3 text-sm text-white/70 text-montserrat">
+              <div className="mt-5 space-y-2 text-xs text-white/70 text-montserrat sm:mt-8 sm:space-y-3 sm:text-sm">
                 <div>📍 Goregaon West • Possession Dec 2029</div>
 
-                <div className="flex gap-6">
+                <div className="flex flex-wrap gap-4 sm:gap-6">
                   <span>🏠 1, 2 &amp; 3 BHK</span>
                   <span>✨ 25+ Amenities</span>
                 </div>
               </div>
 
-              {/* <motion.button
-                whileHover={{
-                  x: 5,
-                }}
-                className="mt-8 text-sm font-medium text-primary text-montserrat"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigate('/project/Rishabraj Avyaana', {
-                    state: {
-                      projectId: 1,
-                    },
-                  });
-                }}
-              >
-                Explore Project →
-              </motion.button> */}
+              {/* <motion.button ... /> */}
             </motion.div>
           </div>
         )
