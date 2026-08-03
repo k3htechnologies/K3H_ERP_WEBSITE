@@ -11,13 +11,16 @@ const Layout: React.FC = () => {
     '/contact',
     '/login',
     '/application-form',
+    '/jobSearch',
   ].some((route) => pathname.startsWith(route));
   return (
     <>
       <Navbar vanish theme={isLightTheme ? 'light' : 'dark'} />
       <div className="max-h-full max-w-full bg-white">
         <Outlet />
-        <Footer />
+        <div className="relative z-10 bg-white">
+          <Footer />
+        </div>
       </div>
     </>
   );

@@ -3,14 +3,20 @@ import CareerHero from '@/features/career/components/CareerHeroSection/CareerHer
 import VisionSection from '@/features/career/components/VisionSection/VisionSection';
 import OpeningsSection from '@/features/career/components/OpeningsSection/OpeningsSection';
 import PerspectiveGrid from '@/features/career/components/PerspectiveGrid/PerspectiveGrid';
+import StickyHeroWrapper from '@/shared/components/StickyHeroWrapper/StickyHeroWrapper';
+import ScrollOverlayWrapper from '@/shared/components/ScrollOverlayWrapper/ScrollOverlayWrapper';
 
 const CareerPage: React.FC = () => {
   return (
     <>
-      <CareerHero />
-      <VisionSection />
-      <OpeningsSection />
-      <PerspectiveGrid />
+      <StickyHeroWrapper>
+        <CareerHero />
+      </StickyHeroWrapper>
+      <ScrollOverlayWrapper>
+        <VisionSection />
+        <OpeningsSection />
+        <PerspectiveGrid />
+      </ScrollOverlayWrapper>
     </>
   );
 };

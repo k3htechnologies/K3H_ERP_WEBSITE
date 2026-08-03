@@ -5,17 +5,23 @@ import LifestyleGallerySection from '@/features/lifestyle/components/LifestyleGa
 import LifeStyleHeroSection from '@/features/lifestyle/components/LifeStyleHeroSection/LifeStyleHeroSection';
 import OneFamilySection from '@/features/lifestyle/components/OneFamilySection/OneFamilySection';
 import TimedExperiencesSection from '@/features/lifestyle/components/TimedExperiencesSection/TimedExperiencesSection';
+import ScrollOverlayWrapper from '@/shared/components/ScrollOverlayWrapper/ScrollOverlayWrapper';
+import StickyHeroWrapper from '@/shared/components/StickyHeroWrapper/StickyHeroWrapper';
 
 const LifeStylePage = () => {
   return (
     <>
-      <LifeStyleHeroSection />
-      <IntelligentHabitatsSection />
-      <ElevatedStandardSection />
-      <TimedExperiencesSection />
-      <OneFamilySection />
-      <GreenImpactSection />
-      <LifestyleGallerySection />
+      <StickyHeroWrapper>
+        <LifeStyleHeroSection />
+      </StickyHeroWrapper>
+      <ScrollOverlayWrapper>
+        <IntelligentHabitatsSection />
+        <ElevatedStandardSection />
+        <TimedExperiencesSection />
+        <OneFamilySection />
+        <GreenImpactSection />
+        <LifestyleGallerySection />
+      </ScrollOverlayWrapper>
     </>
   );
 };

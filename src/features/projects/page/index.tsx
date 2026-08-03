@@ -7,18 +7,24 @@ import CuratedPortfolioSection from '@/features/projects/components/CuratedPortf
 import LocationsSections from '@/features/projects/components/LocationsSection/LocationsSection';
 import ProjectCTA from '@/shared/components/ProjectCTA/ProjectCTA';
 import { ProjectsProvider } from '@/features/projects/context/ProjectsContextProvider';
+import StickyHeroWrapper from '@/shared/components/StickyHeroWrapper/StickyHeroWrapper';
+import ScrollOverlayWrapper from '@/shared/components/ScrollOverlayWrapper/ScrollOverlayWrapper';
 
 const ProjectsPage: React.FC = () => {
   return (
     <>
-      <ProjectHero />
-      <ProjectsProvider>
-        <FilterSection />
-        <SignatureDevelopmentSection />
-        <CuratedPortfolioSection />
-        <LocationsSections />
-      </ProjectsProvider>
-      <ProjectCTA />
+      <StickyHeroWrapper>
+        <ProjectHero />
+      </StickyHeroWrapper>
+      <ScrollOverlayWrapper>
+        <ProjectsProvider>
+          <FilterSection />
+          <SignatureDevelopmentSection />
+          <CuratedPortfolioSection />
+          <LocationsSections />
+        </ProjectsProvider>
+        <ProjectCTA />
+      </ScrollOverlayWrapper>
     </>
   );
 };

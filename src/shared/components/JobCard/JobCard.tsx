@@ -13,7 +13,7 @@ import { getPostedTime } from '@/shared/utils/getPostedTime';
 
 const JobCard = ({ job, index, onApply }: JobCardProps) => {
   return (
-    <Reveal>
+    <Reveal className="flex h-full w-full">
       <motion.article
         initial={{
           opacity: 0,
@@ -34,7 +34,11 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
         whileHover={{
           y: -6,
         }}
-        className={`group relative flex min-w-0 h-full w-full flex-col overflow-hidden border p-7 ${index % 2 === 0 ? 'rounded-tr-3xl rounded-bl-3xl' : 'rounded-tl-3xl rounded-br-3xl'}`}
+        className={`group relative flex min-w-0 h-full w-full flex-1 flex-col overflow-hidden border p-7 ${
+          index % 2 === 0
+            ? 'rounded-tr-3xl rounded-bl-3xl'
+            : 'rounded-tl-3xl rounded-br-3xl'
+        }`}
         style={{
           border: '1px solid',
           borderImageSource:

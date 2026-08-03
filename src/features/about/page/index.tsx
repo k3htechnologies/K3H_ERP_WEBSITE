@@ -9,20 +9,26 @@ import AchievementSection from '@/features/about/components/AchievementSection/A
 import JourneyTimelineSectionNew from '@/features/about/components/JourneyTimelineSection/JourneyTimelineSectionNew';
 import SectionContainer from '@/shared/components/Container/SectionContainer';
 import EnquirySection from '@/shared/components/EnquirySection/EnquirySection';
+import StickyHeroWrapper from '@/shared/components/StickyHeroWrapper/StickyHeroWrapper';
+import ScrollOverlayWrapper from '@/shared/components/ScrollOverlayWrapper/ScrollOverlayWrapper';
 
 const AboutUsPage: React.FC = () => {
   return (
     <>
-      <AboutHeroSection />
-      <CompanyOverviewSection />
-      <JourneyTimelineSectionNew />
-      <LeadershipSection />
-      <CorePrinciplesSection />
-      <DifferenceSection />
-      <AchievementSection />
-      <SectionContainer ptClassName='pt-0' pbClassName='pb-0'>
-        <EnquirySection />
-      </SectionContainer>
+      <StickyHeroWrapper>
+        <AboutHeroSection />
+      </StickyHeroWrapper>
+      <ScrollOverlayWrapper>
+        <CompanyOverviewSection />
+        <JourneyTimelineSectionNew />
+        <LeadershipSection />
+        <CorePrinciplesSection />
+        <DifferenceSection />
+        <AchievementSection />
+        <SectionContainer ptClassName="pt-0" pbClassName="pb-0">
+          <EnquirySection />
+        </SectionContainer>
+      </ScrollOverlayWrapper>
     </>
   );
 };

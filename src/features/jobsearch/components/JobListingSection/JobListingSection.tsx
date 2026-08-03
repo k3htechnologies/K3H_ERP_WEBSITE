@@ -49,28 +49,27 @@ const JobListingSection = () => {
   }
 
   return (
-    <motion.div layout className="mt-8 grid auto-rows-fr gap-6 lg:grid-cols-2">
+    <motion.div
+      layout
+      className="mt-8 grid auto-rows-fr items-stretch gap-6 lg:grid-cols-2"
+    >
       <AnimatePresence mode="popLayout">
         {data?.map((job, index) => (
           <motion.div
             key={job.JobOpeningMasterId}
             layout
-            className="w-full"
+            className="flex h-full w-full"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
-            transition={{
-              delay: index * 0.06,
-            }}
+            transition={{ delay: index * 0.06 }}
           >
             <JobCard
               job={job}
               index={index}
               onApply={(job) => {
                 navigate(`/${ROUTES.APPLICATION_FORM}`, {
-                  state: {
-                    position: job.JobOpeningMasterId,
-                  },
+                  state: { position: job.JobOpeningMasterId },
                 });
               }}
             />
@@ -79,7 +78,11 @@ const JobListingSection = () => {
 
         {loadingMore &&
           Array.from({ length: 2 }).map((_, index) => (
-            <motion.div key={`loading-${index}`} layout className="flex w-full">
+            <motion.div
+              key={`loading-${index}`}
+              layout
+              className="flex h-full w-full"
+            >
               <JobCardSkeleton index={index} />
             </motion.div>
           ))}
