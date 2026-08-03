@@ -33,9 +33,9 @@ const StickyHeroWrapper = ({ children }: StickyHeroWrapperProps) => {
   });
 
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
-  const brightness = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
-  const filter = useTransform(brightness, (b) => `brightness(${b})`);
+  // const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.4]);
+  // const brightness = useTransform(scrollYProgress, [0, 1], [1, 0.6]);
+  // const filter = useTransform(brightness, (b) => `brightness(${b})`);
 
   return (
     <>
