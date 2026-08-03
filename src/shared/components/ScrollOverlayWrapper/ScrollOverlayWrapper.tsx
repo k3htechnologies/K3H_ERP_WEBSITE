@@ -10,9 +10,7 @@ const ScrollOverlayWrapper = ({
   className = '',
 }: ScrollOverlayWrapperProps) => {
   return (
-    <div
-      className={`relative z-10 rounded-t-[40px] bg-background ${className}`}
-    >
+    <div className={`relative z-10 rounded-t-[40px] bg-white ${className}`}>
       {children}
     </div>
   );
