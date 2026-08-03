@@ -22,7 +22,7 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen overflow-hidden">
       <div className="absolute inset-0">
-        <video
+        {/* <video
           autoPlay
           muted
           // loop
@@ -30,7 +30,7 @@ export default function HeroSection() {
           className="absolute inset-0 h-full w-full object-cover"
         >
           <source src="/videos/HRR-2.mp4" type="video/mp4" />
-        </video>
+        </video> */}
         {/* <img
           src="/home-hero-background.jpg"
           alt="Mumbai Skyline"

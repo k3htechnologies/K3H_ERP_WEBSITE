@@ -4,6 +4,7 @@ import type { ReactNode } from 'react';
 
 import { LoadingProvider } from '@/app/provider/LoadingProvider/LoadingProvider';
 import { EnquiryModalProvider } from '@/app/provider/EnquiryProvider/EnquiryModalContext';
+import LenisProvider from '@/app/provider/LenisProvider/LenisProvider';
 
 interface AppProvidersProps {
   children: ReactNode;
@@ -11,8 +12,10 @@ interface AppProvidersProps {
 
 export function AppProviders({ children }: AppProvidersProps) {
   return (
-    <LoadingProvider>
-      <EnquiryModalProvider>{children}</EnquiryModalProvider>
-    </LoadingProvider>
+    <LenisProvider>
+      <LoadingProvider>
+        <EnquiryModalProvider>{children}</EnquiryModalProvider>
+      </LoadingProvider>
+    </LenisProvider>
   );
 }

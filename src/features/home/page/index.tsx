@@ -12,7 +12,7 @@ import ScrollOverlayWrapper from '@/shared/components/ScrollOverlayWrapper/Scrol
 const HomePage: React.FC = () => {
   return (
     <>
-      <StickyHeroWrapper>
+      <StickyHeroWrapper videoSrc="/videos/HRR-2.mp4" scrollMultiplier={2.5}>
         <HeroSection />
       </StickyHeroWrapper>
       <ScrollOverlayWrapper>
