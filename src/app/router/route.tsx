@@ -7,7 +7,6 @@ import AboutUsPage from '@/features/about/page';
 import ProjectsPage from '@/features/projects/page';
 import BlogsPage from '@/features/blogs/page';
 import CareerPage from '@/features/career/page';
-// import { AnimatePresence } from 'framer-motion';
 import ApplicationFormPage from '@/features/application-form/page';
 import LoginPage from '@/features/login/page';
 import JobSearchPage from '@/features/jobsearch/page';
@@ -18,8 +17,6 @@ import MediaPage from '@/features/media/page';
 
 const MainRouter: React.FC = () => {
   return (
-    // <Suspense fallback={<div>Loading...</div>}>
-    //   <AnimatePresence mode="wait">
     <Routes>
       <Route path={ROUTES.HOME} element={<Layout />}>
         <Route
@@ -44,8 +41,6 @@ const MainRouter: React.FC = () => {
       </Route>
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
     </Routes>
-    //   </AnimatePresence>
-    // </Suspense>
   );
 };
 

@@ -1,5 +1,5 @@
 // shared/components/StickyHero/StickyHeroWrapper.tsx
-import React, { useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import {
   motion,
   useScroll,
@@ -9,14 +9,16 @@ import {
 
 interface StickyHeroWrapperProps {
   children?: React.ReactNode;
-  videoSrc?: string; // optional — enables scroll-scrubbed video mode
-  scrollMultiplier?: number; // only relevant when videoSrc is provided
+  videoSrc?: string;
+  scrollMultiplier?: number;
+  resetScrollOnMount?: boolean;
 }
 
 const StickyHeroWrapper = ({
   children,
   videoSrc,
   scrollMultiplier = 2.5,
+  resetScrollOnMount = true,
 }: StickyHeroWrapperProps) => {
   const heroRef = useRef<HTMLDivElement>(null);
   const spacerRef = useRef<HTMLDivElement>(null);
@@ -26,6 +28,12 @@ const StickyHeroWrapper = ({
   const [videoDuration, setVideoDuration] = useState(0);
 
   const hasVideo = Boolean(videoSrc);
+
+  useLayoutEffect(() => {
+    if (resetScrollOnMount) {
+      window.scrollTo(0, 0);
+    }
+  }, [resetScrollOnMount]);
 
   useLayoutEffect(() => {
     if (!heroRef.current) return;
@@ -41,8 +49,6 @@ const StickyHeroWrapper = ({
     };
   }, []);
 
-  // Video mode gets extra scroll distance to scrub through; plain mode just
-  // needs one viewport-height of spacer, same as the original behavior.
   const spacerHeight = hasVideo ? heroHeight * scrollMultiplier : heroHeight;
 
   const { scrollYProgress } = useScroll({
@@ -50,8 +56,6 @@ const StickyHeroWrapper = ({
     offset: ['start start', 'end start'],
   });
 
-  // In video mode, reserve the last 15% of scroll for the dim/scale hand-off.
-  // In plain mode, the whole spacer IS the hand-off (matches original component).
   const scrubProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1], {
     clamp: true,
   });
@@ -64,11 +68,43 @@ const StickyHeroWrapper = ({
   const brightness = useTransform(handoffProgress, [0, 1], [1, 0.6]);
   const filter = useTransform(brightness, (b) => `brightness(${b})`);
 
+  const syncVideoToProgress = (duration: number) => {
+    const video = videoRef.current;
+    if (!video || !duration) return;
+    const targetTime = scrubProgress.get() * duration;
+    video.currentTime = targetTime;
+  };
+
+  // Robust duration detection: handles BOTH the cold-load case (event fires
+  // normally) AND the cached-navigation case (metadata already available
+  // by the time this effect runs, so the event may never fire).
+  useEffect(() => {
+    if (!hasVideo) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleLoadedMetadata = () => {
+      setVideoDuration(video.duration);
+      syncVideoToProgress(video.duration);
+    };
+
+    // Already loaded (likely cached from a previous visit to this route)
+    if (video.readyState >= 1 && video.duration) {
+      handleLoadedMetadata();
+    } else {
+      video.addEventListener('loadedmetadata', handleLoadedMetadata);
+    }
+
+    return () => {
+      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hasVideo, videoSrc]);
+
   useMotionValueEvent(scrubProgress, 'change', (progress) => {
     if (!hasVideo) return;
     const video = videoRef.current;
     if (!video || !videoDuration) return;
-
     const targetTime = progress * videoDuration;
     if (Math.abs(video.currentTime - targetTime) > 0.03) {
       video.currentTime = targetTime;
@@ -93,9 +129,6 @@ const StickyHeroWrapper = ({
               playsInline
               preload="auto"
               className="h-full w-full object-cover"
-              onLoadedMetadata={(e) =>
-                setVideoDuration(e.currentTarget.duration)
-              }
             />
           )}
           {children && (

@@ -7,8 +7,9 @@ const Layout: React.FC = () => {
   const { pathname } = useLocation();
 
   const isLightTheme = [
-    '/home',
-    '/contact',
+    '/projects',
+    '/lifestyle',
+    '/career',
     '/login',
     '/application-form',
     '/jobSearch',

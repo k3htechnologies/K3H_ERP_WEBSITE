@@ -11,11 +11,17 @@ import SectionContainer from '@/shared/components/Container/SectionContainer';
 import EnquirySection from '@/shared/components/EnquirySection/EnquirySection';
 import StickyHeroWrapper from '@/shared/components/StickyHeroWrapper/StickyHeroWrapper';
 import ScrollOverlayWrapper from '@/shared/components/ScrollOverlayWrapper/ScrollOverlayWrapper';
+import { useLocation } from 'react-router-dom';
 
 const AboutUsPage: React.FC = () => {
+  const { pathname } = useLocation();
   return (
     <>
-      <StickyHeroWrapper>
+      <StickyHeroWrapper
+        videoSrc="/videos/OurStory.mp4"
+        scrollMultiplier={2.5}
+        key={pathname}
+      >
         <AboutHeroSection />
       </StickyHeroWrapper>
       <ScrollOverlayWrapper>

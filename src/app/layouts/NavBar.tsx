@@ -56,7 +56,7 @@ const THEME_STYLES: Record<
     logoSrc: string;
   }
 > = {
-  dark: {
+  light: {
     panelBackground:
       'linear-gradient(160.18deg, rgba(255, 255, 255, 0.08) 14.52%, rgba(153, 153, 153, 0) 88.06%)',
     borderColor: '#FFFFFF1A',
@@ -69,7 +69,7 @@ const THEME_STYLES: Record<
     buttonHoverText: 'hover:text-slate-900',
     logoSrc: '/Hrishabraj-logo-light.svg',
   },
-  light: {
+  dark: {
     panelBackground:
       'linear-gradient(160.18deg, rgba(15, 15, 15, 0.05) 14.52%, rgba(15, 15, 15, 0) 88.06%)',
     borderColor: '#0000001A',
@@ -80,8 +80,7 @@ const THEME_STYLES: Record<
     buttonText: 'text-slate-900',
     buttonHoverBg: 'hover:bg-primary',
     buttonHoverText: 'hover:text-white',
-    // logoSrc: '/Hrishabraj-logo-dark.svg',
-    logoSrc: '/Hrishabraj-logo-light.svg',
+    logoSrc: '/Hrishabraj-logo-dark.svg',
   },
 };
 
@@ -420,7 +419,7 @@ export default function Navbar({
           >
             <Link to={ROUTES.HOMEPAGE} className="block">
               <img
-                src="/Hrishabraj-logo-light.svg"
+                src={t.logoSrc}
                 alt="H. Rishabraj"
                 className="h-14 w-auto object-contain lg:h-24"
               />

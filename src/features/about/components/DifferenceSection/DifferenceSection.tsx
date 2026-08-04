@@ -1,3 +1,5 @@
+import { motion } from 'framer-motion';
+
 import Reveal from '@/shared/components/Reveal/Reveal';
 import SectionContainer from '@/shared/components/Container/SectionContainer';
 
@@ -41,23 +43,23 @@ const DifferenceSection = () => {
                 className="group relative flex h-full overflow-hidden rounded-3xl p-px transition-all duration-500 hover:scale-[1.03] hover:z-10"
               >
                 {/* Gradient Border */}
-                <div
+                {/* <div
                   className="absolute inset-0 rounded-3xl"
                   style={{
                     background:
                       'linear-gradient(169.15deg, rgba(255,255,255,0.4) 0%, rgba(238,237,237,0.2) 96.79%)',
                   }}
-                />
+                /> */}
 
                 {/* Card */}
-                <div
+                <motion.div
                   className="relative flex h-full flex-1 flex-col rounded-[23px] px-8 py-8 transition-all duration-500 group-hover:-translate-y-1"
                   style={{
-                    background:
-                      'radial-gradient(96.67% 97.62% at 0% 0%, rgba(255,255,255,0.40) 0%, rgba(255,255,255,0) 45.19%, rgba(255,255,255,0.40) 98.08%)',
-                    backdropFilter: 'blur(42px)',
-                    WebkitBackdropFilter: 'blur(42px)',
-                    boxShadow: '-5px -5px 250px 0 rgba(255,255,255,0.02) inset',
+                    transformStyle: 'preserve-3d',
+                    transformPerspective: 1200,
+                    background: 'rgba(255, 255, 255, 0.08)',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
+                    backdropFilter: 'blur(35px)',
                   }}
                 >
                   <h3 className="font-heading text-xl leading-none text-white">
@@ -67,7 +69,7 @@ const DifferenceSection = () => {
                   <p className="mt-8 text-lg leading-[1.75] text-white/85 text-montserrat">
                     {item.description}
                   </p>
-                </div>
+                </motion.div>
               </div>
             </Reveal>
           ))}

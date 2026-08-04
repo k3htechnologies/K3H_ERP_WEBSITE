@@ -8,11 +8,17 @@ import Testimonials from '@/features/home/components/Testimonials/Testimonials';
 import FeaturedProjects from '@/features/home/components/FeaturedProjects/FeaturedProjects';
 import StickyHeroWrapper from '@/shared/components/StickyHeroWrapper/StickyHeroWrapper';
 import ScrollOverlayWrapper from '@/shared/components/ScrollOverlayWrapper/ScrollOverlayWrapper';
+import { useLocation } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
+  const { pathname } = useLocation();
   return (
     <>
-      <StickyHeroWrapper videoSrc="/videos/HRR-2.mp4" scrollMultiplier={2.5}>
+      <StickyHeroWrapper
+        videoSrc="/videos/HRR-2.mp4"
+        scrollMultiplier={2.5}
+        key={pathname}
+      >
         <HeroSection />
       </StickyHeroWrapper>
       <ScrollOverlayWrapper>
