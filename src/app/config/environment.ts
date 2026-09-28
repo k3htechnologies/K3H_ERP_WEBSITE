@@ -7,7 +7,7 @@ export interface EnvironmentConfig {
 
 //============================ [ DEVELOPMENT CONFIGURATION ] ========================================================
 const developmentConfig: EnvironmentConfig = {
-  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://10.8.4.196/api',
+  apiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'http://10.8.2.9:412/api',
 
   apiKey:
     import.meta.env.VITE_API_KEY ||

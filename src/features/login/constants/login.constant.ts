@@ -1,9 +1,9 @@
 import { isDevelopment } from '@/app/config';
 import type { Portal } from '@/features/login/types/login.type';
 
-const DEV_LOGIN_BASE_ROUTE = 'http://10.8.2.9:422/login';
+const DEV_LOGIN_BASE_ROUTE = 'http://10.8.2.9:480/login';
 const PROD_LOGIN_BASE_ROUTE = 'https://portal.k3htechnologies.com/login';
-const DEV_ERP_URL = 'http://10.8.2.9:411';
+const DEV_ERP_URL = 'http://10.8.2.7:411';
 const PROD_ERP_URL = 'https://erp.k3htechnologies.com';
 
 export const PORTALS: Portal[] = [
