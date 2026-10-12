@@ -20,7 +20,7 @@ const LifeStylePage = () => {
         <TimedExperiencesSection />
         <OneFamilySection />
         <GreenImpactSection />
-        <LifestyleGallerySection />
+        {/* <LifestyleGallerySection /> */}
       </ScrollOverlayWrapper>
     </>
   );

@@ -74,10 +74,10 @@ export const NAV_ITEMS = [
     label: 'Lifestyle',
     to: `/${ROUTES.LIFESTYLE}`,
   },
-  {
-    label: 'Media',
-    to: `/${ROUTES.MEDIA}`,
-  },
+  // {
+  //   label: 'Media',
+  //   to: `/${ROUTES.MEDIA}`,
+  // },
   {
     label: 'Career',
     to: `/${ROUTES.CAREER}`,
