@@ -49,6 +49,7 @@ const FilterDropdown = ({
   placeholder = 'Select',
   name,
   disabled = false,
+  containerClass= ""
 }: FilterDropdownProps) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -94,9 +95,8 @@ const FilterDropdown = ({
         whileHover={disabled ? undefined : { y: -2 }}
         whileTap={disabled ? undefined : { scale: 0.98 }}
         onClick={() => !disabled && setOpen((prev) => !prev)}
-        className={`flex h-12 w-full items-center justify-between rounded-lg px-4 text-sm transition-all duration-300 ${
-          disabled ? 'cursor-not-allowed opacity-50' : t.triggerHover
-        } ${hasValue ? t.trigger : t.placeholder}`}
+        className={`flex h-12 w-full items-center justify-between rounded-lg px-4 text-sm transition-all duration-300 ${containerClass} ${disabled ? 'cursor-not-allowed opacity-50' : t.triggerHover
+          } ${hasValue ? t.trigger : t.placeholder}`}
         style={{
           background: t.triggerBg,
           border: `1px solid ${hasError ? t.errorBorder : t.triggerBorder}`,
@@ -118,6 +118,7 @@ const FilterDropdown = ({
       <AnimatePresence>
         {open && !disabled && (
           <motion.div
+            data-lenis-prevent
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}

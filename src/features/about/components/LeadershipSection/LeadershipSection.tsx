@@ -104,7 +104,7 @@ const LeadershipSection = () => {
         <div className="w-full lg:mb-60">
           <Reveal>
             <p className="leading-6 text-white/80 text-sm text-montserrat">
-              A graduate of Regent's University London, Krish Harish Jain brings
+              A graduate of Regent's University London, Krish Harrish Jain brings
               a fresh global perspective to H. Rishabraj Group while carrying
               forward the values and vision that have shaped its legacy. As part
               of the Group's next generation of leadership, he heads management,

@@ -107,7 +107,11 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
+    let { value } = e.target;
+    if (name === "mobile") {
+      value = value.replace(/\D/g, '').slice(0, 10)
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -273,9 +277,14 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1D1D1D]">
                       Visit us at
                     </p>
-                    <p className="mt-1 text-sm font-medium text-primary">
+                    <a
+                      href="https://maps.app.goo.gl/smZQSrHyNaPUrgtn6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-block text-sm font-medium text-primary transition-opacity duration-300 hover:opacity-70"
+                    >
                       H.Rishabraj Chambers, Borivali East
-                    </p>
+                    </a>
                   </div>
                 </div>
               </div>
@@ -289,7 +298,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                 <div>
                   <AsyncDropdown
                     label="Project Location"
-                    placeholder="Borivali"
+                    placeholder="Select location"
                     loadOptions={loadLocations}
                     value={location}
                     onChange={setLocation}
@@ -303,7 +312,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   <AsyncDropdown
                     key={location?.id ?? 'empty'}
                     label="Project Name"
-                    placeholder="Rishabraj Avyaana"
+                    placeholder="Enter project name"
                     loadOptions={loadProjectsBasedOnLocation}
                     value={project}
                     onChange={setProject}
@@ -317,7 +326,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   <InputField
                     label="Full Name"
                     name="fullName"
-                    placeholder="Julian Vane"
+                    placeholder="Enter Full Name"
                     value={formData.fullName}
                     onChange={handleChange}
                     error={errors.fullName}
@@ -328,7 +337,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   <InputField
                     label="Email Address"
                     name="email"
-                    placeholder="j.vane@estateelite.com"
+                    placeholder="Enter Email Address"
                     value={formData.email}
                     onChange={handleChange}
                     error={errors.email}
@@ -337,9 +346,9 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                 </div>
                 <div>
                   <InputField
-                    label=" Mobile No."
+                    label="Mobile No."
                     name="mobile"
-                    placeholder="+91 8766565656"
+                    placeholder="Enter Mobile No."
                     value={formData.mobile}
                     onChange={handleChange}
                     error={errors.mobile}

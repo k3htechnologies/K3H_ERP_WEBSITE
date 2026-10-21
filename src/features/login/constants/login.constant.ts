@@ -48,7 +48,7 @@ export const PORTALS: Portal[] = [
     redirectUrl: isDevelopment()
       ? `${DEV_LOGIN_BASE_ROUTE}?role=CP`
       : `${PROD_LOGIN_BASE_ROUTE}?role=CP`,
-    active: true,
+    active: false,
   },
 
   {

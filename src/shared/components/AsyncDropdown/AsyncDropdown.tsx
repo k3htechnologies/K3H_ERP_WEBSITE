@@ -256,7 +256,9 @@ ${error ? 'border-b-red-500' : 'border-b-black/10 hover:border-primary/50'}
                   />
                 </div>
               </div>
-              <div className="max-h-72 overflow-y-auto">
+              <div
+                data-lenis-prevent
+                className="max-h-72 overflow-y-auto scrollbar-thin">
                 {!loading && options.length === 0 && (
                   <div className="py-12 text-center">
                     <p className="text-sm text-gray-500">No results found</p>
@@ -283,11 +285,10 @@ ${error ? 'border-b-red-500' : 'border-b-black/10 hover:border-primary/50'}
                     onMouseEnter={() => setHighlighted(index)}
                     onClick={() => select(option)}
                     className={`flex w-full items-center justify-between px-5 py-4 transition
-                    ${
-                      highlighted === index
+                    ${highlighted === index
                         ? 'bg-primary/10'
                         : 'hover:bg-black/3'
-                    }
+                      }
                   `}
                   >
                     <div className="text-left">

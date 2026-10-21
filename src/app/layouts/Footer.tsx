@@ -28,7 +28,7 @@ const Footer: React.FC = () => {
 
                 <Reveal delay={0.1}>
                   <p className="mt-6 max-w-sm text-sm leading-relaxed text-about-dark text-montserrat">
-                    <span className="font-bold">Coporate office</span> : 13th
+                    <span className="font-bold">Corporate Office</span> : 13th
                     Floor, H.Rishabraj Chambers, Road No.10, Daulat Nagar,
                     Borivali (East), Mumbai-66
                   </p>
@@ -45,13 +45,13 @@ const Footer: React.FC = () => {
                   <div className="mt-4 space-y-2">
                     <div className="flex gap-4 text-sm text-montserrat">
                       <span className="min-w-22.5 text-about-dark">
-                        Telephone :
+                        Mobile No :
                       </span>
                       <a
-                        href="tel:8989724545"
+                        href="tel:+918989724545"
                         className="text-primary transition-opacity hover:opacity-70"
                       >
-                        8989724545
+                        +91 8989724545
                       </a>
                     </div>
 

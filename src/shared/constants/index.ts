@@ -163,7 +163,7 @@ export const SOCIAL_LINKS = [
   },
 ] as const;
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-export const MOBILE_REGEX = /^[0-9+\-\s()]{10,}$/;
+export const MOBILE_REGEX = /^[6-9]\d{9}$/;
 
 export const FILE_ISSUE = {
   SIZE: 'SIZE',

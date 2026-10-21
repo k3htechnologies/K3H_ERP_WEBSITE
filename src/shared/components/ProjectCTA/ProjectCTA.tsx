@@ -80,7 +80,7 @@ export default function ProjectCTA({}: ProjectCTAProps) {
               className="bg-primary px-10 py-5 text-xs font-semibold uppercase tracking-[0.22em] text-white shadow-lg"
               onClick={() => openEnquiryModal(prefillRef.current)}
             >
-              Book Site Visit
+              Book a Site Visit
             </motion.button>
 
             <motion.button

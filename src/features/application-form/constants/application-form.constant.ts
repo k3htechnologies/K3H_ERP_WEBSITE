@@ -31,7 +31,17 @@ export const SALARY_RANGE_OPTIONS: FilterDropdownOption[] = [
   { label: '₹25,00,000+', value: '2500000+' },
 ];
 
+export const QUALIFICATION_RANGE_OPTIONS: FilterDropdownOption[] = [
+  { label: '10th Pass', value: '10th pass' },
+  { label: '12th Pass', value: '12th pass' },
+  { label: 'Diploma', value: 'diploma' },
+  { label: 'Graduate', value: 'graduate' },
+  { label: 'Post Graduate', value: 'post graduate' },
+  { label: 'PhD', value: 'phd' },
+  { label: 'Other', value: 'other' },
+];
+
 export const EMPTY_OPTION: FilterDropdownOption = { label: '', value: '' };
 
-export const getOptionByValue = (value: string) =>
-  SALARY_RANGE_OPTIONS.find((opt) => opt.value === value) ?? EMPTY_OPTION;
+export const getOptionByValue = (OPTIONS: FilterDropdownOption[], value: string) =>
+  OPTIONS.find((opt) => opt.value === value) ?? EMPTY_OPTION;
