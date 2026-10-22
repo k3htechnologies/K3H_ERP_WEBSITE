@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Search, ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 import Reveal from '@/shared/components/Reveal/Reveal';
 import { useProjectsContext } from '@/features/projects/context/ProjectsContextProvider';
@@ -68,15 +68,15 @@ export default function FilterSection() {
           {/* Right Filters */}
           <div className="flex flex-col gap-8 md:flex-row md:items-center">
             {/* Search */}
-            <div className="flex h-11 items-center gap-2 border-l border-white/15 pl-5">
+            {/* <div className="flex h-11 items-center gap-2 border-l border-white/15 pl-5">
               <Search size={18} className="text-white/60" />
-              {/* <input
+              <input
                 value={filters.search}
                 onChange={(e) => setFilter('search', e.target.value)}
                 placeholder="Search Project"
                 className="w-40 bg-transparent text-sm text-white placeholder:text-white/45 outline-none"
-              /> */}
-            </div>
+              />
+            </div> */}
 
             {/* Location */}
             {/* <div className="relative">
