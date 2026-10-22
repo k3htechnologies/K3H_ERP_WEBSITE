@@ -85,8 +85,8 @@ const FIELD_CONFIG: Record<ApplicationFieldName, FieldConfig> = {
       if (value.length < 4) return 'Enter a valid 4-digit graduation year.';
       const year = Number(value);
       const currentYear = new Date().getFullYear();
-      if (year < 1900 || year > currentYear + 10) {
-        return `Graduation year must be between 1900 and ${currentYear + 10}.`;
+      if (year < 1980 || year > currentYear) {
+        return `Graduation year must be between 1980 and ${currentYear}.`;
       }
       return '';
     },
@@ -109,6 +109,8 @@ const FIELD_CONFIG: Record<ApplicationFieldName, FieldConfig> = {
     validate: (value) => {
       const numericValue = Number(value);
       if (isNaN(numericValue)) return 'percentage/CGPA is required';
+      if (numericValue === 0)
+        return 'Percentage must be greater than 0 and less than or equal to 100.'
       if (numericValue < 0 || numericValue > 100)
         return 'Percentage must be between 0 and 100.';
       if (value.includes('.') && value.split('.')[1].length > 2)
@@ -135,7 +137,7 @@ const FIELD_CONFIG: Record<ApplicationFieldName, FieldConfig> = {
       raw
         .replace(/[^\d.]/g, '')
         .replace(/(\..*)\./g, '$1')
-        .replace(/^(\d*\.?\d{0,2}).*$/, '$1'),
+        .replace(/^(\d{0,2})(\.\d{0,2})?.*$/, '$1$2'),
     validate: (value) => {
       const experience = Number(value);
 

@@ -648,7 +648,7 @@ const ApplicationFormPage = () => {
             />
 
             <InputField
-              label="Graduation Year"
+              label="Passing Year"
               name="graduationYear"
               placeholder="Enter passing year"
               value={formData.graduationYear}
@@ -732,7 +732,7 @@ const ApplicationFormPage = () => {
               theme="light"
               label="Current CTC"
               mandatory
-              placeholder="Enter current ctc"
+              placeholder="Select current CTC"
               options={SALARY_RANGE_OPTIONS}
               selectedOption={getOptionByValue(SALARY_RANGE_OPTIONS, formData.currentSalary)}
               onChange={handleRangeChange('currentSalary')}
@@ -744,7 +744,7 @@ const ApplicationFormPage = () => {
               theme="light"
               label="Expected CTC"
               mandatory
-              placeholder="Enter expected ctc"
+              placeholder="Select expected CTC"
               options={SALARY_RANGE_OPTIONS}
               selectedOption={getOptionByValue(SALARY_RANGE_OPTIONS, formData.expectedSalary)}
               onChange={handleRangeChange('expectedSalary')}
