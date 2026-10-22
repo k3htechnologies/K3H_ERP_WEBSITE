@@ -640,7 +640,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="University / Institution"
               name="university"
-              placeholder="Enter university/institute"
+              placeholder="Enter University / Institution"
               value={formData.university}
               onChange={handleChange}
               error={errors.university}
@@ -650,7 +650,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Passing Year"
               name="graduationYear"
-              placeholder="Enter passing year"
+              placeholder="Enter Passing Year"
               value={formData.graduationYear}
               onChange={handleChange}
               error={errors.graduationYear}
@@ -660,7 +660,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Percentage / CGPA"
               name="percentage"
-              placeholder="Enter percentage/CGPA"
+              placeholder="Enter Percentage / CGPA"
               value={formData.percentage}
               onChange={handleChange}
               error={errors.percentage}
@@ -675,7 +675,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Current Company"
               name="company"
-              placeholder="Enter current company"
+              placeholder="Enter Current Company"
               value={formData.company}
               onChange={handleChange}
               error={errors.company}
@@ -685,7 +685,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Current Role"
               name="currentRole"
-              placeholder="Senior Designer"
+              placeholder="Enter Current Role"
               value={formData.currentRole}
               onChange={handleChange}
               error={errors.currentRole}
@@ -695,7 +695,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Years Of Experience"
               name="experience"
-              placeholder="Enter years of experience"
+              placeholder="Enter Years Of Experience"
               value={formData.experience}
               onChange={handleChange}
               error={errors.experience}
@@ -705,7 +705,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Reason For Change"
               name="reasonForChange"
-              placeholder="Enter reason for change"
+              placeholder="Enter Reason For Change"
               value={formData.reasonForChange}
               onChange={handleChange}
               error={errors.reasonForChange}
@@ -715,7 +715,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Skills"
               name="skills"
-              placeholder="Enter skills"
+              placeholder="Enter Skills"
               value={formData.skills}
               onChange={handleChange}
               error={errors.skills}
@@ -732,7 +732,7 @@ const ApplicationFormPage = () => {
               theme="light"
               label="Current CTC"
               mandatory
-              placeholder="Select current CTC"
+              placeholder="Select Current CTC"
               options={SALARY_RANGE_OPTIONS}
               selectedOption={getOptionByValue(SALARY_RANGE_OPTIONS, formData.currentSalary)}
               onChange={handleRangeChange('currentSalary')}
@@ -744,7 +744,7 @@ const ApplicationFormPage = () => {
               theme="light"
               label="Expected CTC"
               mandatory
-              placeholder="Select expected CTC"
+              placeholder="Select Expected CTC"
               options={SALARY_RANGE_OPTIONS}
               selectedOption={getOptionByValue(SALARY_RANGE_OPTIONS, formData.expectedSalary)}
               onChange={handleRangeChange('expectedSalary')}
@@ -754,7 +754,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Notice Period (in a days)"
               name="noticePeriod"
-              placeholder="Enter notice period"
+              placeholder="Enter Notice Period"
               value={formData.noticePeriod}
               onChange={handleChange}
               error={errors.noticePeriod}
@@ -868,11 +868,10 @@ const ApplicationFormPage = () => {
                     disabled={currentStep === 0}
                     aria-hidden={currentStep === 0}
                     tabIndex={currentStep === 0 ? -1 : 0}
-                    className={`inline-flex h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-[opacity,border-color,color] duration-300 ease-in-out hover:border-primary hover:text-primary ${
-                      currentStep === 0
+                    className={`inline-flex h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-[opacity,border-color,color] duration-300 ease-in-out hover:border-primary hover:text-primary ${currentStep === 0
                         ? 'pointer-events-none opacity-0'
                         : 'opacity-100'
-                    }`}
+                      }`}
                   >
                     <ChevronLeft size={18} />
                     Previous
