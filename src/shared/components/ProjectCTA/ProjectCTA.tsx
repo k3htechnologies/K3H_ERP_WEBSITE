@@ -12,7 +12,7 @@ interface ProjectCTAProps {
   backgroundImage?: string;
 }
 
-export default function ProjectCTA({}: ProjectCTAProps) {
+export default function ProjectCTA({ }: ProjectCTAProps) {
   const prefillRef = useRef<EnquiryPrefillData | undefined>(undefined);
   const { openEnquiryModal } = useEnquiryModal();
   const context = useContext(ProjectDetailsContext);
@@ -83,7 +83,7 @@ export default function ProjectCTA({}: ProjectCTAProps) {
               Book a Site Visit
             </motion.button>
 
-            <motion.button
+            {/* <motion.button
               whileHover={{
                 scale: 1.04,
                 y: -2,
@@ -97,7 +97,7 @@ export default function ProjectCTA({}: ProjectCTAProps) {
               className="border border-white/20 bg-white/10 px-10 py-5 text-xs font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md transition-colors hover:bg-white/20"
             >
               Get a Call Back
-            </motion.button>
+            </motion.button> */}
           </div>
         </Reveal>
       </div>

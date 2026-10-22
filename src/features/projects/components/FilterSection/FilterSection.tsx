@@ -24,7 +24,7 @@ const STATUS_FILTERS = [
 ] as const;
 
 export default function FilterSection() {
-  const { filters, setFilter, locations, categories } = useProjectsContext();
+  const { filters, setFilter, categories } = useProjectsContext();
 
   return (
     <Reveal>
@@ -48,9 +48,8 @@ export default function FilterSection() {
                   className="relative pb-1 text-lg transition-colors text-montserrat"
                 >
                   <span
-                    className={`transition-colors ${
-                      active ? 'text-white' : 'text-white/60 hover:text-white'
-                    }`}
+                    className={`transition-colors ${active ? 'text-white' : 'text-white/60 hover:text-white'
+                      }`}
                   >
                     {item.label}
                   </span>
@@ -80,7 +79,7 @@ export default function FilterSection() {
             </div>
 
             {/* Location */}
-            <div className="relative">
+            {/* <div className="relative">
               <select
                 value={filters.location}
                 onChange={(e) => setFilter('location', e.target.value)}
@@ -104,7 +103,7 @@ export default function FilterSection() {
                 size={16}
                 className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-white/60"
               />
-            </div>
+            </div> */}
             {/* Category */}
             <div className="relative">
               <select
