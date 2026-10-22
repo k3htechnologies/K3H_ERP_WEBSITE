@@ -113,10 +113,10 @@ export const FOOTER_LINKS = [
     label: 'Careers',
     link: `/${ROUTES.CAREER}`,
   },
-  {
-    label: 'Media',
-    link: `/${ROUTES.MEDIA}`,
-  },
+  // {
+  //   label: 'Media',
+  //   link: `/${ROUTES.MEDIA}`,
+  // },
   {
     label: 'Contact Us',
     link: `/${ROUTES.CONTACT}`,
