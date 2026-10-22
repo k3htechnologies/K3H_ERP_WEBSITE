@@ -85,8 +85,8 @@ const FIELD_CONFIG: Record<ApplicationFieldName, FieldConfig> = {
       if (value.length < 4) return 'Enter a valid 4-digit graduation year.';
       const year = Number(value);
       const currentYear = new Date().getFullYear();
-      if (year < 1980 || year > currentYear) {
-        return `Graduation year must be between 1980 and ${currentYear}.`;
+      if (year < 1970 || year > currentYear + 1) {
+        return `Graduation year must be between 1980 and ${currentYear + 1}.`;
       }
       return '';
     },

@@ -866,7 +866,13 @@ const ApplicationFormPage = () => {
                     type="button"
                     onClick={previousStep}
                     disabled={currentStep === 0}
-                    className={`${currentStep === 0 ? 'invisible' : 'inline-flex'} h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-all duration-300 hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-40`}
+                    aria-hidden={currentStep === 0}
+                    tabIndex={currentStep === 0 ? -1 : 0}
+                    className={`inline-flex h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-[opacity,border-color,color] duration-300 ease-in-out hover:border-primary hover:text-primary ${
+                      currentStep === 0
+                        ? 'pointer-events-none opacity-0'
+                        : 'opacity-100'
+                    }`}
                   >
                     <ChevronLeft size={18} />
                     Previous
