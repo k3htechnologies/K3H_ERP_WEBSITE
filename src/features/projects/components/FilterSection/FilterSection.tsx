@@ -37,7 +37,7 @@ export default function FilterSection() {
           }}
         >
           {/* Status Tabs */}
-          <div className="flex flex-wrap items-center gap-7">
+          <div className="flex flex-wrap items-center gap-3 md:gap-7">
             {STATUS_FILTERS.map((item) => {
               const active = filters.status === item.value;
 
@@ -45,7 +45,7 @@ export default function FilterSection() {
                 <button
                   key={item.value}
                   onClick={() => setFilter('status', item.value)}
-                  className="relative pb-1 text-lg transition-colors text-montserrat"
+                  className="relative pb-1 text-sm md:text-lg transition-colors text-montserrat"
                 >
                   <span
                     className={`transition-colors ${active ? 'text-white' : 'text-white/60 hover:text-white'
@@ -109,7 +109,7 @@ export default function FilterSection() {
               <select
                 value={filters.category}
                 onChange={(e) => setFilter('category', e.target.value)}
-                className="h-11 appearance-none rounded-md border border-white/10 bg-[#4A5663] px-4 pr-10 text-lg text-white outline-none transition hover:border-white/20"
+                className="h-11 appearance-none rounded-md border border-white/10 bg-[#4A5663] px-4 pr-10 text-sm md:text-lg text-white outline-none transition hover:border-white/20"
               >
                 {categories.map((category) => (
                   <option

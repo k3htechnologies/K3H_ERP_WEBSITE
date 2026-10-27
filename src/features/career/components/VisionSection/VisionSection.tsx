@@ -5,7 +5,7 @@ import Container from '@/shared/components/Container/Container';
 const VisionSection = () => {
   return (
     <Container>
-      <div className="grid gap-16 lg:grid-cols-[0.9fr_1.3fr] lg:gap-6">
+      <div className="grid gap-5 lg:grid-cols-[0.9fr_1.3fr] lg:gap-6">
         {/* LEFT SIDE */}
         <Reveal>
           <div className="max-w-md">
@@ -26,7 +26,7 @@ const VisionSection = () => {
         </Reveal>
 
         {/* RIGHT SIDE */}
-        <div className="grid gap-x-12 gap-y-16 md:grid-cols-2">
+        <div className="grid gap-x-12 gap-y-5 md:gap-y-16 md:grid-cols-2">
           {VISION_ITEMS.map((item, index) => (
             <Reveal
               key={item.id}
@@ -35,7 +35,7 @@ const VisionSection = () => {
               //     ${index === 2 ? 'md:col-start-2' : ''}
               //   `}
             >
-              <div className="border-t border-black/10 pt-8 group transition-all">
+              <div className="border-t border-black/10 pt-5 md:pt-8 group transition-all">
                 <span className="heading-playfair text-3xl leading-none text-primary md:text-4xl font-bold">
                   {item.id}.
                 </span>

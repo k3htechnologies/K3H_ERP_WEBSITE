@@ -110,7 +110,7 @@ export const FOOTER_LINKS = [
     link: `/${ROUTES.LIFESTYLE}`,
   },
   {
-    label: 'Careers',
+    label: 'Career',
     link: `/${ROUTES.CAREER}`,
   },
   // {

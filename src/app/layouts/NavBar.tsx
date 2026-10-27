@@ -106,8 +106,6 @@ const itemVariants = {
   },
 };
 
-// Mobile menu items animate in from the side instead of dropping down,
-// so the desktop and mobile reveals each feel native to their own layout.
 const mobileNavVariants = {
   hidden: {},
   visible: {
@@ -150,8 +148,6 @@ export default function Navbar({
 
   const { openEnquiryModal } = useEnquiryModal();
 
-  // Normalize current path against ROUTES values (which are stored without leading slashes,
-  // e.g. 'about', 'login' — only ROUTES.HOME is '/').
   const currentPath = location.pathname.replace(/^\/+/, '');
   const isCenterLogoAllowedOnRoute = !CENTER_LOGO_HIDDEN_ROUTES.some(
     (route) => route.replace(/^\/+/, '') === currentPath
@@ -164,18 +160,6 @@ export default function Navbar({
 
     const updateVisibility = () => {
       const current = window.scrollY;
-
-      // if (current < 20) {
-      //   setVisible(true);
-      //   setMiddleLogoVisibility(true);
-      // } else
-      //    if (current > lastScrollY.current) {
-      //   setVisible(false);
-      //   setMiddleLogoVisibility(false);
-      // } else {
-      //   setVisible(true);
-      //   setMiddleLogoVisibility(true);
-      // }
 
       if (current < 20) {
         setVisible(true);
@@ -352,7 +336,7 @@ export default function Navbar({
                 key="mobile-panel"
                 className="lg:hidden overflow-hidden"
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
+                animate={{ height: '100vh', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.35, ease }}
               >

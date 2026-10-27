@@ -31,7 +31,7 @@ const ElevatedStandardSection = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-3"
+          className="mt-12 grid gap-5 grid-cols-2 xl:grid-cols-3"
         >
           {FEATURES.map((item) => (
             <motion.div
@@ -45,7 +45,7 @@ const ElevatedStandardSection = () => {
                   ease: ELEVATED_STANDARD_EASE,
                 },
               }}
-              className="group relative overflow-hidden rounded-2xl border border-white/15 bg-white/3 p-8 backdrop-blur-sm"
+              className="group relative overflow-hidden rounded-2xl border border-white/15 bg-white/3 p-5 md:p-8 backdrop-blur-sm"
               style={{
                 background:
                   'linear-gradient(317.86deg, rgba(255, 255, 255, 0.35) -38%, rgba(255, 255, 255, 0) 45.29%, rgba(255, 255, 255, 0.1225) 100%)',
@@ -58,15 +58,15 @@ const ElevatedStandardSection = () => {
               <div className="absolute inset-0 rounded-2xl border border-transparent transition-colors duration-500 group-hover:border-primary/40" />
 
               <div className="relative z-10">
-                <span className="font-heading text-5xl text-white">
+                <span className="font-heading text-3xl md:text-5xl text-white">
                   {item.id}
                 </span>
 
-                <h3 className="mt-5 text-cormorant-garamond text-3xl text-primary">
+                <h3 className="mt-5 text-cormorant-garamond font-bold text-xl md:text-3xl text-primary">
                   {item.title}
                 </h3>
 
-                <p className="mt-4 max-w-60 text-montserrat text-sm leading-7 text-white/65">
+                <p className="mt-4 max-w-60 text-montserrat text-sm md:leading-7 text-white/65">
                   {item.description}
                 </p>
               </div>

@@ -29,7 +29,7 @@ const CompanyOverviewSection = () => {
             <img
               src="/company-overview.jpg"
               alt="Company Overview"
-              className="h-180 w-full object-cover"
+              className="h-130 md:h-180 w-full object-cover"
             />
             <div
               className="pointer-events-none absolute inset-0"
@@ -49,7 +49,7 @@ const CompanyOverviewSection = () => {
               {STATS.map((stat, index) => (
                 <div
                   key={stat.label}
-                  className={`p-8 ${
+                  className={`p-5 md:p-8 ${
                     index !== STATS.length - 1 ? 'border-b border-white/10' : ''
                   }`}
                 >
@@ -57,7 +57,7 @@ const CompanyOverviewSection = () => {
                     end={stat.value}
                     suffix={stat.suffix}
                     duration={2500}
-                    className="font-heading-anton text-3xl leading-none text-primary"
+                    className="font-heading-anton text-xl md:text-3xl leading-none text-primary"
                   />
                   <p className="mt-2 text-xs uppercase text-white/80 text-montserrat">
                     {stat.label}

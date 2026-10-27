@@ -33,28 +33,7 @@ export default function ProjectCTA({ }: ProjectCTAProps) {
   }
   return (
     <section className="relative isolate overflow-hidden bg-background-dark">
-      {/*
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src="/videos/project/cta.mp4" type="video/mp4" />
-      </video>
-      */}
-      {/* <img
-        src={backgroundImage}
-        alt="Project Background"
-        className="absolute inset-0 h-full w-full object-cover"
-      /> */}
-
-      {/* Overlay */}
-      {/* <div className="absolute inset-0 bg-[#091522]/70" />
-      <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/30" /> */}
-
-      <div className="container relative z-10 mx-auto flex min-h-125 flex-col items-center justify-center px-6 py-24 text-center lg:min-h-150">
+      <div className="container relative z-10 mx-auto flex min-h-100 flex-col items-center justify-center px-6 py-24 text-center lg:min-h-150">
         <Reveal>
           <h2 className="max-w-3xl text-cormorant-garamond text-2xl leading-tight text-white lg:text-3xl">
             Schedule a private site visit today and experience the luxury of{' '}

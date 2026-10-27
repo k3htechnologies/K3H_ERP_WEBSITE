@@ -49,12 +49,12 @@ export interface JobSearchFilters {
 
 const DEFAULT_DEPARTMENT_OPTION: FilterDropdownOption = {
   label: 'All',
-  value: '',
+  value: 'All',
 };
 
 const DEFAULT_EXPERIENCE_OPTION: FilterDropdownOption = {
   label: 'Experience',
-  value: '',
+  value: 'Experience',
 };
 
 const DEFAULT_FILTERS: JobSearchFilters = {
@@ -136,8 +136,16 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
     []
   );
 
+  const isSameFilterValue = (a: unknown, b: unknown) => {
+    if (typeof a === 'object' && a && typeof b === 'object' && b) {
+      return (a as FilterDropdownOption).value === (b as FilterDropdownOption).value;
+    }
+    return a === b;
+  };
+
   const setFilter = useCallback(
     <K extends keyof JobSearchFilters>(key: K, value: JobSearchFilters[K]) => {
+      if (isSameFilterValue(filters[key], value)) return;
       setJobs([]);
       setPageNumber(1);
       setFilters((prev) => ({
@@ -145,14 +153,18 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
         [key]: value,
       }));
     },
-    []
+    [filters]
   );
 
   const resetFilters = useCallback(() => {
+    const isDefault = (Object.keys(DEFAULT_FILTERS) as (keyof JobSearchFilters)[])
+      .every((k) => isSameFilterValue(filters[k], DEFAULT_FILTERS[k]));
+    if (isDefault) return;
+
     setJobs([]);
     setPageNumber(1);
     setFilters(DEFAULT_FILTERS);
-  }, []);
+  }, [filters]);
 
   const value = useMemo(
     () => ({

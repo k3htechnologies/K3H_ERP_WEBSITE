@@ -1,153 +1,138 @@
-// shared/components/StickyHero/StickyHeroWrapper.tsx
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 
-interface StickyHeroWrapperProps {
+interface Props {
   children?: React.ReactNode;
   videoSrc?: string;
+  mobileVideoSrc?: string;
+  posterSrc?: string;
   scrollMultiplier?: number;
+  mobileScrollMultiplier?: number;
   resetScrollOnMount?: boolean;
 }
 
 const StickyHeroWrapper = ({
   children,
   videoSrc,
+  mobileVideoSrc,
+  posterSrc,
   scrollMultiplier = 2.5,
+  mobileScrollMultiplier = 3.5,
   resetScrollOnMount = true,
-}: StickyHeroWrapperProps) => {
-  const heroRef = useRef<HTMLDivElement>(null);
+}: Props) => {
   const spacerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const targetTimeRef = useRef(0);
+  const seekingRef = useRef(false);
 
-  const [heroHeight, setHeroHeight] = useState(0);
-  const [videoDuration, setVideoDuration] = useState(0);
+  const [duration, setDuration] = useState(0);
+  const [isMobile] = useState(
+    () => typeof window !== 'undefined' &&
+      window.matchMedia('(max-width: 768px), (pointer: coarse)').matches
+  );
 
-  const hasVideo = Boolean(videoSrc);
+  const src = isMobile && mobileVideoSrc ? mobileVideoSrc : videoSrc;
+  const hasVideo = Boolean(src);
+  const multiplier = isMobile ? mobileScrollMultiplier : scrollMultiplier;
 
   useLayoutEffect(() => {
-    if (resetScrollOnMount) {
-      window.scrollTo(0, 0);
-    }
+    if (resetScrollOnMount) window.scrollTo(0, 0);
   }, [resetScrollOnMount]);
 
-  useLayoutEffect(() => {
-    if (!heroRef.current) return;
-    const updateHeight = () =>
-      setHeroHeight(heroRef.current?.offsetHeight ?? 0);
-    updateHeight();
-    const observer = new ResizeObserver(updateHeight);
-    observer.observe(heroRef.current);
-    window.addEventListener('resize', updateHeight);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, []);
-
-  const spacerHeight = hasVideo ? heroHeight * scrollMultiplier : heroHeight;
+  // Use svh so the height doesn't change when the mobile address bar moves.
+  // Spacer is in CSS units, so no ResizeObserver / state needed.
+  const spacerHeight = hasVideo ? `${multiplier * 100}svh` : '100svh';
 
   const { scrollYProgress } = useScroll({
     target: spacerRef,
     offset: ['start start', 'end start'],
   });
 
-  const scrubProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1], {
-    clamp: true,
-  });
-  const handoffProgress = hasVideo
-    ? useTransform(scrollYProgress, [0.85, 1], [0, 1], { clamp: true })
-    : scrollYProgress;
+  // Always call hooks unconditionally
+  const scrubProgress = useTransform(scrollYProgress, [0, 0.85], [0, 1], { clamp: true });
+  const videoHandoff = useTransform(scrollYProgress, [0.85, 1], [0, 1], { clamp: true });
+  const handoff = hasVideo ? videoHandoff : scrollYProgress;
 
-  const scale = useTransform(handoffProgress, [0, 1], [1, 0.92]);
-  const opacity = useTransform(handoffProgress, [0, 1], [1, 0.4]);
-  const brightness = useTransform(handoffProgress, [0, 1], [1, 0.6]);
-  const filter = useTransform(brightness, (b) => `brightness(${b})`);
+  const scale = useTransform(handoff, [0, 1], [1, 0.92]);
+  const opacity = useTransform(handoff, [0, 1], [1, 0.4]);
+  // Cheap dimming: overlay opacity instead of filter: brightness()
+  const dim = useTransform(handoff, [0, 1], [0, 0.4]);
 
-  const syncVideoToProgress = (duration: number) => {
-    const video = videoRef.current;
-    if (!video || !duration) return;
-    const targetTime = scrubProgress.get() * duration;
-    video.currentTime = targetTime;
+  // "Latest target wins" seeking: never queue seeks while one is in flight
+  const requestSeek = () => {
+    const v = videoRef.current;
+    if (!v || seekingRef.current || !duration) return;
+    if (Math.abs(v.currentTime - targetTimeRef.current) < 1 / 30) return;
+    seekingRef.current = true;
+    v.currentTime = targetTimeRef.current;
   };
 
-  // Robust duration detection: handles BOTH the cold-load case (event fires
-  // normally) AND the cached-navigation case (metadata already available
-  // by the time this effect runs, so the event may never fire).
   useEffect(() => {
-    if (!hasVideo) return;
-    const video = videoRef.current;
-    if (!video) return;
+    const v = videoRef.current;
+    if (!v || !hasVideo) return;
 
-    const handleLoadedMetadata = () => {
-      setVideoDuration(video.duration);
-      syncVideoToProgress(video.duration);
+    const onMeta = () => {
+      setDuration(v.duration);
+      // "Unlock" frame rendering on iOS / data-saver: play briefly, then pause
+      v.play().then(() => v.pause()).catch(() => { });
+    };
+    const onSeeked = () => {
+      seekingRef.current = false;
+      requestSeek(); // catch up to the latest target
     };
 
-    // Already loaded (likely cached from a previous visit to this route)
-    if (video.readyState >= 1 && video.duration) {
-      handleLoadedMetadata();
-    } else {
-      video.addEventListener('loadedmetadata', handleLoadedMetadata);
-    }
+    if (v.readyState >= 1 && v.duration) onMeta();
+    else v.addEventListener('loadedmetadata', onMeta);
+    v.addEventListener('seeked', onSeeked);
+
+    // Some mobile browsers only start loading after a gesture
+    const kick = () => v.load();
+    window.addEventListener('touchstart', kick, { once: true, passive: true });
 
     return () => {
-      video.removeEventListener('loadedmetadata', handleLoadedMetadata);
+      v.removeEventListener('loadedmetadata', onMeta);
+      v.removeEventListener('seeked', onSeeked);
+      window.removeEventListener('touchstart', kick);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hasVideo, videoSrc]);
+  }, [hasVideo, src, duration]);
 
-  useMotionValueEvent(scrubProgress, 'change', (progress) => {
-    if (!hasVideo) return;
-    const video = videoRef.current;
-    if (!video || !videoDuration) return;
-    const targetTime = progress * videoDuration;
-    if (Math.abs(video.currentTime - targetTime) > 0.03) {
-      video.currentTime = targetTime;
-    }
+  useMotionValueEvent(scrubProgress, 'change', (p) => {
+    targetTimeRef.current = p * duration;
+    requestSeek();
   });
 
   return (
     <>
-      <div
-        ref={heroRef}
-        className="fixed inset-x-0 top-0 z-0 h-screen w-full overflow-hidden"
-      >
+      <div className="fixed inset-x-0 top-0 z-0 h-svh w-full overflow-hidden bg-black">
         <motion.div
-          style={{ scale, opacity, filter }}
+          style={{ scale, opacity, willChange: 'transform, opacity' }}
           className="relative h-full w-full"
         >
           {hasVideo && (
             <video
               ref={videoRef}
-              src={videoSrc}
+              src={src}
+              poster={posterSrc}
               muted
               playsInline
               preload="auto"
+              disablePictureInPicture
               className="h-full w-full object-cover"
             />
           )}
+          <motion.div
+            style={{ opacity: dim }}
+            className="pointer-events-none absolute inset-0 z-5 bg-black"
+          />
           {children && (
-            <div
-              className={
-                hasVideo ? 'absolute inset-0 z-10' : 'relative h-full w-full'
-              }
-            >
+            <div className={hasVideo ? 'absolute inset-0 z-10' : 'relative h-full w-full'}>
               {children}
             </div>
           )}
         </motion.div>
       </div>
-
-      <div
-        ref={spacerRef}
-        style={{ height: spacerHeight }}
-        aria-hidden="true"
-      />
+      <div ref={spacerRef} style={{ height: spacerHeight }} aria-hidden="true" />
     </>
   );
 };

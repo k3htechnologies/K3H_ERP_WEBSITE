@@ -103,50 +103,31 @@ const OpeningsSection = () => {
                                 : opening.JobOpeningMasterId
                             )
                           }
-                          className="group w-full py-8 text-left"
+                          className="group w-full py-6 text-left lg:py-8"
                         >
-                          <div className="flex flex-col gap-6 lg:grid lg:grid-cols-[1.5fr_0.7fr_0.7fr_auto] lg:items-center">
-                            <div>
-                              <motion.h3
-                                variants={{
-                                  hover: {
-                                    x: 10,
-                                  },
-                                }}
-                                transition={{
-                                  duration: 0.35,
-                                }}
-                                className="text-montserrat text-xl uppercase leading-none text-white md:text-2xl"
-                              >
-                                {opening.JobRoleName}
-                              </motion.h3>
-                            </div>
-
-                            <div>
-                              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/70">
+                          <div className="grid grid-cols-[1fr_auto] items-center gap-x-4 gap-y-3 lg:grid-cols-[1.5fr_0.7fr_0.7fr_auto] lg:gap-6">
+                            <motion.h3
+                              variants={{ hover: { x: 10 } }}
+                              transition={{ duration: 0.35 }}
+                              className="text-montserrat text-lg uppercase leading-tight text-white md:text-2xl lg:leading-none"
+                            >
+                              {opening.JobRoleName}
+                            </motion.h3>
+                            <div className="col-start-1 row-start-2 flex flex-wrap items-center gap-x-3 gap-y-1 lg:contents">
+                              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 md:text-[11px] lg:tracking-[0.25em]">
                                 {opening.DepartmentName}
                               </p>
-                            </div>
-
-                            <div>
-                              <p className="text-[11px] font-semibold uppercase tracking-[0.25em] text-white/70">
+                              <span className="h-1 w-1 rounded-full bg-white/30 lg:hidden" />
+                              <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/70 md:text-[11px] lg:tracking-[0.25em]">
                                 {opening.WorkLocation}
                               </p>
                             </div>
-
                             <motion.div
-                              animate={{
-                                rotate: isOpen ? 90 : 0,
-                              }}
-                              transition={{
-                                duration: 0.3,
-                              }}
-                              className="flex h-12 w-12 items-center justify-center rounded-full border border-black/10 transition-colors duration-300 group-hover:border-[#071739]"
+                              animate={{ rotate: isOpen ? 90 : 0 }}
+                              transition={{ duration: 0.3 }}
+                              className="col-start-2 row-span-2 row-start-1 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors duration-300 group-hover:border-[#071739] lg:col-start-auto lg:row-span-1 lg:row-start-auto lg:h-12 lg:w-12 lg:border-black/10"
                             >
-                              <ArrowRight
-                                size={18}
-                                className="text-white"
-                              />
+                              <ArrowRight size={16} className="text-white" />
                             </motion.div>
                           </div>
                         </motion.button>

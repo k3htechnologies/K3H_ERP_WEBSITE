@@ -64,8 +64,8 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
     });
     if (response && response.Data && response.Data.length) {
       const data: DropdownOption[] = response?.Data.map((location) => ({
-        id: String(location.VillageMasterId),
-        label: location.VillageName,
+        id: String(location.CityMasterId),
+        label: location.CityName,
       }));
       return {
         data,

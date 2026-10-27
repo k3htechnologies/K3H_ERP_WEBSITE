@@ -96,7 +96,7 @@ const GreenImpactSection = () => {
             {/* Statistics */}
             <motion.div
               variants={greenImpactContainerVariants}
-              className="mt-12 grid grid-cols-2 gap-8"
+              className="mt-12 grid grid-cols-2 gap-8 text-center"
             >
               {STATS.map((item) => (
                 <motion.div

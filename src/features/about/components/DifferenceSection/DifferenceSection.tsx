@@ -35,25 +35,12 @@ const DifferenceSection = () => {
       bgClassName="bg-background-dark"
     >
       <Reveal>
-        <div className="grid items-stretch gap-6 pt-20 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-2 items-stretch gap-3 pt-10 sm:gap-5 sm:pt-14 xl:grid-cols-4 xl:gap-6 xl:pt-20">
           {VALUES.map((item) => (
-            <Reveal>
-              <div
-                key={item.title}
-                className="group relative flex h-full overflow-hidden rounded-3xl p-px transition-all duration-500 hover:scale-[1.03] hover:z-10"
-              >
-                {/* Gradient Border */}
-                {/* <div
-                  className="absolute inset-0 rounded-3xl"
-                  style={{
-                    background:
-                      'linear-gradient(169.15deg, rgba(255,255,255,0.4) 0%, rgba(238,237,237,0.2) 96.79%)',
-                  }}
-                /> */}
-
-                {/* Card */}
+            <Reveal key={item.title}>
+              <div className="group relative flex h-full min-w-0 overflow-hidden rounded-2xl p-px transition-all duration-500 hover:z-10 hover:scale-[1.02] sm:rounded-3xl sm:hover:scale-[1.03]">
                 <motion.div
-                  className="relative flex h-full flex-1 flex-col rounded-[23px] px-8 py-8 transition-all duration-500 group-hover:-translate-y-1"
+                  className="relative flex h-full min-w-0 flex-1 flex-col rounded-[15px] px-3 py-4 transition-all duration-500 group-hover:-translate-y-1 sm:rounded-[23px] sm:px-5 sm:py-6 xl:px-8 xl:py-8"
                   style={{
                     transformStyle: 'preserve-3d',
                     transformPerspective: 1200,
@@ -62,11 +49,11 @@ const DifferenceSection = () => {
                     backdropFilter: 'blur(35px)',
                   }}
                 >
-                  <h3 className="font-heading text-xl leading-none text-white">
+                  <h3 className="font-heading text-base leading-tight text-white sm:text-lg xl:text-xl">
                     {item.title}
                   </h3>
 
-                  <p className="mt-8 text-lg leading-[1.75] text-white/85 text-montserrat">
+                  <p className="mt-4 leading-relaxed text-white/85 text-montserrat sm:mt-6 text-sm sm:leading-7 xl:mt-8 xl:text-lg xl:leading-[1.75]">
                     {item.description}
                   </p>
                 </motion.div>

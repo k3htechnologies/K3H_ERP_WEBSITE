@@ -100,7 +100,7 @@ const LeadershipSection = () => {
         </div>
       </div>
       {/* ================= SECOND LEADER ================= */}
-      <div className="mt-24 grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+      <div className="mt-10 md:mt-24 grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
         <div className="w-full lg:mb-60">
           <Reveal>
             <p className="leading-6 text-white/80 text-sm text-montserrat">
@@ -138,7 +138,7 @@ const LeadershipSection = () => {
             <img
               src="/leadership-director.jpg"
               alt="Managing Director"
-              className="h-150 w-full rounded-xl object-cover"
+              className="h-100 lg:h-150 w-full rounded-xl object-cover"
             />
             <div
               className="absolute -bottom-10 lg:-left-72 w-full lg:w-100 rounded-2xl p-6 text-white shadow-2xl"

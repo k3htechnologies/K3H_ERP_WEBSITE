@@ -1,94 +1,103 @@
 import { useState } from 'react';
+import type { MouseEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 import Reveal from '@/shared/components/Reveal/Reveal';
 import SectionContainer from '@/shared/components/Container/SectionContainer';
+import { useIsMobile } from '@/shared/hooks/useIsMobile';
+
+type Panel = 'vision' | 'mission' | null;
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 const CorePrinciplesSection = () => {
-  const [activePanel, setActivePanel] = useState<'vision' | 'mission' | null>(
-    null
-  );
+  const [activePanel, setActivePanel] = useState<Panel>(null);
+  const isMobile = useIsMobile();
+
+  const [first, second] =
+    activePanel === 'vision'
+      ? ['80%', '20%']
+      : activePanel === 'mission'
+        ? ['20%', '80%']
+        : ['50%', '50%'];
+
+  const gridAnimate = isMobile
+    ? { gridTemplateRows: `${first} ${second}`, gridTemplateColumns: '100%' }
+    : { gridTemplateColumns: `${first} ${second}`, gridTemplateRows: '100%' };
+
+  const handlePointerEnter =
+    (panel: Panel) => (e: React.PointerEvent<HTMLDivElement>) => {
+      if (e.pointerType === 'mouse') setActivePanel(panel);
+    };
+
+  const handlePointerLeave = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.pointerType === 'mouse') setActivePanel(null);
+  };
+
+  const handleClick = (panel: Panel) => (e: MouseEvent<HTMLDivElement>) => {
+    const pointerType = (e.nativeEvent as PointerEvent).pointerType;
+    setActivePanel((prev) =>
+      prev === panel && pointerType !== 'mouse' ? null : panel
+    );
+  };
+
   return (
     <SectionContainer
       heading="Core principle"
       footerHeading="See Further. Build better"
     >
       <motion.div
-        className="mt-12 overflow-hidden rounded-4xl"
-        animate={{
-          gridTemplateColumns:
-            activePanel === 'vision'
-              ? '80% 20%'
-              : activePanel === 'mission'
-                ? '20% 80%'
-                : '50% 50%',
-        }}
-        transition={{
-          duration: 0.9,
-          ease: [0.16, 1, 0.3, 1],
-        }}
-        style={{
-          display: 'grid',
-        }}
+        className="mt-12 h-160 overflow-hidden rounded-4xl md:h-175"
+        initial={false}
+        animate={gridAnimate}
+        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        style={{ display: 'grid' }}
       >
         {/* VISION */}
         <Reveal>
           <div
-            onMouseEnter={() => setActivePanel('vision')}
-            onMouseLeave={() => setActivePanel(null)}
-            className="group relative h-175 overflow-hidden"
+            onPointerEnter={handlePointerEnter('vision')}
+            onPointerLeave={handlePointerLeave}
+            onClick={handleClick('vision')}
+            className="group relative h-full w-full cursor-pointer overflow-hidden"
           >
             <img
               loading="lazy"
               src="/vision.png"
               alt="Vision"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
+
             <motion.div
-              animate={{
-                y: activePanel === 'vision' ? -500 : 0,
-                // scale: activePanel === 'vision' ? 0.8 : 1,
-                scale: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="absolute bottom-14 left-10"
+              animate={
+                isMobile
+                  ? { opacity: activePanel === 'vision' ? 0 : 1, y: 0 }
+                  : { opacity: 1, y: activePanel === 'vision' ? -500 : 0 }
+              }
+              transition={{ duration: 0.8, ease }}
+              className="pointer-events-none absolute bottom-6 left-5 md:bottom-14 md:left-10"
             >
-              <h3 className="font-heading md:text-4xl text-2xl uppercase text-white">
+              <h3 className="font-heading text-2xl uppercase text-white md:text-4xl">
                 Vision
               </h3>
             </motion.div>
+
             <AnimatePresence>
               {activePanel === 'vision' && (
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    x: -40,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: -40,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.2,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="absolute bottom-14 left-10 max-w-[90%]"
+                  initial={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  exit={{ opacity: 0, x: isMobile ? 0 : -40, y: isMobile ? 20 : 0 }}
+                  transition={{ duration: 0.5, delay: 0.2, ease }}
+                  className="absolute bottom-6 left-5 right-5 md:bottom-14 md:left-10 md:right-auto md:max-w-[90%]"
                 >
                   <div className="max-w-6xl">
-                    <h2 className="inline-block border-b border-white/20 pb-6 font-heading text-xl leading-none text-white md:text-2xl lg:text-4xl">
+                    <h2 className="inline-block border-b border-white/20 pb-4 font-heading text-xl leading-tight text-white md:pb-6 md:text-2xl md:leading-none lg:text-4xl">
                       Building a Better Mumbai, One Landmark at a Time
                     </h2>
 
-                    <p className="mt-8 max-w-6xl font-sans text-sm leading-[1.75] text-white/90 md:text-lg md:leading-[1.6]">
+                    <p className="mt-4 max-w-6xl font-sans text-sm leading-[1.75] text-white/90 md:mt-8 md:text-lg md:leading-[1.6]">
                       Our vision is to shape the future of Mumbai through
                       thoughtful redevelopment and responsible growth. We aspire
                       to create developments that stand the test of time, enrich
@@ -107,62 +116,47 @@ const CorePrinciplesSection = () => {
         {/* MISSION */}
         <Reveal delay={0.1}>
           <div
-            onMouseEnter={() => setActivePanel('mission')}
-            onMouseLeave={() => setActivePanel(null)}
-            className="group relative h-175 overflow-hidden"
+            onPointerEnter={handlePointerEnter('mission')}
+            onPointerLeave={handlePointerLeave}
+            onClick={handleClick('mission')}
+            className="group relative h-full w-full cursor-pointer overflow-hidden"
           >
             <img
               loading="lazy"
               src="/mission.png"
               alt="Mission"
-              className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
-
             <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent" />
 
             <motion.div
-              animate={{
-                y: activePanel === 'mission' ? -500 : 0,
-                // scale: activePanel === 'mission' ? 0.8 : 1,
-                scale: 1,
-              }}
-              transition={{
-                duration: 0.8,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              className="absolute bottom-14 right-10 origin-top-right"
+              animate={
+                isMobile
+                  ? { opacity: activePanel === 'mission' ? 0 : 1, y: 0 }
+                  : { opacity: 1, y: activePanel === 'mission' ? -500 : 0 }
+              }
+              transition={{ duration: 0.8, ease }}
+              className="pointer-events-none absolute bottom-6 left-5 origin-top-right md:bottom-14 md:left-auto md:right-10"
             >
-              <h3 className="font-heading md:text-4xl text-2xl uppercase text-white">
+              <h3 className="font-heading text-2xl uppercase text-white md:text-4xl">
                 Mission
               </h3>
             </motion.div>
+
             <AnimatePresence>
               {activePanel === 'mission' && (
                 <motion.div
-                  initial={{
-                    opacity: 0,
-                    x: 40,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    x: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    x: 40,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.2,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="absolute bottom-14 right-10 max-w-[90%]"
+                  initial={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 }}
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  exit={{ opacity: 0, x: isMobile ? 0 : 40, y: isMobile ? 20 : 0 }}
+                  transition={{ duration: 0.5, delay: 0.2, ease }}
+                  className="absolute bottom-6 left-5 right-5 md:bottom-14 md:left-auto md:right-10 md:max-w-[90%]"
                 >
-                  <div className="w-full text-right">
-                    <h2 className="inline-block font-heading border-b border-white/20 pb-6 text-xl leading-none text-white md:text-2xl lg:text-4xl">
+                  <div className="w-full text-left md:text-right">
+                    <h2 className="inline-block border-b border-white/20 pb-4 font-heading text-xl leading-tight text-white md:pb-6 md:text-2xl md:leading-none lg:text-4xl">
                       Driven by Commitment. Built on Trust.
                     </h2>
-                    <p className="mt-8 text-sm leading-[1.75] text-white/90 md:text-lg md:leading-[1.6]">
+                    <p className="mt-4 text-sm leading-[1.75] text-white/90 md:mt-8 md:text-lg md:leading-[1.6]">
                       Our mission is to deliver thoughtfully planned
                       developments that combine quality construction, timely
                       execution, and uncompromising integrity. Guided by strong

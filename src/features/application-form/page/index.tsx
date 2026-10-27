@@ -769,7 +769,7 @@ const ApplicationFormPage = () => {
   };
 
   return (
-    <section className="bg-[#FBF9F8] py-6 md:py-12">
+    <section className="bg-[#FBF9F8] py-12">
       <Container>
         <Reveal>
           <div className="overflow-hidden border border-black/5 bg-white">
@@ -785,11 +785,13 @@ const ApplicationFormPage = () => {
             {/* CONTENT */}
             <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14">
               <h1 className="font-heading-anton text-3xl leading-none text-text md:text-4xl">
-                Start or complete your application
+                Build Careers. Shape Skylines. Create Tomorrow.
               </h1>
-
+              <p className='mt-4 text-sm leading-relaxed text-about-dark text-montserrat'>
+                Be part of a team that transforms ideas into landmarks and opportunities into success.
+              </p>
               {/* FORM CONTAINER */}
-              <div className="mt-12 bg-[#FAFAFA] p-5 md:p-8 lg:p-10">
+              <div className="mt-10 bg-[#FAFAFA] p-5 md:p-8 lg:p-10">
                 {/* PROGRESS BAR */}
                 <div className='w-full'>
                   <div className="relative h-0.5 w-full bg-black/10">
@@ -869,8 +871,8 @@ const ApplicationFormPage = () => {
                     aria-hidden={currentStep === 0}
                     tabIndex={currentStep === 0 ? -1 : 0}
                     className={`inline-flex h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-[opacity,border-color,color] duration-300 ease-in-out hover:border-primary hover:text-primary ${currentStep === 0
-                        ? 'pointer-events-none opacity-0'
-                        : 'opacity-100'
+                      ? 'pointer-events-none opacity-0'
+                      : 'opacity-100'
                       }`}
                   >
                     <ChevronLeft size={18} />

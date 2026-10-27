@@ -55,7 +55,7 @@ export default function LegacySection() {
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto w-full lg:px-20 px-10">
-        <div className="grid gap-16 lg:grid-cols-2">
+        <div className="grid gap-3 md:gap-16 lg:grid-cols-2">
           {/* Left Content */}
           <Reveal>
             <div>
@@ -72,7 +72,7 @@ export default function LegacySection() {
               <h2 className="font-heading text-3xl font-bold leading-tight text-secondary md:text-5xl">
                 The <span className="text-primary">H.Rishabraj</span> Legacy
               </h2>
-              <p className="text-montserrat mt-12 max-w-2xl text-base font-medium leading-8 text-secondary/85 text-justify">
+              <p className="text-montserrat mt-4 md:mt-12 max-w-2xl text-sm md:text-base font-medium  leading-5 md:leading-8 text-secondary/85 text-justify">
                 Every landmark begins with a vision. Ours has always been to
                 create homes that outlive trends and become part of the city's
                 story. Guided by integrity, meticulous planning, and a

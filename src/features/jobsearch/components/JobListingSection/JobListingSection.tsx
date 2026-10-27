@@ -42,7 +42,7 @@ const JobListingSection = () => {
     return (
       <Reveal>
         <div className="flex h-60 items-center justify-center">
-          <p className="text-white/60">No jobs found matching your search.</p>
+          <p className="text-white/60">No jobs found.</p>
         </div>
       </Reveal>
     );
@@ -69,7 +69,11 @@ const JobListingSection = () => {
               index={index}
               onApply={(job) => {
                 navigate(`/${ROUTES.APPLICATION_FORM}`, {
-                  state: { position: job.JobOpeningMasterId },
+                  state: { 
+                    position: job.JobOpeningMasterId,
+                    JobOpeningMasterId: job.JobOpeningMasterId,
+                    JobRoleName: job.JobRoleName
+                   },
                 });
               }}
             />

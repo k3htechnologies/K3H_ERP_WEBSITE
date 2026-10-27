@@ -29,7 +29,7 @@ I was planning to shift from Vasai to Kandivali when I heard about the H. Rishab
   },
   {
     quote: `
-Our project faced a stall around 2013. Mr. Harish Kumar Jain proved to be a man of his word. He assured us that he would deliver our project by 2023, and he not only fulfilled his promise but also delivered our dream to us.`,
+Our project faced a stall around 2013. Mr. Harrish Kumar Jain proved to be a man of his word. He assured us that he would deliver our project by 2023, and he not only fulfilled his promise but also delivered our dream to us.`,
     name: 'Mrs. Vaishali Gandhi',
     designation: 'H.Rishabraj Samaj Darshan',
   },
@@ -41,7 +41,7 @@ The homes are thoughtfully designed, offering ample space and parking for variou
   },
   {
     quote: `
-I had booked a 3 BHK with a developer in Borivali, but after 5-6 years, construction stopped at the 10th floor. I was in deep tension as my 1 crore investment was stuck. Then, I met Harish Bhai. Within just 2 years, he gave me possession of my flat in his project. Very happy & satisfied.`,
+I had booked a 3 BHK with a developer in Borivali, but after 5-6 years, construction stopped at the 10th floor. I was in deep tension as my 1 crore investment was stuck. Then, I met Harrish Bhai. Within just 2 years, he gave me possession of my flat in his project. Very happy & satisfied.`,
     name: 'Mr. Jalgaonkar',
     designation: 'H.Rishabraj Suraj',
   },
@@ -76,7 +76,7 @@ export default function Testimonials() {
         </span>
       }
     >
-      <div className="mt-20 flex justify-center" id="testimonials">
+      <div className="mt-8 ms:mt-10 lg:mt-14  flex justify-center" id="testimonials">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={index}
@@ -114,15 +114,15 @@ export default function Testimonials() {
                   'linear-gradient(147.91deg,#FFFFFF 9.57%,rgba(255,255,255,0.05) 56.98%,rgba(255,255,255,0.5) 97.79%)',
               }}
             >
-              <div className="rounded-[15px] bg-[#34495A]/45 px-14 py-16 text-center backdrop-blur-[60px]">
-                <div className="text-6xl leading-none text-primary">”</div>
-                <p className="mx-auto mt-6 max-w-3xl font-heading text-xl leading-relaxed text-white">
+              <div className="rounded-[15px] bg-[#34495A]/45 p-4 md:px-14 md:py-16 text-center backdrop-blur-[60px]">
+                <div className="text-2xl md:text-6xl leading-none text-primary">”</div>
+                <p className="mx-auto mt-2 md:mt-6 max-w-3xl font-heading text-sm md:text-xl leading-relaxed text-white">
                   {testimonial.quote}
                 </p>
-                <h3 className="mt-12 font-heading text-2xl italic text-primary">
+                <h3 className="mt-6 md:mt-12 font-heading text-2xl italic text-primary">
                   {testimonial.name}
                 </h3>
-                <p className="mt-3 text-lg tracking-[0.15em] text-white text-montserrat">
+                <p className="md:mt-3 text-lg tracking-[0.15em] text-white text-montserrat">
                   {testimonial.designation}
                 </p>
               </div>

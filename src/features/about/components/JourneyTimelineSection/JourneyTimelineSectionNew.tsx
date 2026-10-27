@@ -22,9 +22,6 @@ export type TimelinePoint = {
   y: number;
 };
 
-// Matches the mobile dot's CSS position (`top-5` = 20px from the row's top edge).
-// The straight-line path's start/end coordinates are derived from this so the
-// line always lines up with the dots regardless of content height.
 const MOBILE_DOT_OFFSET = 20;
 
 export default function JourneyTimelineSectionNew() {
@@ -46,8 +43,6 @@ export default function JourneyTimelineSectionNew() {
     }[]
   >([]);
 
-  // Real, measured height (in px) that the mobile line needs to span to reach
-  // the last card's dot — replaces the old hardcoded "V2000".
   const [mobilePathD, setMobilePathD] = useState('');
 
   const { scrollYProgress: scrollYProgressDesktop } = useScroll({
@@ -198,10 +193,6 @@ export default function JourneyTimelineSectionNew() {
     };
   }, []);
 
-  // Mobile: measure the real distance from the first dot to the last dot so the
-  // line's endpoint always matches the last card, and the scroll-driven reveal
-  // travels at a constant, predictable rate instead of racing ahead of or
-  // trailing behind the cards.
   useLayoutEffect(() => {
     function measureMobile() {
       const container = mobileContainerRef.current;
@@ -242,7 +233,6 @@ export default function JourneyTimelineSectionNew() {
       {/* Desktop */}
       <div className="hidden sm:flex justify-center content-center mt-14">
         <div ref={desktopContainerRef} className="relative max-w-7xl">
-          {/* Connector line, measured off the real layout so it always lines up */}
           <svg
             className="pointer-events-none absolute left-0 top-0 hidden h-full w-full sm:block"
             aria-hidden="true"
@@ -274,10 +264,8 @@ export default function JourneyTimelineSectionNew() {
           </svg>
 
           <div className="flex">
-            {/* Gutter: fixed-width column the line/dot sit inside */}
             <div ref={gutterRef} className="hidden w-10 shrink-0 sm:block" />
 
-            {/* Content: the actual alternating rows */}
             <div
               ref={desktopContentRef}
               className="flex flex-1 flex-col gap-16 sm:gap-20"
@@ -321,7 +309,6 @@ export default function JourneyTimelineSectionNew() {
           >
             {mobilePathD && (
               <>
-                {/* Background Line */}
                 <path
                   d={mobilePathD}
                   stroke="#D8D6D2"
@@ -329,7 +316,6 @@ export default function JourneyTimelineSectionNew() {
                   fill="none"
                   strokeLinecap="round"
                 />
-                {/* Animated Line */}
                 <motion.path
                   d={mobilePathD}
                   stroke="#36454f"
@@ -353,7 +339,6 @@ export default function JourneyTimelineSectionNew() {
                 }}
                 className="relative pl-16"
               >
-                {/* Timeline Dot */}
                 <div className="absolute left-5 top-5 -translate-x-1/2">
                   <div className="h-5 w-5 rounded-full bg-background-dark" />
                 </div>
@@ -379,9 +364,6 @@ function TimelineText({ item }: { item: TimelineItem }) {
         className="font-serif text-5xl leading-none sm:text-6xl text-primary"
         toLocalString={false}
       />
-      {/* <p className="font-serif text-5xl leading-none sm:text-6xl">
-        {item.year}
-      </p> */}
       <Reveal>
         <h3 className="mt-5 text-lg font-medium font-heading">{item.title}</h3>
         <p className="mt-2 max-w-lg text-sm leading-relaxed text-[#9B958C] text-montserrat text-justify">
@@ -395,7 +377,6 @@ function TimelineText({ item }: { item: TimelineItem }) {
 function TimelineImage({ item }: { item: TimelineItem }) {
   return (
     <div className="overflow-hidden rounded-2xl">
-      {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={item.image}
         alt={item.imageAlt}

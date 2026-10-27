@@ -137,7 +137,7 @@ function ProjectCard({ project, delay }: ProjectCardProps) {
         animate="rest"
         className="group overflow-hidden rounded-2xl"
       >
-        <div className="relative h-120 overflow-hidden">
+        <div className="relative h-80 md:h-120 overflow-hidden">
           <motion.img
             variants={{
               rest: {
