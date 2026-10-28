@@ -285,6 +285,7 @@ const ApplicationFormPage = () => {
         Photograph: profilePhoto,
         SourceId: formData.referredBy,
         FullName: formData.fullName,
+        Address: formData.address,
         MobileNo: formData.mobile,
         Email: formData.email,
         HighestQualification: formData.qualification,
