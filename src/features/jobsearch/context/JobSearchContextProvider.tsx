@@ -129,9 +129,10 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
   const experience = useMemo(
     () => [
       DEFAULT_EXPERIENCE_OPTION,
-      { label: '0-2 Years', value: '0,2' },
-      { label: '2-5 Years', value: '2,5' },
-      { label: '5+ Years', value: '5,10' },
+      { label: '0-5 Years', value: '0-5' },
+      { label: '6-10 Years', value: '6-10' },
+      { label: '11-15 Years', value: '11-15' },
+      { label: '15+ Years', value: '15+' },
     ],
     []
   );
