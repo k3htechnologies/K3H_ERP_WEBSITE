@@ -54,7 +54,7 @@ const DEFAULT_DEPARTMENT_OPTION: FilterDropdownOption = {
 
 const DEFAULT_EXPERIENCE_OPTION: FilterDropdownOption = {
   label: 'Experience',
-  value: 'Experience',
+  value: '',
 };
 
 const DEFAULT_FILTERS: JobSearchFilters = {
@@ -128,7 +128,6 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
   const locations = useMemo(() => ['Mumbai', 'Thane', 'Pune'], []);
   const experience = useMemo(
     () => [
-      DEFAULT_EXPERIENCE_OPTION,
       { label: '0-5 Years', value: '0-5' },
       { label: '6-10 Years', value: '6-10' },
       { label: '11-15 Years', value: '11-15' },

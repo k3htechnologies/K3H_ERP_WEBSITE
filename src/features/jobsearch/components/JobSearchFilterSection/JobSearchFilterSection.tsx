@@ -46,6 +46,7 @@ const JobSearchFilterSection = () => {
               onChange={(option) => setFilter('department', option)}
             />
             <FilterDropdown
+              placeholder='Experience'
               selectedOption={filters.experience}
               options={experience}
               onChange={(option) => setFilter('experience', option)}
