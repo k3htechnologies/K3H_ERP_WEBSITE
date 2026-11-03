@@ -14,11 +14,11 @@ const LeadershipSection = () => {
               className="h-100 w-full rounded-xl object-cover lg:h-150"
             />
             <div
-              className="absolute lg:-bottom-12 -bottom-40 right-0 rounded-2xl p-7 text-white shadow-2xl lg:-right-6 lg:w-85 w-full"
+              className="absolute lg:-bottom-20 -bottom-40 right-0 rounded-2xl p-7 text-white shadow-2xl lg:-right-6 lg:w-85 w-full"
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,5)',
-                backdropFilter: 'blur(20px)',
+                backdropFilter: 'blur(40px)',
               }}
             >
               <div className="mb-0 text-5xl leading-none text-primary">❝</div>
@@ -29,7 +29,7 @@ const LeadershipSection = () => {
               </h3>
               <div className="mt-5">
                 <p className="text-sm text-white">Mr Harrish Kumar Jain</p>
-                <p className="mt-1 text-xs text-white/60">
+                <p className="mt-1 text-xs text-white/60 font-bold">
                   Founder and Managing Director
                 </p>
               </div>
@@ -145,12 +145,12 @@ const LeadershipSection = () => {
               style={{
                 background: 'rgba(255,255,255,0.05)',
                 border: '1px solid rgba(255,255,255,1)',
-                backdropFilter: 'blur(20px)',
+                backdropFilter: 'blur(40px)',
               }}
             >
               <div className="mb-0 text-5xl text-primary">❝</div>
               <p className="text-sm">Mr Krish Harrish Jain</p>
-              <p className="mt-1 text-xs text-white/60">Managing Director</p>
+              <p className="mt-1 text-xs text-white/60 font-bold">Managing Director</p>
             </div>
           </div>
         </Reveal>

@@ -291,7 +291,7 @@ const LoginPage = () => {
                         disabled
                         className=" inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white cursor-none text-montserrat"
                       >
-                        Coming soon...
+                        Coming soon
                         <ArrowRight size={18} />
                       </button>
                     </div>

@@ -20,8 +20,8 @@ const AboutUsPage: React.FC = () => {
       <StickyHeroWrapper
         videoSrc="/videos/OurStory-desktop.mp4"
         mobileVideoSrc="/videos/OurStory-mobile.mp4"
-        scrollMultiplier={1}
-        mobileScrollMultiplier={1}
+        scrollMultiplier={1.5}
+        mobileScrollMultiplier={2.5}
         key={pathname}
       >
         <AboutHeroSection />

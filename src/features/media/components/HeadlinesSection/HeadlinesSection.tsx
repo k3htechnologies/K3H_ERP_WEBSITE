@@ -17,7 +17,7 @@ const HEADLINES = [
       'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1600&auto=format&fit=crop&q=80',
     date: 'October 24, 2024',
     title:
-      "H.Rishabraj Unveils 'The Zenith': A New Benchmark in Sustainable Luxury Living",
+      "H. Rishabraj Unveils 'The Zenith': A New Benchmark in Sustainable Luxury Living",
     description:
       'Introducing a landmark residential development that combines sustainable architecture, smart home technology, and thoughtfully curated lifestyle spaces to redefine premium urban living.',
   },
@@ -30,7 +30,7 @@ const HEADLINES = [
       'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1200&auto=format&fit=crop&q=80',
     date: 'September 12, 2024',
     title:
-      'H.Rishabraj Announces Expansion into High-Growth Residential Markets',
+      'H. Rishabraj Announces Expansion into High-Growth Residential Markets',
     description:
       'The company revealed plans to strengthen its presence with multiple premium residential developments across rapidly growing urban corridors.',
   },
@@ -57,7 +57,7 @@ const HEADLINES = [
     date: 'October 08, 2024',
     title:
       'Featured by Business Today for Excellence in Sustainable Real Estate',
-    description: `Business Today highlighted H.Rishabraj's innovative design philosophy, commitment to sustainability, and consistent delivery of premium residential communities.`,
+    description: `Business Today highlighted H. Rishabraj's innovative design philosophy, commitment to sustainability, and consistent delivery of premium residential communities.`,
   },
   {
     id: 5,

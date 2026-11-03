@@ -70,13 +70,13 @@ export default function LegacySection() {
                 className="mb-6 h-1 bg-primary"
               />
               <h2 className="font-heading text-3xl font-bold leading-tight text-secondary md:text-5xl">
-                The <span className="text-primary">H.Rishabraj</span> Legacy
+                The <span className="text-primary">H. Rishabraj</span> Legacy
               </h2>
               <p className="text-montserrat mt-4 md:mt-12 max-w-2xl text-sm md:text-base font-medium  leading-5 md:leading-8 text-secondary/85 text-justify">
                 Every landmark begins with a vision. Ours has always been to
                 create homes that outlive trends and become part of the city's
                 story. Guided by integrity, meticulous planning, and a
-                relentless pursuit of excellence, H.Rishabraj continues to
+                relentless pursuit of excellence, H. Rishabraj continues to
                 create spaces where families build memories and legacies find a
                 lasting address.
               </p>

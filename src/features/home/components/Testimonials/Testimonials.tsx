@@ -9,7 +9,7 @@ const TESTIMONIALS = [
     quote: `
 Growing up in IC Colony, I always envisioned owning a home here. When I saw the project of H. Rishabraj , I was impressed. After discussing with my family, we decided to purchase a flat with H. Rishabraj Group. What truly excited me was the efficiency of the entire process - from house selection to flat registration, it took less than 40 days. The team members were incredibly cooperative throughout the journey, and we are thoroughly satisfied with our new home.`,
     name: 'Dr Pankaj Malhotra',
-    designation: 'H.Rishabraj Agnel',
+    designation: 'H. Rishabraj Agnel',
   },
   {
     quote: `
@@ -23,7 +23,7 @@ I was planning to shift from Vasai to Kandivali when I heard about the H. Rishab
     designation: '52 Park Avenue',
   },
   {
-    quote: `Our redevelopment project was stuck. Then, Mr. Harrish Kumar Jain stepped in. Within 3 months, all our approvals were in place. In less than 2 years, our project was completed with the occupancy certificate (OC) obtained. The building stands out as one of the best buildings in our locality. A redevelopment process is a very emotional journey, and Mr. Harrish did justice to it. Thank you, H.Rishabraj Team.`,
+    quote: `Our redevelopment project was stuck. Then, Mr. Harrish Kumar Jain stepped in. Within 3 months, all our approvals were in place. In less than 2 years, our project was completed with the occupancy certificate (OC) obtained. The building stands out as one of the best buildings in our locality. A redevelopment process is a very emotional journey, and Mr. Harrish did justice to it. Thank you, H. Rishabraj Team.`,
     name: 'Mr. Manoj Bhatia',
     designation: '52 Park Avenue',
   },
@@ -31,19 +31,19 @@ I was planning to shift from Vasai to Kandivali when I heard about the H. Rishab
     quote: `
 Our project faced a stall around 2013. Mr. Harrish Kumar Jain proved to be a man of his word. He assured us that he would deliver our project by 2023, and he not only fulfilled his promise but also delivered our dream to us.`,
     name: 'Mrs. Vaishali Gandhi',
-    designation: 'H.Rishabraj Samaj Darshan',
+    designation: 'H. Rishabraj Samaj Darshan',
   },
   {
     quote: `
 The homes are thoughtfully designed, offering ample space and parking for various vehicles, along with amenities suitable for all age groups. Moreover, the construction quality is impeccable. I am extremely pleased with my experience with H. Rishabraj Group.`,
     name: 'Mr. Aakash Nichani',
-    designation: 'H.Rishabraj Pride',
+    designation: 'H. Rishabraj Pride',
   },
   {
     quote: `
 I had booked a 3 BHK with a developer in Borivali, but after 5-6 years, construction stopped at the 10th floor. I was in deep tension as my 1 crore investment was stuck. Then, I met Harrish Bhai. Within just 2 years, he gave me possession of my flat in his project. Very happy & satisfied.`,
     name: 'Mr. Jalgaonkar',
-    designation: 'H.Rishabraj Suraj',
+    designation: 'H. Rishabraj Suraj',
   },
 ];
 
@@ -66,7 +66,7 @@ export default function Testimonials() {
       bgClassName="bg-background-dark"
       heading={
         <span className="text-white">
-          Voice Of <span className="text-primary">Trust</span>
+          Voice Of &nbsp;<span className="text-primary">Trust</span>
         </span>
       }
       sideDescription={

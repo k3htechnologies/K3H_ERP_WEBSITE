@@ -83,7 +83,7 @@ const CompanyOverviewSection = () => {
           <Reveal delay={0.2}>
             <p className="mt-10 leading-6 text-white text-montserrat text-sm">
               The finest developments are measured not by their height, but by
-              the legacy they leave behind. At H.Rishabraj, every project is
+              the legacy they leave behind. At H. Rishabraj, every project is
               conceived with a long term vision, where architectural excellence,
               thoughtful planning, and uncompromising quality come together to
               create timeless destinations.

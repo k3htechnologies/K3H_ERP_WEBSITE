@@ -7,12 +7,12 @@ const PerspectiveGrid = () => {
       <div>
         <Reveal>
           <div className="mb-10">
-            <p className="text-montserrat text-xl font-semibold uppercase tracking-[0.2em] text-[#775A19]">
+            <p className="text-montserrat text-xl font-semibold uppercase tracking-[0.2em] text-black">
               Perspective
             </p>
 
             <h2 className="mt-2 font-heading text-2xl uppercase md:leading-none text-text md:text-3xl">
-              Life within the <span className="text-primary">H.RISHABRAJ</span>
+              Life within the <span className="text-primary">H. RISHABRAJ</span>
             </h2>
           </div>
         </Reveal>

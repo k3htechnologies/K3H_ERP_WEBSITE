@@ -7,7 +7,7 @@ const FEATURES = [
     id: '01',
     title: 'Architectural Excellence',
     description:
-      'Every H.Rishabraj residence is crafted with meticulous attention to detail, combining thoughtful planning, premium materials, and exceptional execution to create luxury homes that stand the test of time.',
+      'Every H. Rishabraj residence is crafted with meticulous attention to detail, combining thoughtful planning, premium materials, and exceptional execution to create luxury homes that stand the test of time.',
     image: '/why-choose-us/craftmanship.jpg',
   },
   {
@@ -28,7 +28,7 @@ const FEATURES = [
     id: '04',
     title: 'Legacy',
     description:
-      'Beyond exceptional residences, we create lasting assets. Prime locations, intelligent planning, and uncompromising quality ensure every H.Rishabraj development continues to deliver enduring value for years to come.',
+      'Beyond exceptional residences, we create lasting assets. Prime locations, intelligent planning, and uncompromising quality ensure every H. Rishabraj development continues to deliver enduring value for years to come.',
     image: '/why-choose-us/legacy.jpg',
   },
 ];
@@ -44,7 +44,7 @@ export default function WhyChooseUs() {
     <SectionContainer
       heading={
         <>
-          Why Choose <span className="text-primary">H.RISHABRAJ</span>
+          Why Choose <span className="text-primary">H. RISHABRAJ</span>
         </>
       }
       sideDescription="Building Dreams with Transparency and Excellence."

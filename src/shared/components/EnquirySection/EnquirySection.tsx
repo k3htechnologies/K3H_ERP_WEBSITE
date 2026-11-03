@@ -233,7 +233,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
               <p className="mt-8 max-w-lg text-montserrat text-sm leading-relaxed text-[#43474F]">
                 Whether you're searching for your dream residence or your next
                 investment, our relationship managers are here to guide you
-                through every step—from project selection and pricing to site
+                through every step from project selection and pricing to site
                 visits and personalized assistance.
               </p>
               <div className="mt-10 space-y-5">
@@ -283,7 +283,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                       rel="noopener noreferrer"
                       className="mt-1 inline-block text-sm font-medium text-primary transition-opacity duration-300 hover:opacity-70"
                     >
-                      H.Rishabraj Chambers, Borivali East
+                      H. Rishabraj Chambers, Borivali East
                     </a>
                   </div>
                 </div>

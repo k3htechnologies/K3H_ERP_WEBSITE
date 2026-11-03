@@ -40,7 +40,7 @@ export default function ProjectCTA({ }: ProjectCTAProps) {
             <br />
             {context && context.data?.ProjectName
               ? context.data.ProjectName
-              : 'H.RISHABRAJ'}
+              : 'H. RISHABRAJ'}
           </h2>
         </Reveal>
         <Reveal delay={0.15}>

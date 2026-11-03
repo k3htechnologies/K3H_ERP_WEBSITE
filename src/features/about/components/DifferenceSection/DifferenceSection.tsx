@@ -7,7 +7,7 @@ const VALUES = [
   {
     title: 'Craftsmanship',
     description:
-      'Every H.Rishabraj residence is shaped through meticulous planning, premium materials, and exceptional execution, where every finish, proportion, and detail reflects our commitment to architectural excellence.',
+      'Every H. Rishabraj residence is shaped through meticulous planning, premium materials, and exceptional execution, where every finish, proportion, and detail reflects our commitment to architectural excellence.',
   },
   {
     title: 'Trust',

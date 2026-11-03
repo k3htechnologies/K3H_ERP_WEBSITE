@@ -10,7 +10,7 @@ const VisionSection = () => {
         <Reveal>
           <div className="max-w-md">
             <p className="mb-5 text-xl font-semibold uppercase tracking-[0.25em] text-primary">
-              H.RISHABRAJ
+              H. RISHABRAJ
             </p>
 
             <h2 className="max-w-sm font-heading text-2xl uppercase leading-normal md:text-3xl text-[#1D1D1D] font-bold">

@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
                 <Reveal className="flex justify-center">
                   <img
                     src="/Hrishabraj-logo-dark.svg"
-                    alt="H.Rishabraj"
+                    alt="H. Rishabraj"
                     className="h-14 w-auto md:h-28"
                   />
                 </Reveal>
@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
                 <Reveal delay={0.1}>
                   <p className="mt-6 max-w-sm text-sm leading-relaxed text-about-dark text-montserrat">
                     <span className="font-bold">Corporate Office</span> : 13th
-                    Floor, H.Rishabraj Chambers, Road No.10, Daulat Nagar,
+                    Floor, H. Rishabraj Chambers, Road No.10, Daulat Nagar,
                     Borivali (East), Mumbai-66
                   </p>
                 </Reveal>
@@ -148,7 +148,7 @@ const Footer: React.FC = () => {
           {/* BOTTOM BAR */}
           <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-primary/10 pt-8 md:flex-row">
             <p className="text-montserrat text-center text-xs font-medium uppercase tracking-[0.18em] text-primary">
-              © 2026 H.RISHABRAJ DEVELOPER. ALL RIGHTS RESERVED.
+              © 2026 H. RISHABRAJ DEVELOPER. ALL RIGHTS RESERVED.
             </p>
 
             <div className="flex items-center gap-5">
