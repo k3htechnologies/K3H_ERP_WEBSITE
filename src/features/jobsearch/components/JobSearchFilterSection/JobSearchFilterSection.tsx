@@ -41,6 +41,7 @@ const JobSearchFilterSection = () => {
           <div className="hidden h-10 w-px bg-white/10 lg:block" />
           <div className="flex flex-wrap gap-3">
             <FilterDropdown
+              placeholder='Department'
               selectedOption={filters.department}
               options={departments}
               onChange={(option) => setFilter('department', option)}

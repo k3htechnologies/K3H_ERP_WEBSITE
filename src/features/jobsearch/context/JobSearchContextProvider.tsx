@@ -47,21 +47,11 @@ export interface JobSearchFilters {
   location: string;
 }
 
-const DEFAULT_DEPARTMENT_OPTION: FilterDropdownOption = {
-  label: 'All',
-  value: 'All',
-};
-
-const DEFAULT_EXPERIENCE_OPTION: FilterDropdownOption = {
-  label: 'Experience',
-  value: '',
-};
-
 const DEFAULT_FILTERS: JobSearchFilters = {
   search: '',
   location: 'Mumbai',
-  experience: DEFAULT_EXPERIENCE_OPTION,
-  department: DEFAULT_DEPARTMENT_OPTION,
+  experience: { label: '', value: '' },
+  department: { label: '', value: '' },
 };
 
 const PAGE_SIZE = 4;
@@ -122,7 +112,7 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
         value: String(department.DepartmentMasterId),
       })) ?? [];
 
-    return [DEFAULT_DEPARTMENT_OPTION, ...apiOptions];
+    return [...apiOptions];
   }, [departmentResponse]);
 
   const locations = useMemo(() => ['Mumbai', 'Thane', 'Pune'], []);

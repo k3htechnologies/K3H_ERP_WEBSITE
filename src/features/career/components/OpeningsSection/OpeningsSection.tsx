@@ -109,7 +109,7 @@ const OpeningsSection = () => {
                             <motion.h3
                               variants={{ hover: { x: 10 } }}
                               transition={{ duration: 0.35 }}
-                              className="text-montserrat text-lg uppercase leading-tight text-white md:text-2xl lg:leading-none"
+                              className="text-montserrat text-lg leading-tight text-white md:text-2xl lg:leading-none"
                             >
                               {opening.JobRoleName}
                             </motion.h3>
