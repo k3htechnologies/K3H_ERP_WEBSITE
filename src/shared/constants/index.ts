@@ -70,10 +70,10 @@ export const NAV_ITEMS = [
     label: 'Projects',
     to: `/${ROUTES.PROJECTS}`,
   },
-  {
-    label: 'Lifestyle',
-    to: `/${ROUTES.LIFESTYLE}`,
-  },
+  // {
+  //   label: 'Lifestyle',
+  //   to: `/${ROUTES.LIFESTYLE}`,
+  // },
   // {
   //   label: 'Media',
   //   to: `/${ROUTES.MEDIA}`,
@@ -105,10 +105,10 @@ export const FOOTER_LINKS = [
     label: 'Projects',
     link: `/${ROUTES.PROJECTS}`,
   },
-  {
-    label: 'Lifestyle',
-    link: `/${ROUTES.LIFESTYLE}`,
-  },
+  // {
+  //   label: 'Lifestyle',
+  //   link: `/${ROUTES.LIFESTYLE}`,
+  // },
   {
     label: 'Career',
     link: `/${ROUTES.CAREER}`,

@@ -6,7 +6,7 @@ import type {
   EnquiryFormData,
   EnquiryFormErrors,
 } from '@/shared/components/EnquirySection/EnquirySection.types';
-import { EMAIL_REGEX, MOBILE_REGEX } from '@/shared/constants';
+import { EMAIL_REGEX } from '@/shared/constants';
 import type {
   DropdownOption,
   LoadOptionsResult,

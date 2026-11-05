@@ -17,6 +17,7 @@ interface MobileNumberInputProps {
     error?: string;
     required?: boolean;
     disabled?: boolean;
+    isPhoneLogo?: boolean
 }
 
 const countries: CountryCode[] = [
@@ -135,6 +136,7 @@ const MobileNumberInput = ({
     error,
     required = false,
     disabled = false,
+    isPhoneLogo = false
 }: MobileNumberInputProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -186,13 +188,13 @@ const MobileNumberInput = ({
             >
                 <div
                     ref={dropdownRef}
-                    className="relative flex h-full shrink-0 items-center border-r border-black/10"
+                    className="relative flex h-full shrink-0 items-center"
                 >
                     <button
                         type="button"
                         disabled={disabled}
                         onClick={() => setIsOpen((prev) => !prev)}
-                        className="flex h-full w-[130px] items-center gap-2 px-3 text-sm font-medium text-text outline-none disabled:cursor-not-allowed"
+                        className="flex h-full w-32.5 items-center gap-2 px-3 text-sm font-medium text-text outline-none disabled:cursor-not-allowed"
                     >
                         <CountryFlag countryCode={selectedCountry.countryCode} />
                         <span>{selectedCountry.countryCode} {selectedCountry.code}</span>
@@ -214,7 +216,7 @@ const MobileNumberInput = ({
                     </button>
 
                     {isOpen && !disabled && (
-                        <div className="flex-1 absolute left-0 top-full z-50 mt-1 h-40 w-[130px] overflow-y-auto overflow-x-auto thin-scroll rounded-md border border-gray-200 bg-white shadow-lg">
+                        <div className="flex-1 absolute left-0 top-full z-50 mt-1 h-40 w-32.5 overflow-y-auto overflow-x-auto thin-scroll rounded-md border border-gray-200 bg-white shadow-lg">
                             {countries.map((country) => (
                                 <button
                                     key={country.countryCode}
@@ -227,7 +229,7 @@ const MobileNumberInput = ({
                                         onMobileChange(`${country.code} ${phoneNumber}`);
                                         setIsOpen(false);
                                     }}
-                                    className={`flex w-[90px] items-center gap-3 px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 ${selectedCountry.countryCode === country.countryCode
+                                    className={`flex w-22.5 items-center gap-3 px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 ${selectedCountry.countryCode === country.countryCode
                                         ? "bg-gray-100"
                                         : ""
                                         }`}
@@ -255,17 +257,21 @@ const MobileNumberInput = ({
                     className="h-full min-w-0 flex-1 bg-transparent px-4 text-sm text-text outline-none placeholder:text-[#B8BCC2] disabled:cursor-not-allowed"
                 />
 
-                <svg
-                    className="mr-3 h-5 w-5 shrink-0 text-primary-sub"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                >
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.19 18a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 3.18 2 2 0 0 1 4.08 1h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.06 8.89a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 0 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92z" />
-                </svg>
+                {
+                    isPhoneLogo &&
+                    <svg
+                        className="mr-3 h-5 w-5 shrink-0 text-primary-sub"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    >
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.19 18a19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.09 3.18 2 2 0 0 1 4.08 1h3a2 2 0 0 1 2 1.72c.12.96.36 1.9.7 2.79a2 2 0 0 1-.45 2.11L8.06 8.89a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 0 2.11-.45c.89.34 1.83.58 2.79.7A2 2 0 0 1 22 16.92z" />
+                    </svg>
+                }
+
             </div>
 
             {error && (
