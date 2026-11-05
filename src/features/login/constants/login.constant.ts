@@ -53,7 +53,7 @@ export const PORTALS: Portal[] = [
 
   {
     id: 'architect',
-    title: 'Architect Login',
+    title: 'Consultant Login',
     subtitle: 'Consultant Hub',
     description: 'Review plans, submissions and project resources.',
     authType: 'redirect',

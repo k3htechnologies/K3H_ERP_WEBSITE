@@ -5,30 +5,30 @@ import Reveal from '@/shared/components/Reveal/Reveal';
 const FEATURES = [
   {
     id: '01',
-    title: 'Architectural Excellence',
+    title: 'Track Record',
     description:
-      'Every H. Rishabraj residence is crafted with meticulous attention to detail, combining thoughtful planning, premium materials, and exceptional execution to create luxury homes that stand the test of time.',
+      'Proven through delivery.',
     image: '/why-choose-us/craftmanship.jpg',
   },
   {
     id: '02',
-    title: 'Built on Trust',
+    title: 'Redevelopment expertise',
     description:
-      'Our foundation is built on transparency, integrity, and consistent delivery. Every relationship we build with homeowners, partners, and communities is strengthened through accountability and an unwavering commitment to excellence.',
+      'Redevelopment done with mindfulness.',
     image: '/why-choose-us/trust.jpg',
   },
   {
     id: '03',
-    title: 'Timeless Design',
+    title: 'Location',
     description:
-      'We believe great architecture never follows trends. Every development seamlessly blends contemporary living with timeless design, creating elegant spaces that remain relevant for generations.',
+      'Rooted in estabilished neighbourhoods.',
     image: '/why-choose-us/innovation.jpg',
   },
   {
     id: '04',
-    title: 'Legacy',
+    title: 'Long- term value',
     description:
-      'Beyond exceptional residences, we create lasting assets. Prime locations, intelligent planning, and uncompromising quality ensure every H. Rishabraj development continues to deliver enduring value for years to come.',
+      'Built for more than the present.',
     image: '/why-choose-us/legacy.jpg',
   },
 ];
@@ -47,7 +47,7 @@ export default function WhyChooseUs() {
           Why Choose <span className="text-primary">H. RISHABRAJ</span>
         </>
       }
-      sideDescription="Building Dreams with Transparency and Excellence."
+      sideDescription="Building with Integrity. Delivering with Excellence."
     >
       <Reveal delay={0.2}>
         <div className="mt-8 ms:mt-10 lg:mt-14 grid grid-cols-2 gap-5 xl:grid-cols-4">

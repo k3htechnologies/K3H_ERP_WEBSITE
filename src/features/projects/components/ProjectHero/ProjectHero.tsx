@@ -92,9 +92,9 @@ export default function ProjectHero() {
         <div className="pb-10 md:pb-12 lg:pb-16">
           <Reveal>
             <p className="text-montserrat mx-auto mb-14 max-w-4xl text-center leading-relaxed text-white text-sm md:text-lg">
-              Our portfolio reflects over two decades of creating homes and
-              communities
-              <br /> that redefine urban living.
+              Our portfolio represents our vision of shaping Mumbai’s evolving skyline through
+              homes
+              <br /> and communities designed for generations.
             </p>
           </Reveal>
 

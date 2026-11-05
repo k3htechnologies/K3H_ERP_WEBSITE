@@ -45,7 +45,7 @@ export default function LifestyleSection() {
           Life Beyond <span className="text-primary">Walls</span>
         </>
       }
-      sideDescription="Where Every Space Is Designed To Elevate The Way You Live."
+      sideDescription="Thoughtfully Designed Spaces. Built Around the Way You Live."
     >
       <Reveal delay={0.2}>
         <div className="mt-8 grid grid-cols-12 grid-rows-[220px_220px] gap-3 sm:mt-10 sm:grid-rows-[300px_300px] sm:gap-5 lg:mt-14 lg:grid-rows-[700px_700px] lg:gap-7">
@@ -81,8 +81,8 @@ export default function LifestyleSection() {
                 {/* Content */}
                 <div
                   className={`absolute inset-x-0 bottom-0 p-2 transition-all duration-500 sm:p-4 lg:p-7 ${isActive
-                      ? 'translate-y-0 opacity-100'
-                      : 'translate-y-4 opacity-0 lg:translate-y-8 lg:group-hover:translate-y-0 lg:group-hover:opacity-100'
+                    ? 'translate-y-0 opacity-100'
+                    : 'translate-y-4 opacity-0 lg:translate-y-8 lg:group-hover:translate-y-0 lg:group-hover:opacity-100'
                     }`}
                 >
                   <h3 className="font-heading text-xs leading-tight text-white sm:text-lg lg:text-3xl">

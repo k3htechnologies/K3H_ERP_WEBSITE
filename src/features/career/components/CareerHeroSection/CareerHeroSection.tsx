@@ -50,20 +50,20 @@ const CareerHero = () => {
           className={`
             mx-auto max-w-5xl text-center
             transition-all duration-1000 ease-out
-            ${
-              isVisible
-                ? 'translate-y-0 opacity-100'
-                : 'translate-y-16 opacity-0'
+            ${isVisible
+              ? 'translate-y-0 opacity-100'
+              : 'translate-y-16 opacity-0'
             }
           `}
         >
           <h1 className="font-heading text-3xl font-black text-white md:text-4xl lg:text-[4rem] tracking-wider">
-            Build the Future With Us
+            Build Your Future With
+            <br />
+            H. Rishabraj
           </h1>
           <p className="mx-auto my-8 max-w-4xl text-lg leading-relaxed text-gray-200 md:text-xl text-montserrat">
-            Join the team behind Mumbai's next generation of landmarks. Explore
-            opportunities to grow, innovate, and build a career with H.
-            Rishabraj.
+            Behind every landmark is a team that makes it possible. Explore opportunities
+            <br /> at H. Rishabraj and be part of the people shaping the future of real estate in Mumbai.
           </p>
           <button
             className=" inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md transition-all duration-500 hover:bg-primary"

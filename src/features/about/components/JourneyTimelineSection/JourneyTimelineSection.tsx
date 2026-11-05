@@ -280,9 +280,8 @@ const JourneyTimelineSection = () => {
 
                 {/* Arrow */}
                 <motion.div
-                  className={`absolute top-1/2 -translate-y-1/2 ${
-                    isLeft ? 'left-4' : '-left-20'
-                  }`}
+                  className={`absolute top-1/2 -translate-y-1/2 ${isLeft ? 'left-4' : '-left-20'
+                    }`}
                   animate={{
                     width: [0, 0, 60, 60, 60, 0],
                     opacity: [0, 0, 1, 1, 1, 0],
@@ -325,11 +324,10 @@ const JourneyTimelineSection = () => {
 
                 {/* Description */}
                 <motion.div
-                  className={`absolute top-1/2 -translate-y-1/2 ${
-                    isLeft
-                      ? 'md:left-30 left-20 text-left'
-                      : 'md:-left-90 -left-50 text-right'
-                  }`}
+                  className={`absolute top-1/2 -translate-y-1/2 ${isLeft
+                    ? 'md:left-30 left-20 text-left'
+                    : 'md:-left-90 -left-50 text-right'
+                    }`}
                   animate={{
                     opacity: [0, 0, 1, 1, 1, 0, 0],
                     x: isLeft

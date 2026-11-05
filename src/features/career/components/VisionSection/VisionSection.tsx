@@ -14,7 +14,7 @@ const VisionSection = () => {
             </p>
 
             <h2 className="max-w-sm font-heading text-2xl uppercase leading-normal md:text-3xl text-[#1D1D1D] font-bold">
-              Where <br></br> Visionaries Build Their Legacy
+              A Place to Grow.  <br></br> An Opportunity to Build.
             </h2>
 
             <p className="mt-12 max-w-sm text-sm text-montserrat leading-relaxed text-[#5f6368]">

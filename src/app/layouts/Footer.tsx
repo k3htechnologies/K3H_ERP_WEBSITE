@@ -28,19 +28,12 @@ const Footer: React.FC = () => {
 
                 <Reveal delay={0.1}>
                   <p className="mt-6 max-w-sm text-sm leading-relaxed text-about-dark text-montserrat">
-                    <span className="font-bold">Corporate Office</span> : 13th
+                    <span className="font-bold">Head Office</span> : 13th
                     Floor, H. Rishabraj Chambers, Road No.10, Daulat Nagar,
                     Borivali (East), Mumbai-66
                   </p>
                 </Reveal>
-
-                <Reveal delay={0.1}>
-                  <p className="mt-2 max-w-sm text-sm leading-relaxed text-about-dark text-montserrat">
-                    <span className="font-bold">Head Office</span> : 103, Jai
-                    Trith, Road No.10, Daulat Nagar, Borivali (East), Mumbai-66
-                  </p>
-                </Reveal>
-
+                
                 <Reveal delay={0.2}>
                   <div className="mt-4 space-y-2">
                     <div className="flex gap-4 text-sm text-montserrat">

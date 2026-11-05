@@ -94,17 +94,14 @@ const CorePrinciplesSection = () => {
                 >
                   <div className="max-w-6xl">
                     <h2 className="inline-block border-b border-white/20 pb-4 font-heading text-xl leading-tight text-white md:pb-6 md:text-2xl md:leading-none lg:text-4xl">
-                      Building a Better Mumbai, One Landmark at a Time
+                      Building a better Mumbai one landmark at a time.
                     </h2>
 
                     <p className="mt-4 max-w-6xl font-sans text-sm leading-[1.75] text-white/90 md:mt-8 md:text-lg md:leading-[1.6]">
-                      Our vision is to shape the future of Mumbai through
-                      thoughtful redevelopment and responsible growth. We aspire
-                      to create developments that stand the test of time, enrich
-                      communities, and redefine urban living through quality,
-                      trust, and innovation. Every project we undertake reflects
-                      our commitment to building lasting value for generations
-                      to come.
+                      Our vision is to contribute to Mumbai’s growth through thoughtful redevelopment and
+                      responsible urban development. We aim to create lasting landmarks that enrich
+                      communities, elevate living standards, and bring together quality, innovation, and
+                      trust to shape the city’s future.
                     </p>
                   </div>
                 </motion.div>
@@ -157,12 +154,10 @@ const CorePrinciplesSection = () => {
                       Driven by Commitment. Built on Trust.
                     </h2>
                     <p className="mt-4 text-sm leading-[1.75] text-white/90 md:mt-8 md:text-lg md:leading-[1.6]">
-                      Our mission is to deliver thoughtfully planned
-                      developments that combine quality construction, timely
-                      execution, and uncompromising integrity. Guided by strong
-                      values and a customer-first approach, we strive to create
-                      homes and spaces that enhance everyday living while
-                      contributing to the city's evolving skyline and future.
+                      Our mission is to deliver thoughtfully planned developments that combine quality
+                      construction, timely execution, and uncompromising integrity. Guided by strong
+                      values and a customer-first approach, we strive to create homes and spaces that
+                      enhance everyday living while contributing to the city's evolving skyline and future.
                     </p>
                   </div>
                 </motion.div>

@@ -16,6 +16,7 @@ import InputField from '@/shared/components/InputField/InputField';
 import AsyncDropdown from '@/shared/components/AsyncDropdown/AsyncDropdown';
 import Modal from '@/shared/components/Modal/Modal';
 import type { EnquiryPrefillData } from '@/app/provider/EnquiryProvider/EnquiryModalContext';
+import MobileNumberInput from '../MobileNumberInput/MobileNumberInput';
 
 interface EnquirySectionProps {
   prefillData?: EnquiryPrefillData;
@@ -141,9 +142,10 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
     }
     if (!formData.mobile.trim()) {
       newErrors.mobile = 'Mobile number is required';
-    } else if (!MOBILE_REGEX.test(formData.mobile)) {
-      newErrors.mobile = 'Enter valid mobile number';
     }
+    // else if (!MOBILE_REGEX.test(formData.mobile.trim())) {
+    //   newErrors.mobile = 'Enter valid mobile number';
+    // }
 
     setErrors(newErrors);
 
@@ -231,10 +233,10 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
               </h2>
 
               <p className="mt-8 max-w-lg text-montserrat text-sm leading-relaxed text-[#43474F]">
-                Whether you're searching for your dream residence or your next
-                investment, our relationship managers are here to guide you
-                through every step from project selection and pricing to site
-                visits and personalized assistance.
+                Whether you’re looking for your next home or a real estate investment, our team is
+                here to guide you through every step. From exploring projects and understanding
+                pricing to arranging site visits, we provide personalised assistance to help you make
+                an informed decision.
               </p>
               <div className="mt-10 space-y-5">
                 <div className="flex items-start gap-4">
@@ -345,15 +347,14 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   />
                 </div>
                 <div>
-                  <InputField
+                  <MobileNumberInput
                     label="Mobile No."
-                    name="mobile"
-                    placeholder="Enter Mobile No."
-                    value={formData.mobile}
-                    onChange={handleChange}
+                    mobileNumber={formData.mobile}
+                    onMobileChange={(value) =>
+                      setFormData(prev => ({ ...prev, mobile: value }))
+                    }
+                    required
                     error={errors.mobile}
-                    mandatory={true}
-                    type="tel"
                   />
                 </div>
 

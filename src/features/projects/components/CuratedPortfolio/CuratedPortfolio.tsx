@@ -74,8 +74,7 @@ const CuratedPortfolioSection = () => {
         }
         sideDescription={
           <span className="text-white">
-            Every home tells a story. These are the voices behind our legacy of
-            trust.
+            An overview of our developments, milestones and evolving presence.
           </span>
         }
       >
