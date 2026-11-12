@@ -277,7 +277,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
                   Requirements
                 </h3>
 
-                <ul className="space-y-1 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
+                <ul className="space-y-1 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF] pb-2">
                   {job.JobRequirement?.split('\n').filter(Boolean).map((item, index) => (
                     <li key={index}>{item.trim()}</li>
                   ))}

@@ -86,6 +86,7 @@ const Modal = ({
               ${sizeClasses[size]}
               max-h-[90vh]
               overflow-y-auto
+              overscroll-contain
               border
               border-black/5
               bg-white
