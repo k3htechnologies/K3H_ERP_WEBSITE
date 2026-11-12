@@ -263,7 +263,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
                   Key Responsibilities
                 </h3>
 
-                <ul className="list-disc space-y-1 pl-4 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
+                <ul className="space-y-1 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
                   {job.JobResponsibilities?.split('\n').filter(Boolean).map((item, index) => (
                     <li key={index}>{item.trim()}</li>
                   ))}
@@ -277,7 +277,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
                   Requirements
                 </h3>
 
-                <ul className="list-disc space-y-1 pl-4 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
+                <ul className="space-y-1 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
                   {job.JobRequirement?.split('\n').filter(Boolean).map((item, index) => (
                     <li key={index}>{item.trim()}</li>
                   ))}
