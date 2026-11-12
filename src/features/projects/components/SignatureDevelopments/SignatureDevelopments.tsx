@@ -113,7 +113,7 @@ const SignatureDevelopmentSection = () => {
                 </span>
               </div>
 
-              <h3 className="text-cormorant-garamond mt-4 text-2xl text-white sm:mt-6 sm:text-3xl">
+              <h3 className="font-heading mt-4 text-2xl text-white sm:mt-6 sm:text-3xl">
                 Rishabraj Avyaana
               </h3>
 

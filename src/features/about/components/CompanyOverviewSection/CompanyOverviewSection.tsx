@@ -56,7 +56,7 @@ const CompanyOverviewSection = () => {
                     end={stat.value}
                     suffix={stat.suffix}
                     duration={2500}
-                    className="font-heading-anton text-xl md:text-3xl leading-none text-primary"
+                    className="font-heading font-bold text-xl md:text-3xl leading-none text-primary"
                   />
                   <p className="mt-2 text-xs uppercase text-white/80 text-montserrat">
                     {stat.label}

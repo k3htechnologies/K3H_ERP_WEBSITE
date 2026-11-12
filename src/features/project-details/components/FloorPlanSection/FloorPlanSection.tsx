@@ -109,7 +109,7 @@ export default function FloorPlanSection() {
             </Reveal>
             <Reveal delay={0.1}>
               <div>
-                <h2 className="text-cormorant-garamond text-3xl text-secondary">
+                <h2 className="font-heading text-3xl text-secondary">
                   {activeTab.title}
                 </h2>
                 <div className="mt-10 divide-y divide-slate-200 border-y border-slate-200">

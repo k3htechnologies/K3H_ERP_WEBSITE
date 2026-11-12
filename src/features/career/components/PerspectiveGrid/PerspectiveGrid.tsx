@@ -78,7 +78,7 @@ const PerspectiveGrid = () => {
               className="flex h-full flex-col justify-center bg-[#23242B] p-8 md:p-10"
             >
               <p
-                className="max-w-60 text-2xl leading-relaxed text-white md:text-3xl heading-libre-caslon"
+                className="max-w-60 text-2xl leading-relaxed text-white md:text-3xl font-heading"
               >
                 “Architecture is a visual art, and the buildings speak for
                 themselves.”
@@ -86,7 +86,7 @@ const PerspectiveGrid = () => {
 
               <div className="mt-5 md:mt-10">
                 <span
-                  className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50 text-hanken"
+                  className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50 text-montserrat"
                 >
                   — Julia V. Rossi, Principal
                 </span>

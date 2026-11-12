@@ -83,11 +83,10 @@ const CuratedPortfolioSection = () => {
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}
-                className={`overflow-hidden rounded-2xl bg-[#394550] animate-pulse ${
-                  index === 0 || index === 3
+                className={`overflow-hidden rounded-2xl bg-[#394550] animate-pulse ${index === 0 || index === 3
                     ? 'md:col-span-2 h-107.5'
                     : 'h-107.5'
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -173,7 +172,7 @@ function ProjectCard({ project, delay }: ProjectCardProps) {
           }}
         >
           <div>
-            <h3 className="text-cormorant-garamond text-2xl text-white">
+            <h3 className="font-heading text-2xl text-white">
               {project.title}
             </h3>
 

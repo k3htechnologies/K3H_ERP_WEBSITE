@@ -251,7 +251,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                       href="tel:8989724545"
                       className="mt-1 text-sm font-medium text-primary"
                     >
-                      +91 8989724545
+                      +91 89897 24545
                     </a>
                   </div>
                 </div>

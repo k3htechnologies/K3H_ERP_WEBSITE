@@ -82,7 +82,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
       </span>
 
       <div className="mb-4">
-        <span className="inline-block capitalize rounded-full border border-[#D5EAFE] bg-[#F0F8FF] px-3 py-1 font-montserrat text-[12px] font-semibold text-[#008EDB]">
+        <span className="inline-block capitalize rounded-full border border-[#D5EAFE] bg-[#F0F8FF] px-3 py-1 text-montserrat text-[12px] font-semibold text-[#008EDB]">
           {job.WorkMode}
         </span>
       </div>
@@ -122,7 +122,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
 
         <div className="relative z-10 flex h-full flex-col">
           <div className="flex items-start justify-between gap-4">
-            <h3 className="text-cormorant-garamond text-[30px] leading-tight text-white">
+            <h3 className="font-heading text-[30px] leading-tight text-white">
               {job.JobRoleName}
             </h3>
 
@@ -188,7 +188,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               data-lenis-prevent
               className="overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#D5DCE5]"
             >
-              <h3 className="mb-3 font-montserrat text-sm font-semibold tracking-wide text-[#172033]">
+              <h3 className="mb-3 text-montserrat text-sm font-semibold tracking-wide text-[#172033]">
                 Job Overview
               </h3>
 
@@ -231,10 +231,10 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
                     </div>
 
                     <div className="min-w-0">
-                      <p className="font-montserrat text-[9px] font-medium uppercase tracking-wide text-[#7A8CA6]">
+                      <p className="text-montserrat text-[9px] font-medium uppercase tracking-wide text-[#7A8CA6]">
                         {label}
                       </p>
-                      <p className="truncate font-montserrat text-xs font-semibold text-[#263449]">
+                      <p className="truncate text-montserrat text-xs font-semibold text-[#263449]">
                         {value}
                       </p>
                     </div>
@@ -245,11 +245,11 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               <div className="my-5 h-px bg-[#EDF1F5]" />
 
               <section>
-                <h3 className="mb-2 font-montserrat text-sm font-semibold text-[#172033]">
+                <h3 className="mb-2 text-montserrat text-sm font-semibold text-[#172033]">
                   Job Description
                 </h3>
 
-                <div className="space-y-3 font-montserrat text-[12px] leading-[1.9] text-[#52627A]">
+                <div className="space-y-3 text-montserrat text-[14px] leading-[1.9] text-[#52627A]">
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
@@ -259,11 +259,11 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               <div className="my-5 h-px bg-[#EDF1F5]" />
 
               <section>
-                <h3 className="mb-2 font-montserrat text-sm font-semibold text-[#172033]">
+                <h3 className="mb-2 text-montserrat text-sm font-semibold text-[#172033]">
                   Key Responsibilities
                 </h3>
 
-                <ul className="space-y-1 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
+                <ul className="space-y-1 text-montserrat text-[14px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
                   {job.JobResponsibilities?.split('\n').filter(Boolean).map((item, index) => (
                     <li key={index}>{item.trim()}</li>
                   ))}
@@ -273,12 +273,40 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               <div className="my-5 h-px bg-[#EDF1F5]" />
 
               <section>
-                <h3 className="mb-2 font-montserrat text-sm font-semibold text-[#172033]">
+                <h3 className="mb-2 text-montserrat text-sm font-semibold text-[#172033]">
                   Requirements
                 </h3>
 
-                <ul className="space-y-1 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF] pb-2">
+                <ul className="space-y-1 text-montserrat text-[14px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
                   {job.JobRequirement?.split('\n').filter(Boolean).map((item, index) => (
+                    <li key={index}>{item.trim()}</li>
+                  ))}
+                </ul>
+              </section>
+
+              <div className="my-5 h-px bg-[#EDF1F5]" />
+
+              <section>
+                <h3 className="mb-2 text-montserrat text-sm font-semibold text-[#172033]">
+                  Skills
+                </h3>
+
+                <ul className="space-y-1 text-montserrat text-[14px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
+                  {job.JobSkills?.split('\n').filter(Boolean).map((item, index) => (
+                    <li key={index}>{item.trim()}</li>
+                  ))}
+                </ul>
+              </section>
+
+              <div className="my-5 h-px bg-[#EDF1F5]" />
+
+              <section>
+                <h3 className="mb-2 text-montserrat text-sm font-semibold text-[#172033]">
+                  Qualification
+                </h3>
+
+                <ul className="space-y-1 text-montserrat text-[14px] leading-relaxed text-[#52627A] marker:text-[#00A6FF] pb-2">
+                  {job.JobQualification?.split('\n').filter(Boolean).map((item, index) => (
                     <li key={index}>{item.trim()}</li>
                   ))}
                 </ul>
@@ -286,7 +314,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
             </div>
 
             <div className="-mx-6 -mb-6 mt-0 flex shrink-0 items-center justify-between gap-3 border-t border-[#EDF1F5] bg-[#F8FAFC] px-6 py-4 md:-mx-8 md:-mb-8 md:px-8">
-              <span className="font-montserrat text-[10px] font-medium text-[#74849B]">
+              <span className="text-montserrat text-[10px] font-medium text-[#74849B]">
                 Posted {getPostedTime(
                   job.ModifiedDate ? job.ModifiedDate : job.CreatedDate
                 )}
@@ -295,7 +323,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               <button
                 type="button"
                 onClick={handleApply}
-                className="inline-flex items-center gap-2 rounded-lg bg-[#08A5E5] px-5 py-2.5 font-montserrat text-xs font-semibold text-white transition hover:bg-[#008FCB]"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#08A5E5] px-5 py-2.5 text-montserrat text-xs font-semibold text-white transition hover:bg-[#008FCB]"
               >
                 Apply Now
                 <ArrowRight size={15} />

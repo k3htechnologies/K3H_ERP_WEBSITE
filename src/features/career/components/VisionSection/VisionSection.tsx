@@ -9,7 +9,7 @@ const VisionSection = () => {
         {/* LEFT SIDE */}
         <Reveal>
           <div className="max-w-md">
-            <p className="mb-5 text-xl font-semibold uppercase tracking-[0.25em] text-primary">
+            <p className="text-montserrat mb-5 text-xl font-semibold uppercase tracking-[0.25em] text-primary">
               H. RISHABRAJ
             </p>
 
@@ -36,10 +36,10 @@ const VisionSection = () => {
               //   `}
             >
               <div className="border-t border-black/10 pt-5 md:pt-8 group transition-all">
-                <span className="heading-playfair text-3xl leading-none text-primary md:text-4xl font-bold">
+                <span className="font-heading text-3xl leading-none text-primary md:text-4xl font-bold">
                   {item.id}.
                 </span>
-                <h3 className="mt-5 heading-playfair text-xl leading-none text-text transition-transform duration-500 group-hover:translate-x-2 md:text-3xl">
+                <h3 className="mt-5 font-heading text-xl leading-none text-text transition-transform duration-500 group-hover:translate-x-2 md:text-3xl">
                   {item.title}
                 </h3>
                 <p className="mt-6 max-w-sm text-sm text-montserrat leading-relaxed text-[#5f6368]">

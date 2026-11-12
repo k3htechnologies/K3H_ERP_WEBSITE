@@ -53,7 +53,7 @@ export default function LocationSection() {
               </p>
             </Reveal>
             <Reveal delay={0.1}>
-              <h2 className="mt-6 max-w-xl text-cormorant-garamond text-3xl leading-tight text-[#E5E2DC]">
+              <h2 className="mt-6 max-w-xl font-heading text-3xl leading-tight text-[#E5E2DC]">
                 Seamless Access to the Best of Mumbai
               </h2>
             </Reveal>
@@ -65,7 +65,7 @@ export default function LocationSection() {
                       {item.icon}
                     </div>
                     <div>
-                      <h3 className="text-cormorant-garamond text-2xl text-[#E5E2DC]">
+                      <h3 className="font-heading text-2xl text-[#E5E2DC]">
                         {item.title}
                       </h3>
                       <p className="mt-2 max-w-sm text-sm leading-7 text-[#C4C7CC] text-montserrat">

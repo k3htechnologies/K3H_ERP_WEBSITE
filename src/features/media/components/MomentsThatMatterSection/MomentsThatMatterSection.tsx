@@ -83,7 +83,7 @@ const MomentsThatMatterSection = () => {
                 {FEATURED_EVENT.badge}
               </span>
 
-              <h3 className="mt-6 text-3xl font-bold leading-tight text-white text-cormorant-garamond">
+              <h3 className="mt-6 text-3xl font-bold leading-tight text-white font-heading">
                 {FEATURED_EVENT.title}
               </h3>
               <p className="mt-3 text-sm leading-4 text-white/80 text-montserrat">
@@ -121,13 +121,13 @@ const MomentsThatMatterSection = () => {
                     {event.month}
                   </p>
 
-                  <p className="mt-2 text-5xl leading-none text-cormorant-garamond">
+                  <p className="mt-2 text-5xl leading-none font-heading">
                     {event.day}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="text-lg leading-snug transition group-hover:text-primary text-cormorant-garamond font-bold">
+                  <h4 className="text-lg leading-snug transition group-hover:text-primary font-heading font-bold">
                     {event.title}
                   </h4>
                   <p className="mt-3 text-[#444748] leading-7 text-montserrat text-sm">

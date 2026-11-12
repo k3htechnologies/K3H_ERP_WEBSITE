@@ -785,7 +785,7 @@ const ApplicationFormPage = () => {
 
             {/* CONTENT */}
             <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14">
-              <h1 className="font-heading-anton text-3xl leading-none text-text md:text-4xl">
+              <h1 className="font-heading font-bold text-3xl leading-none text-text md:text-4xl">
                 Build Careers. Shape Skylines. Create Tomorrow.
               </h1>
               <p className='mt-4 text-sm leading-relaxed text-about-dark text-montserrat'>

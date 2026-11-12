@@ -35,7 +35,7 @@ export default function ProjectCTA({ }: ProjectCTAProps) {
     <section className="relative isolate overflow-hidden bg-background-dark">
       <div className="container relative z-10 mx-auto flex min-h-100 flex-col items-center justify-center px-6 py-24 text-center lg:min-h-150">
         <Reveal>
-          <h2 className="max-w-3xl text-cormorant-garamond text-2xl leading-tight text-white lg:text-3xl">
+          <h2 className="max-w-3xl font-heading text-2xl leading-tight text-white lg:text-3xl">
             Take a closer look at what we build. Schedule a site visit and experience an H.
             Rishabraj home firsthand.
           </h2>

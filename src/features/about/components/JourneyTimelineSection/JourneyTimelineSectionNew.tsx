@@ -361,7 +361,7 @@ function TimelineText({ item }: { item: TimelineItem }) {
       <CountUp
         end={item.year}
         duration={1000}
-        className="font-serif text-5xl leading-none sm:text-6xl text-primary"
+        className="text-5xl leading-none sm:text-6xl text-primary font-heading"
         toLocalString={false}
       />
       <Reveal>

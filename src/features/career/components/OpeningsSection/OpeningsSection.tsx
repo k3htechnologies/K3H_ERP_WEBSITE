@@ -52,7 +52,7 @@ const OpeningsSection = () => {
                   e.preventDefault();
                   navigate(`/${ROUTES.JOB_SEARCH}`);
                 }}
-                className="inline-flex items-center gap-2 self-start text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:translate-x-1"
+                className="text-montserrat inline-flex items-center gap-2 self-start text-sm font-semibold uppercase tracking-[0.18em] text-white transition-transform duration-300 hover:translate-x-1"
               >
                 Explore More Jobs
                 <ArrowRight size={16} />
@@ -60,7 +60,7 @@ const OpeningsSection = () => {
             )}
           </div>
 
-          <div className="mt-14">
+          <div className="mt-14 text-montserrat">
             <AnimatePresence mode="wait">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

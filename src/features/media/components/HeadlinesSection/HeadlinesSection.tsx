@@ -116,11 +116,10 @@ const HeadlinesSection = () => {
                 key={item}
                 onClick={() => setActiveTab(item)}
                 className={`rounded-full border px-5 py-2 text-sm transition-all duration-300
-      ${
-        activeTab === item
-          ? 'border-primary bg-primary text-white'
-          : 'border-neutral-300 text-neutral-600 hover:border-primary hover:text-primary'
-      }`}
+      ${activeTab === item
+                    ? 'border-primary bg-primary text-white'
+                    : 'border-neutral-300 text-neutral-600 hover:border-primary hover:text-primary'
+                  }`}
               >
                 {item}
               </button>
@@ -166,7 +165,7 @@ const HeadlinesSection = () => {
               {featuredArticle.date}
             </p>
 
-            <h3 className="mt-4 max-w-3xl text-3xl leading-snug text-cormorant-garamond">
+            <h3 className="mt-4 max-w-3xl text-3xl leading-snug font-heading">
               {featuredArticle.title}
             </h3>
 

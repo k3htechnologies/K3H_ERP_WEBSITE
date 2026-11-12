@@ -62,7 +62,7 @@ const ElevatedStandardSection = () => {
                   {item.id}
                 </span>
 
-                <h3 className="mt-5 text-cormorant-garamond font-bold text-xl md:text-3xl text-primary">
+                <h3 className="mt-5 font-heading font-bold text-xl md:text-3xl text-primary">
                   {item.title}
                 </h3>
 

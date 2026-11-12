@@ -106,7 +106,7 @@ const GreenImpactSection = () => {
                     y: -4,
                   }}
                 >
-                  <h4 className="text-cormorant-garamond text-5xl text-[#00658C] md:text-6xl">
+                  <h4 className="font-heading text-5xl text-[#00658C] md:text-6xl">
                     {item.value}
                   </h4>
 

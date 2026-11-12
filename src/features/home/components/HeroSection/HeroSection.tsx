@@ -32,7 +32,7 @@ export default function HeroSection() {
         <Reveal>
           <div className="mb-12 flex items-end justify-between gap-10">
             <div>
-              <h2 className="text-3xl md:text-4xl md:leading-tight text-black text-cormorant-garamond font-extrabold">
+              <h2 className="text-3xl md:text-4xl md:leading-tight text-black font-heading font-extrabold">
                 Shaping Mumbai's&nbsp;
                 {/* <br /> */}
                 Finest Landmarks.
