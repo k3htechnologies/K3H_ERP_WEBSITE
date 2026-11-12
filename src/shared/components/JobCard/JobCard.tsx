@@ -77,12 +77,12 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
 
   const getModalTitle = () => (
     <div className="flex items-center gap-3">
-      <span className="font-heading text-3xl uppercase leading-none text-text">
+      <span className="font-heading text-3xl capitalize leading-none text-text">
         {job.JobRoleName}
       </span>
 
       <div className="mb-4">
-        <span className="inline-block lowercase rounded-full border border-[#D5EAFE] bg-[#F0F8FF] px-3 py-1 font-montserrat text-[10px] font-semibold text-[#008EDB]">
+        <span className="inline-block capitalize rounded-full border border-[#D5EAFE] bg-[#F0F8FF] px-3 py-1 font-montserrat text-[12px] font-semibold text-[#008EDB]">
           {job.WorkMode}
         </span>
       </div>
@@ -188,7 +188,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               data-lenis-prevent
               className="overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-[#D5DCE5]"
             >
-              <h3 className="mb-3 font-montserrat text-[11px] font-semibold uppercase tracking-wide text-[#172033]">
+              <h3 className="mb-3 font-montserrat text-sm font-semibold tracking-wide text-[#172033]">
                 Job Overview
               </h3>
 
@@ -245,11 +245,11 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               <div className="my-5 h-px bg-[#EDF1F5]" />
 
               <section>
-                <h3 className="mb-2 font-montserrat text-xs font-semibold text-[#172033]">
+                <h3 className="mb-2 font-montserrat text-sm font-semibold text-[#172033]">
                   Job Description
                 </h3>
 
-                <div className="space-y-3 font-montserrat text-xs leading-[1.9] text-[#52627A]">
+                <div className="space-y-3 font-montserrat text-[12px] leading-[1.9] text-[#52627A]">
                   {paragraphs.map((p, i) => (
                     <p key={i}>{p}</p>
                   ))}
@@ -259,11 +259,11 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               <div className="my-5 h-px bg-[#EDF1F5]" />
 
               <section>
-                <h3 className="mb-2 font-montserrat text-xs font-semibold text-[#172033]">
+                <h3 className="mb-2 font-montserrat text-sm font-semibold text-[#172033]">
                   Key Responsibilities
                 </h3>
 
-                <ul className="list-disc space-y-1 pl-4 font-montserrat text-xs leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
+                <ul className="list-disc space-y-1 pl-4 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
                   {job.JobResponsibilities?.split('\n').filter(Boolean).map((item, index) => (
                     <li key={index}>{item.trim()}</li>
                   ))}
@@ -273,11 +273,11 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               <div className="my-5 h-px bg-[#EDF1F5]" />
 
               <section>
-                <h3 className="mb-2 font-montserrat text-xs font-semibold text-[#172033]">
+                <h3 className="mb-2 font-montserrat text-sm font-semibold text-[#172033]">
                   Requirements
                 </h3>
 
-                <ul className="list-disc space-y-1 pl-4 font-montserrat text-xs leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
+                <ul className="list-disc space-y-1 pl-4 font-montserrat text-[12px] leading-relaxed text-[#52627A] marker:text-[#00A6FF]">
                   {job.JobRequirement?.split('\n').filter(Boolean).map((item, index) => (
                     <li key={index}>{item.trim()}</li>
                   ))}
@@ -285,7 +285,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
               </section>
             </div>
 
-            <div className="mt-5 flex shrink-0 items-center justify-between gap-3 border-t border-[#EDF1F5] bg-[#F8FAFC] px-2 py-3">
+            <div className="-mx-6 -mb-6 mt-0 flex shrink-0 items-center justify-between gap-3 border-t border-[#EDF1F5] bg-[#F8FAFC] px-6 py-4 md:-mx-8 md:-mb-8 md:px-8">
               <span className="font-montserrat text-[10px] font-medium text-[#74849B]">
                 Posted {getPostedTime(
                   job.ModifiedDate ? job.ModifiedDate : job.CreatedDate
