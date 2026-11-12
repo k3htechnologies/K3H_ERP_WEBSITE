@@ -216,7 +216,7 @@ const MobileNumberInput = ({
                     </button>
 
                     {isOpen && !disabled && (
-                        <div className="flex-1 absolute left-0 top-full z-50 mt-1 h-40 w-32.5 overflow-y-auto overflow-x-auto thin-scroll rounded-md border border-gray-200 bg-white shadow-lg">
+                        <div data-lenis-prevent className="flex-1 absolute left-0 top-full z-50 mt-1 h-40 w-32.5 overflow-y-auto overflow-x-auto thin-scroll rounded-md border border-gray-200 bg-white shadow-lg">
                             {countries.map((country) => (
                                 <button
                                     key={country.countryCode}

@@ -4,7 +4,6 @@ import AboutHeroSection from '@/features/about/components/AboutHeroSection/About
 import CompanyOverviewSection from '@/features/about/components/CompanyOverviewSection/CompanyOverviewSection';
 import LeadershipSection from '@/features/about/components/LeadershipSection/LeadershipSection';
 import CorePrinciplesSection from '@/features/about/components/CorePrinciplesSection/CorePrinciplesSection';
-import DifferenceSection from '@/features/about/components/DifferenceSection/DifferenceSection';
 import AchievementSection from '@/features/about/components/AchievementSection/AchievementSection';
 import JourneyTimelineSectionNew from '@/features/about/components/JourneyTimelineSection/JourneyTimelineSectionNew';
 import SectionContainer from '@/shared/components/Container/SectionContainer';
@@ -31,7 +30,6 @@ const AboutUsPage: React.FC = () => {
         <JourneyTimelineSectionNew />
         <LeadershipSection />
         <CorePrinciplesSection />
-        <DifferenceSection />
         <AchievementSection />
         <SectionContainer ptClassName="pt-0" pbClassName="pb-0">
           <EnquirySection />

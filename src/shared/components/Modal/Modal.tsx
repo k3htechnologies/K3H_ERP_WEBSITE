@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
-import type { ModalProps } from '@/shared/components/Modal/Modal.type';
+
+import type { ModalProps, ModalSize } from '@/shared/components/Modal/Modal.type';
 
 const backdrop = {
   hidden: {
@@ -36,12 +37,23 @@ const modal = {
   },
 };
 
+const sizeClasses: Record<ModalSize, string> = {
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-2xl',
+  '2xl': 'max-w-4xl',
+  '3xl': 'max-w-6xl',
+  full: 'max-w-[calc(100vw-2rem)]',
+};
+
 const Modal = ({
   isOpen,
   title,
   description,
   onClose,
   children,
+  size = 'md',
 }: ModalProps) => {
   return (
     <AnimatePresence>
@@ -63,24 +75,24 @@ const Modal = ({
             backdrop-blur-[3px]
           "
         >
-          {/* PANEL */}
           <motion.div
             variants={modal}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="
+            className={`
               relative
               w-full
-              max-w-md
-              overflow-hidden
+              ${sizeClasses[size]}
+              max-h-[90vh]
+              overflow-y-auto
               border
               border-black/5
               bg-white
               p-6
               shadow-[0_20px_80px_rgba(0,0,0,0.18)]
               md:p-8
-            "
+            `}
           >
             {/* TOP ACCENT */}
             <div

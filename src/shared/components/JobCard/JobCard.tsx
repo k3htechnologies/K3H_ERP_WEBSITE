@@ -165,6 +165,7 @@ const JobCard = ({ job, index, onApply }: JobCardProps) => {
           isOpen={open}
           title={job.JobRoleName}
           onClose={() => setOpen(false)}
+          size='3xl'
         >
           <span className="inline-block rounded-full bg-[#DAE2FD] px-3 py-1 text-xs font-medium text-[#5C647A]">
             {job.WorkMode}
