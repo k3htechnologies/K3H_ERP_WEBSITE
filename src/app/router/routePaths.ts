@@ -11,8 +11,9 @@ export const ROUTES = {
   LOGIN: 'login',
   TEAMS: 'teams',
   CONTACT: 'contact',
-  TERMS: 'terms',
   PRIVACY: 'privacy',
+  TERMS: 'terms',
+  DISCLAIMER: 'disclaimer',
   APPLICATION_FORM: 'application-form',
   PROJECT: 'project/:projectName',
 };

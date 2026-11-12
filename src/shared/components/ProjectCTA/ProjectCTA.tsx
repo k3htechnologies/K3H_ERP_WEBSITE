@@ -36,11 +36,8 @@ export default function ProjectCTA({ }: ProjectCTAProps) {
       <div className="container relative z-10 mx-auto flex min-h-100 flex-col items-center justify-center px-6 py-24 text-center lg:min-h-150">
         <Reveal>
           <h2 className="max-w-3xl text-cormorant-garamond text-2xl leading-tight text-white lg:text-3xl">
-            Schedule a private site visit today and experience the luxury of{' '}
-            <br />
-            {context && context.data?.ProjectName
-              ? context.data.ProjectName
-              : 'H. RISHABRAJ'}
+            Take a closer look at what we build. Schedule a site visit and experience an H.
+            Rishabraj home firsthand.
           </h2>
         </Reveal>
         <Reveal delay={0.15}>

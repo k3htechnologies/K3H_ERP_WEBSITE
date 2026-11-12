@@ -94,7 +94,7 @@ const CorePrinciplesSection = () => {
                 >
                   <div className="max-w-6xl">
                     <h2 className="inline-block border-b border-white/20 pb-4 font-heading text-xl leading-tight text-white md:pb-6 md:text-2xl md:leading-none lg:text-4xl">
-                      Building a better Mumbai one landmark at a time.
+                      Creating a lasting legacy, one landmark at a time.
                     </h2>
 
                     <p className="mt-4 max-w-6xl font-sans text-sm leading-[1.75] text-white/90 md:mt-8 md:text-lg md:leading-[1.6]">

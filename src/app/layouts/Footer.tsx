@@ -6,11 +6,13 @@ import Reveal from '@/shared/components/Reveal/Reveal';
 import {
   APARTMENTS_LOC,
   FOOTER_LINKS,
+  LEGAL_ITEMS,
   // SOCIAL_LINKS,
   TOPOLOGY,
 } from '@/shared/constants';
 
 const Footer: React.FC = () => {
+
   return (
     <>
       <footer>
@@ -33,7 +35,7 @@ const Footer: React.FC = () => {
                     Borivali (East), Mumbai-66
                   </p>
                 </Reveal>
-                
+
                 <Reveal delay={0.2}>
                   <div className="mt-4 space-y-2">
                     <div className="flex gap-4 text-sm text-montserrat">
@@ -44,7 +46,7 @@ const Footer: React.FC = () => {
                         href="tel:+918989724545"
                         className="text-primary transition-opacity hover:opacity-70"
                       >
-                        +91 8989724545
+                        +91 89897-24545
                       </a>
                     </div>
 
@@ -59,16 +61,23 @@ const Footer: React.FC = () => {
                     </div>
                   </div>
                 </Reveal>
+
               </div>
             </div>
             <div className="rounded-lg p-6 xl:col-span-2 md:col-span-2 sm:col-span-2">
+              <Reveal delay={0.1}>
+                <h3 className="mb-4  text-montserrat text-lg tracking-[0.3em] font-bold ">
+                  Explore
+                </h3>
+                <div className='mb-4 h-0.5 w-10 bg-primary sm:mb-6' />
+              </Reveal>
               <Reveal delay={0.15}>
-                <ul className="space-y-4 text-center md:text-left">
+                <ul className="space-y-4 text-center text-[#53646D] md:text-left">
                   {FOOTER_LINKS.map((footerLink) => (
                     <li key={footerLink.label}>
                       <Link
                         to={footerLink.link}
-                        className="text-montserrat text-sm font-semibold uppercase tracking-[0.15em] text-primary transition-all duration-300 hover:translate-x-1 hover:opacity-70"
+                        className="text-montserrat text-sm  font-medium tracking-[0.15em] transition-all duration-300 hover:text-blue-400 hover:text-md"
                       >
                         {footerLink.label}
                       </Link>
@@ -80,16 +89,17 @@ const Footer: React.FC = () => {
             {/* Locations */}
             <div className="rounded-lg p-6 xl:col-span-3 md:col-span-3 sm:col-span-2">
               <Reveal delay={0.1}>
-                <h3 className="mb-4 font-heading text-lg uppercase tracking-[0.3em] font-bold text-primary">
+                <h3 className="mb-4  text-montserrat text-lg tracking-[0.3em] font-bold ">
                   Locations
                 </h3>
+                <div className="mb-4 h-0.5 w-10 bg-primary sm:mb-6" />
               </Reveal>
 
               <Reveal delay={0.15}>
-                <ul className="space-y-4 text-center md:text-left">
+                <ul className="space-y-4 text-center text-[#53646D] md:text-left">
                   {APARTMENTS_LOC.map((loc) => (
                     <li key={loc}>
-                      <p className="text-montserrat text-sm font-semibold uppercase tracking-[0.15em] text-primary transition-all duration-300 hover:translate-x-1 hover:opacity-70">
+                      <p className="text-montserrat text-sm font-medium tracking-[0.15em] transition-all duration-300 hover:text-blue-400 hover:text-md">
                         {loc}
                       </p>
                     </li>
@@ -99,15 +109,16 @@ const Footer: React.FC = () => {
             </div>
             <div className="rounded-lg  p-6 xl:col-span-4 md:col-span-4 sm:col-span-2">
               <Reveal delay={0.1}>
-                <h3 className="mb-4 font-heading text-lg uppercase tracking-[0.3em] font-bold text-primary">
+                <h3 className="mb-4 text-[#182D38] text-montserrat text-lg tracking-[0.3em] font-semibold">
                   Typology
                 </h3>
+                <div className='mb-4 h-0.5 w-10 bg-primary sm:mb-6' />
               </Reveal>
               <Reveal delay={0.15}>
-                <ul className="space-y-4 text-center md:text-left">
+                <ul className="space-y-4 text-center text-[#53646D] md:text-left">
                   {TOPOLOGY.map((loc) => (
                     <li key={loc}>
-                      <p className="text-montserrat text-sm font-semibold uppercase tracking-[0.15em] text-primary transition-all duration-300 hover:translate-x-1 hover:opacity-70">
+                      <p className="text-montserrat text-sm  font-medium tracking-[0.15em] transition-all duration-300 hover:text-blue-400 hover:text-md">
                         {loc}
                       </p>
                     </li>
@@ -141,8 +152,25 @@ const Footer: React.FC = () => {
           {/* BOTTOM BAR */}
           <div className="mt-10 flex flex-col items-center justify-between gap-6 border-t border-primary/10 pt-8 md:flex-row">
             <p className="text-montserrat text-center text-xs font-medium uppercase tracking-[0.18em] text-primary">
-              © 2026 H. RISHABRAJ DEVELOPER. ALL RIGHTS RESERVED.
+              © 2026 Rishabraj Estate Developers Private Limited. ALL RIGHTS RESERVED.
             </p>
+
+            <div className="flex items-center gap-8">
+              <Reveal delay={0.15}>
+                <ul className="flex flex-row items-center gap-8 text-center text-[#53646D]">
+                  {LEGAL_ITEMS.map((footerLink) => (
+                    <li key={footerLink.label}>
+                      <Link
+                        to={footerLink.link}
+                        className="text-montserrat text-xs font-medium tracking-[0.18em] text-primary hover:opacity-70 cursor-pointer whitespace-nowrap uppercase"
+                      >
+                        {footerLink.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
 
             <div className="flex items-center gap-5">
               <a

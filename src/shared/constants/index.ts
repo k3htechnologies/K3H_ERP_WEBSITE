@@ -165,7 +165,28 @@ export const SOCIAL_LINKS = [
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export const MOBILE_REGEX = /^[6-9]\d{9}$/;
 
+export const sendEmail = (email: string) => {
+  if (email) {
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, '_blank');
+  }
+}
+
 export const FILE_ISSUE = {
   SIZE: 'SIZE',
   FORMAT: 'FORMAT',
 };
+
+export const LEGAL_ITEMS = [
+  {
+    label: 'Privacy',
+    link: `/${ROUTES.PRIVACY}`,
+  },
+  {
+    label: "Terms",
+    link: `/${ROUTES.TERMS}`
+  },
+  {
+    label: "Disclaimer",
+    link: `/${ROUTES.DISCLAIMER}`
+  }
+]

@@ -14,6 +14,9 @@ import ProjectDetails from '@/features/project-details/page';
 import ContactPage from '@/features/contact/page';
 import LifeStylePage from '@/features/lifestyle/page';
 import MediaPage from '@/features/media/page';
+import PrivacyPolicy from '@/features/legal/PrivacyPolicy';
+import TermsAndCondition from '@/features/legal/TermsAndCondition';
+import Disclaimer from '@/features/legal/Disclaimer';
 
 const MainRouter: React.FC = () => {
   return (
@@ -33,6 +36,10 @@ const MainRouter: React.FC = () => {
         <Route path={ROUTES.CAREER} element={<CareerPage />} />
         <Route path={ROUTES.CONTACT} element={<ContactPage />} />
         <Route path={ROUTES.JOB_SEARCH} element={<JobSearchPage />} />
+        <Route path={ROUTES.PRIVACY} element={<PrivacyPolicy />} />
+        <Route path={ROUTES.TERMS} element={<TermsAndCondition />} />
+        <Route path={ROUTES.DISCLAIMER} element={<Disclaimer />} />
+
         <Route
           path={ROUTES.APPLICATION_FORM}
           element={<ApplicationFormPage />}
@@ -40,6 +47,7 @@ const MainRouter: React.FC = () => {
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       </Route>
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
+
     </Routes>
   );
 };
