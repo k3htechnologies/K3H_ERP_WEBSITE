@@ -80,7 +80,6 @@ export default function WhyChooseUs() {
                 {/* Blue Overlay */}
                 <div className="absolute inset-0 bg-[#34495A]/45 transition-colors duration-500 group-hover:bg-black/70 group-[.is-active]:bg-black/70" />
 
-                {/* Number */}
                 <span className="absolute right-6 top-5 font-heading text-xl md:text-4xl text-white/20">
                   {item.id}
                 </span>
@@ -90,22 +89,17 @@ export default function WhyChooseUs() {
 
                 <div className="absolute inset-x-0 bottom-0 overflow-hidden p-4 md:p-6">
                   <div className="relative min-h-50 md:min-h-80">
-                    {/* Default State */}
-                    <div className="absolute inset-0 transition-all duration-500 ease-out group-hover:-translate-y-4 group-hover:opacity-0 group-[.is-active]:-translate-y-4 group-[.is-active]:opacity-0">
-                      <h3 className="absolute bottom-0 font-heading text-sm text-white md:text-2xl">
+                    <div className="absolute inset-x-0 bottom-0 flex flex-col justify-end">
+                      <h3 className="font-heading text-sm text-white transition-transform duration-500 ease-out md:text-2xl">
                         {item.title}
                       </h3>
-                    </div>
-
-                    {/* Expanded State */}
-                    <div className="absolute inset-0 translate-y-6 opacity-0 transition-all duration-500 ease-out group-hover:translate-y-0 group-hover:opacity-100 group-[.is-active]:translate-y-0 group-[.is-active]:opacity-100">
-                      <h3 className="font-heading text-sm text-white md:text-2xl">
-                        {item.title}
-                      </h3>
-
-                      <p className="mt-3 text-[10px] text-white/90 text-montserrat md:text-lg md:leading-8">
-                        {item.description}
-                      </p>
+                      <div className="grid grid-rows-[0fr] opacity-0 transition-all duration-500 ease-out group-hover:grid-rows-[1fr] group-hover:opacity-100 group-[.is-active]:grid-rows-[1fr] group-[.is-active]:opacity-100">
+                        <div className="overflow-hidden">
+                          <p className="pt-3 text-[10px] text-white/90 text-montserrat md:text-lg md:leading-8">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

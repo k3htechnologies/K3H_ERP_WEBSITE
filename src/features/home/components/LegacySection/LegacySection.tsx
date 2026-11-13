@@ -22,7 +22,7 @@ const STATS = [
   {
     value: 70,
     suffix: 'L+',
-    label: 'Sq.ft. In Planning & Progress',
+    label: 'Sq.ft. IN PLANNING & PROGRESS',
   },
 ];
 

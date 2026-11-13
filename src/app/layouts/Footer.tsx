@@ -109,7 +109,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="rounded-lg  p-6 xl:col-span-4 md:col-span-4 sm:col-span-2">
               <Reveal delay={0.1}>
-                <h3 className="mb-4 text-[#182D38] text-montserrat text-lg tracking-[0.3em] font-semibold">
+                <h3 className="mb-4 text-[#182D38] text-montserrat text-lg tracking-[0.3em] font-bold">
                   Typology
                 </h3>
                 <div className='mb-4 h-0.5 w-10 bg-primary sm:mb-6' />
