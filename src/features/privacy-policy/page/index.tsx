@@ -1,6 +1,9 @@
-import { sendEmail } from "@/shared/constants";
+import React from "react";
+
+import { sendEmail } from "@/shared/utils";
 
 const PrivacyPolicy: React.FC = () => {
+    
     return (
         <div className="min-h-screen bg-gray-50 py-30 px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto px-6 py-10 sm:px-10 lg:px-14">

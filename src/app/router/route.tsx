@@ -14,9 +14,9 @@ import ProjectDetails from '@/features/project-details/page';
 import ContactPage from '@/features/contact/page';
 import LifeStylePage from '@/features/lifestyle/page';
 import MediaPage from '@/features/media/page';
-import PrivacyPolicy from '@/features/legal/PrivacyPolicy';
-import TermsAndCondition from '@/features/legal/TermsAndCondition';
-import Disclaimer from '@/features/legal/Disclaimer';
+import Disclaimer from '@/features/disclaimer/page';
+import TermsAndCondition from '@/features/terms-and-condition/page';
+import PrivacyPolicy from '@/features/privacy-policy/page';
 
 const MainRouter: React.FC = () => {
   return (
