@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Check } from 'lucide-react';
+import { ChevronDown, Check, X } from 'lucide-react';
 import { useEffect, useRef, useState, useId } from 'react';
+
 import type { FilterDropdownProps } from '@/shared/components/FilterDropdown/FilterDropdown.type';
 
 const THEME = {
@@ -49,6 +50,7 @@ const FilterDropdown = ({
   placeholder = 'Select',
   name,
   disabled = false,
+  containerClass = '',
 }: FilterDropdownProps) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -57,6 +59,17 @@ const FilterDropdown = ({
   const t = THEME[theme];
   const hasValue = Boolean(selectedOption?.value);
   const hasError = Boolean(error);
+
+  const handleClear = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+
+    onChange({
+      label: '',
+      value: '',
+    });
+
+    setOpen(false);
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -94,9 +107,8 @@ const FilterDropdown = ({
         whileHover={disabled ? undefined : { y: -2 }}
         whileTap={disabled ? undefined : { scale: 0.98 }}
         onClick={() => !disabled && setOpen((prev) => !prev)}
-        className={`flex h-12 w-full items-center justify-between rounded-lg px-4 text-sm transition-all duration-300 ${
-          disabled ? 'cursor-not-allowed opacity-50' : t.triggerHover
-        } ${hasValue ? t.trigger : t.placeholder}`}
+        className={`flex h-12 w-full items-center justify-between rounded-lg px-4 text-sm transition-all duration-300 ${containerClass} ${disabled ? 'cursor-not-allowed opacity-50' : t.triggerHover
+          } ${hasValue ? t.trigger : t.placeholder}`}
         style={{
           background: t.triggerBg,
           border: `1px solid ${hasError ? t.errorBorder : t.triggerBorder}`,
@@ -104,9 +116,32 @@ const FilterDropdown = ({
       >
         <span>{hasValue ? selectedOption.label : placeholder}</span>
 
-        <motion.div animate={{ rotate: open ? 180 : 0 }}>
-          <ChevronDown size={16} className={t.chevron} />
-        </motion.div>
+        <span className="flex items-center gap-2">
+          {hasValue && !disabled && (
+            <span
+              role="button"
+              tabIndex={0}
+              aria-label="Clear selection"
+              onClick={handleClear}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  handleClear(
+                    event as unknown as React.MouseEvent<HTMLButtonElement>
+                  );
+                }
+              }}
+              className={`rounded-full p-1 transition hover:bg-black/10 ${t.chevron
+                }`}
+            >
+              <X size={14} />
+            </span>
+          )}
+
+          <motion.div animate={{ rotate: open ? 180 : 0 }}>
+            <ChevronDown size={16} className={t.chevron} />
+          </motion.div>
+        </span>
       </motion.button>
 
       {hasError && (
@@ -118,11 +153,12 @@ const FilterDropdown = ({
       <AnimatePresence>
         {open && !disabled && (
           <motion.div
+            data-lenis-prevent
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="absolute left-0 top-full z-99 mt-2 w-full overflow-scroll sidebar-scroll rounded-xl max-h-64"
+            className="absolute left-0 top-full z-99 mt-2 max-h-64 w-full overflow-scroll sidebar-scroll rounded-xl"
             style={{
               background: t.menuBg,
               border: `1px solid ${t.menuBorder}`,
@@ -144,7 +180,7 @@ const FilterDropdown = ({
               >
                 <span>{option.label}</span>
 
-                {selectedOption.value === option.value && (
+                {selectedOption?.value === option.value && (
                   <Check size={16} className={t.check} />
                 )}
               </button>

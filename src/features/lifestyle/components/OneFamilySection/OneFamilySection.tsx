@@ -35,7 +35,7 @@ const OneFamilySection = () => {
           >
             <motion.h3
               variants={familyitemVariants}
-              className="max-w-md text-cormorant-garamond text-4xl leading-tight text-white md:text-5xl"
+              className="max-w-md font-heading text-4xl leading-tight text-white md:text-5xl"
             >
               Where Neighbours
               <br />
@@ -68,7 +68,7 @@ const OneFamilySection = () => {
                   }}
                   className="rounded-2xl border border-white/10 bg-white/4 p-6 backdrop-blur-sm"
                 >
-                  <h4 className="text-cormorant-garamond text-lg text-white">
+                  <h4 className="font-heading text-lg text-white">
                     {item.title}
                   </h4>
 

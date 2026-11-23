@@ -69,7 +69,7 @@ export default function ProjectOverviewSection() {
                   className="h-px bg-primary"
                 />
 
-                <h2 className="text-cormorant-garamond text-2xl font-medium uppercase tracking-wide text-secondary lg:text-4xl">
+                <h2 className="font-heading text-2xl font-medium uppercase tracking-wide text-secondary lg:text-4xl">
                   {data?.ProjectName}
                 </h2>
               </div>
@@ -132,18 +132,18 @@ export default function ProjectOverviewSection() {
                   >
                     <motion.p
                       className="text-montserrat mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-primary"
-                      // whileHover={{
-                      //   letterSpacing: '0.28em',
-                      // }}
-                      // transition={{
-                      //   duration: 0.25,
-                      // }}
+                    // whileHover={{
+                    //   letterSpacing: '0.28em',
+                    // }}
+                    // transition={{
+                    //   duration: 0.25,
+                    // }}
                     >
                       {item.label}
                     </motion.p>
 
                     <motion.h3
-                      className="text-cormorant-garamond text-xl font-medium leading-none text-secondary lg:text-3xl"
+                      className="font-heading text-xl font-medium leading-none text-secondary lg:text-3xl"
                       whileHover={{
                         color: '#B68D40',
                       }}

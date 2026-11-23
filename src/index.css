@@ -1,15 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz@0,9..40;1,9..40&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400..700;1,400..700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 @import 'tailwindcss';
 @import './app/styles/theme.css';
 @import './app/styles/animations.css';
 
 @theme {
-  --font-sans: 'Neue Montreal', sans-serif;
+   --font-montserrat: 'Montserrat';
 
   --animate-marquee: marqueeMove 16s linear infinite;
   @keyframes marqueeMove {
@@ -54,36 +50,8 @@
   }
 }
 
-@utility font-condensed {
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
 @utility font-heading {
   font-family: 'Libre Baskerville';
-}
-
-@utility font-heading-anton {
-  font-family: 'Anton';
-}
-
-@utility heading-playfair {
-  font-family: 'Playfair Display';
-}
-
-@utility dm-sans {
-  font-family: 'DM Sans', sans-serif;
-}
-
-@utility heading-libre-caslon {
-  font-family: 'Libre Caslon Text', serif;
-}
-
-@utility text-hanken {
-  font-family: 'Hanken Grotesk', sans-serif;
-}
-
-@utility text-cormorant-garamond {
-  font-family: 'Cormorant Garamond';
 }
 
 @utility text-montserrat {
@@ -91,7 +59,7 @@
 }
 
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-montserrat);
 }
 
 /* .hero-marquee {

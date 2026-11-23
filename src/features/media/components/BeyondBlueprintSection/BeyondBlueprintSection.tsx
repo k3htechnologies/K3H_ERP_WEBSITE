@@ -230,7 +230,7 @@ const StoryCard = ({ story, imageHeight }: StoryCardProps) => {
           <span>{story.readTime}</span>
         </div>
 
-        <h3 className="text-cormorant-garamond text-[28px] leading-tight transition group-hover:text-primary text-[#1C1B1B]">
+        <h3 className="font-heading text-[28px] leading-tight transition group-hover:text-primary text-[#1C1B1B]">
           {story.title}
         </h3>
 

@@ -22,7 +22,7 @@ const STATS = [
   {
     value: 70,
     suffix: 'L+',
-    label: 'Sq.ft. In Planning & Progress',
+    label: 'Sq.ft. IN PLANNING & PROGRESS',
   },
 ];
 
@@ -55,7 +55,7 @@ export default function LegacySection() {
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto w-full lg:px-20 px-10">
-        <div className="grid gap-16 lg:grid-cols-2">
+        <div className="grid gap-3 md:gap-16 lg:grid-cols-2">
           {/* Left Content */}
           <Reveal>
             <div>
@@ -70,15 +70,14 @@ export default function LegacySection() {
                 className="mb-6 h-1 bg-primary"
               />
               <h2 className="font-heading text-3xl font-bold leading-tight text-secondary md:text-5xl">
-                The <span className="text-primary">H.Rishabraj</span> Legacy
+                The <span className="text-primary">H. Rishabraj</span> Legacy
               </h2>
-              <p className="text-montserrat mt-12 max-w-2xl text-base font-medium leading-8 text-secondary/85 text-justify">
-                Every landmark begins with a vision. Ours has always been to
-                create homes that outlive trends and become part of the city's
-                story. Guided by integrity, meticulous planning, and a
-                relentless pursuit of excellence, H.Rishabraj continues to
-                create spaces where families build memories and legacies find a
-                lasting address.
+              <p className="text-montserrat mt-4 md:mt-12 max-w-2xl text-sm md:text-base font-medium  leading-5 md:leading-8 text-secondary/85 text-justify">
+                Every landmark begins with a vision. At H. Rishabraj, ours is to create developments
+                that stand the test of time and become a lasting part of the city’s landscape. Guided
+                by integrity, thoughtful planning, and disciplined execution, we focus on building
+                homes that bring people together, create lasting value, and become a part of the
+                stories families build over generations.
               </p>
             </div>
           </Reveal>
@@ -87,7 +86,7 @@ export default function LegacySection() {
           <Reveal delay={0.15}>
             <div className="flex flex-col justify-between">
               <p className="text-montserrat max-w-xs self-start text-sm font-medium leading-6 text-secondary lg:self-end mt-10">
-                Designed for Today, Remembered Forever.
+                Built for Generations. Remembered forever.
               </p>
               <motion.div
                 variants={statsContainerVariants}

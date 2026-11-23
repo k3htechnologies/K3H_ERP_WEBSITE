@@ -46,6 +46,7 @@ const EnquiryModal = ({ open, onClose, prefillData }: EnquiryModalProps) => {
           onClick={onClose}
         >
           <motion.div
+            data-lenis-prevent
             className="relative w-full max-w-7xl max-h-[90vh] overflow-y-auto rounded-md bg-[#F5F3F3] shadow-[0_40px_120px_rgba(0,0,0,0.25)]"
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}

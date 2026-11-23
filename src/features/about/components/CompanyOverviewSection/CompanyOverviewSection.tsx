@@ -29,7 +29,7 @@ const CompanyOverviewSection = () => {
             <img
               src="/company-overview.jpg"
               alt="Company Overview"
-              className="h-180 w-full object-cover"
+              className="h-130 md:h-180 w-full object-cover"
             />
             <div
               className="pointer-events-none absolute inset-0"
@@ -49,15 +49,14 @@ const CompanyOverviewSection = () => {
               {STATS.map((stat, index) => (
                 <div
                   key={stat.label}
-                  className={`p-8 ${
-                    index !== STATS.length - 1 ? 'border-b border-white/10' : ''
-                  }`}
+                  className={`p-5 md:p-8 ${index !== STATS.length - 1 ? 'border-b border-white/10' : ''
+                    }`}
                 >
                   <CountUp
                     end={stat.value}
                     suffix={stat.suffix}
                     duration={2500}
-                    className="font-heading-anton text-3xl leading-none text-primary"
+                    className="font-heading font-bold text-xl md:text-3xl leading-none text-primary"
                   />
                   <p className="mt-2 text-xs uppercase text-white/80 text-montserrat">
                     {stat.label}
@@ -82,21 +81,19 @@ const CompanyOverviewSection = () => {
 
           <Reveal delay={0.2}>
             <p className="mt-10 leading-6 text-white text-montserrat text-sm">
-              The finest developments are measured not by their height, but by
-              the legacy they leave behind. At H.Rishabraj, every project is
-              conceived with a long term vision, where architectural excellence,
-              thoughtful planning, and uncompromising quality come together to
-              create timeless destinations.
+              At H. Rishabraj, we believe that the true measure of a development lies in the value it
+              creates over time. Every project reflects our commitment to architectural excellence,
+              thoughtful planning, and quality execution, with a long-term vision that goes beyond
+              the structure itself.
             </p>
           </Reveal>
 
           <Reveal delay={0.3}>
             <p className="mt-8 leading-6 text-white text-montserrat text-sm">
-              As Mumbai continues to evolve, we remain committed to shaping its
-              future through luxury residences that elevate lifestyles,
-              strengthen communities, and deliver enduring value. Every landmark
-              we create is a reflection of our promise to build with purpose,
-              precision, and integrity.
+              As Mumbai continues to evolve, we remain focused on shaping its
+              future through thoughtfully designed residences that enhance lifestyles, strengthen
+              communities, and deliver lasting value. Every development reflects our commitment
+              to building with purpose, precision, and integrity.
             </p>
           </Reveal>
 

@@ -7,27 +7,27 @@ import type {
 export const VISION_ITEMS: VisionItem[] = [
   {
     id: '01',
-    title: 'Meaningful Growth',
+    title: 'Grow With Us',
     description:
-      'Grow alongside experienced leaders through real opportunities, continuous learning, and hands-on project exposure.',
+      'Take on new challenges, develop your expertise, and build your career through meaningful responsibilities and opportunities across projects.',
   },
   {
     id: '02',
-    title: 'Landmark Projects',
+    title: 'Be Part of Something Bigger',
     description:
-      'Contribute to premium developments that redefine urban living and become enduring landmarks across Mumbai.',
+      `Contribute to landmark developments that shape Mumbai's skyline and create lasting value for the communities they serve.`,
   },
   {
     id: '03',
-    title: 'People-First Culture',
+    title: 'Work Together. Move Forward.',
     description:
-      'Be part of a collaborative workplace where ideas are valued, talent is nurtured, and success is shared.',
+      'Join a team that values collaboration, encourages fresh perspectives, and brings together diverse expertise to achieve shared goals.',
   },
   {
     id: '04',
-    title: 'Purpose-Driven Excellence',
+    title: 'Make Your Mark',
     description:
-      'Work with a team united by craftsmanship, integrity, and the pursuit of creating spaces that inspire generations.',
+      'Bring your ideas, skills, and ambition to an organisation driven by quality, integrity, and the pursuit of excellence.',
   },
 ];
 

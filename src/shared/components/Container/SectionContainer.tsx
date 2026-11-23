@@ -25,18 +25,19 @@ const SectionContainer: React.FC<SectionContainerProps> = ({
       <div className="mx-auto w-full px-5 sm:px-8 md:px-12 lg:px-20">
         {heading && (
           <Reveal>
-            <div className="flex justify-between items-end">
-              <div>
-                <div className="mb-6 h-1 w-14 bg-primary" />
+            <div className="flex flex-col gap-4 sm:gap-5 lg:flex-row lg:items-end lg:justify-between">
+              <div className="min-w-0">
+                <div className="mb-4 h-1 w-14 bg-primary sm:mb-6" />
                 <h2
-                  className={`font-heading text-3xl leading-tight md:text-5xl font-bold ${headingColorClass}`}
+                  className={`font-heading text-2xl leading-tight font-bold sm:text-3xl md:text-5xl ${headingColorClass}`}
                 >
                   {heading}
                 </h2>
               </div>
+
               {sideDescription && (
-                <div className="text-end">
-                  <p className="max-w-sm text-montserrat font-medium leading-6 text-sm">
+                <div className="text-start lg:max-w-sm lg:shrink-0 lg:text-end">
+                  <p className="max-w-sm text-montserrat text-sm font-medium leading-6">
                     {sideDescription}
                   </p>
                 </div>

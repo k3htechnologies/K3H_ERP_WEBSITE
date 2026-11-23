@@ -35,7 +35,7 @@ const AboutHeroSection = () => {
         }}
         className="absolute left-1/2 top-8 z-20 -translate-x-1/2 md:top-12"
       >
-        <img src="logo-white.png" alt="H.Rishabraj" className="h-18 w-auto" />
+        <img src="logo-white.png" alt="H. Rishabraj" className="h-18 w-auto" />
       </motion.div> */}
       {/* <div className="relative z-10 flex h-full items-center justify-center px-6">
         <div className="text-center">

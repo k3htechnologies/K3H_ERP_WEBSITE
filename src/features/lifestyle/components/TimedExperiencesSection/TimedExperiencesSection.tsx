@@ -150,7 +150,7 @@ const TimedExperiencesSection = () => {
                       backdropFilter: 'blur(20px)',
                     }}
                   >
-                    <h3 className="text-sm font-semibold text-primary text-cormorant-garamond">
+                    <h3 className="text-sm font-semibold text-primary font-heading">
                       {item.time}
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-white/80 text-montserrat">

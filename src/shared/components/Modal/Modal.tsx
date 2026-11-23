@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { X } from 'lucide-react';
-import type { ModalProps } from '@/shared/components/Modal/Modal.type';
+
+import type { ModalProps, ModalSize } from '@/shared/components/Modal/Modal.type';
 
 const backdrop = {
   hidden: {
@@ -36,12 +37,23 @@ const modal = {
   },
 };
 
+const sizeClasses: Record<ModalSize, string> = {
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-2xl',
+  '2xl': 'max-w-4xl',
+  '3xl': 'max-w-6xl',
+  full: 'max-w-[calc(100vw-2rem)]',
+};
+
 const Modal = ({
   isOpen,
   title,
   description,
   onClose,
   children,
+  size = 'md',
 }: ModalProps) => {
   return (
     <AnimatePresence>
@@ -51,86 +63,30 @@ const Modal = ({
           initial="hidden"
           animate="visible"
           exit="hidden"
-          className="
-            fixed
-            inset-0
-            z-999
-            flex
-            items-center
-            justify-center
-            bg-black/45
-            px-4
-            backdrop-blur-[3px]
-          "
+          className="fixed inset-0 z-999 flex items-center justify-center bg-black/45 px-4 backdrop-blur-[3px]"
         >
-          {/* PANEL */}
           <motion.div
             variants={modal}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="
-              relative
-              w-full
-              max-w-md
-              overflow-hidden
-              border
-              border-black/5
-              bg-white
-              p-6
-              shadow-[0_20px_80px_rgba(0,0,0,0.18)]
-              md:p-8
-            "
+            className={`relative w-full ${sizeClasses[size]} max-h-[90vh] overflow-y-auto overscroll-contain border border-black/5 bg-white p-6 shadow-[0_20px_80px_rgba(0,0,0,0.18)] md:p-8`}
           >
-            {/* TOP ACCENT */}
             <div
-              className="
-                absolute
-                left-0
-                top-0
-                h-1
-                w-full
-                bg-primary
-              "
+              className="absolute left-0 top-0 h-1 w-full bg-primary"
             />
-
-            {/* CLOSE */}
             <button
               type="button"
               onClick={onClose}
-              className="
-                absolute
-                right-4
-                top-4
-                flex
-                h-10
-                w-10
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-black/5
-                text-[#76777D]
-                transition-all
-                duration-300
-                hover:border-primary
-                hover:text-primary
-              "
+              className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-black/5 text-[#76777D] transition-all duration-300 hover:border-primary hover:text-primary"
             >
               <X size={18} />
             </button>
 
-            {/* CONTENT */}
-            <div className="pr-10">
+            <div>
               {title ? (
                 <h3
-                  className="
-                    font-heading
-                    text-3xl
-                    uppercase
-                    leading-none
-                    text-text
-                  "
+                  className="font-heading text-3xl uppercase leading-none text-text"
                 >
                   {title}
                 </h3>
@@ -138,12 +94,7 @@ const Modal = ({
 
               {description ? (
                 <p
-                  className="
-                    mt-4
-                    text-sm
-                    leading-relaxed
-                    text-[#5F6368]
-                  "
+                  className="mt-4 text-sm leading-relaxed text-[#5F6368]"
                 >
                   {description}
                 </p>

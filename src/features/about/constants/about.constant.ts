@@ -142,7 +142,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
     year: 2009,
     title: 'Designing one master piece at a time',
     description:
-      'In 2009, Mr. Harish Kumar Jain shifted from textiles to real estate, starting with Shyam Krupa CHSL in Borivali East. With steadfast dedication & the committed team of 5 to 6 members, he finished the project in just 11 months, marking the beginning of his transformative journey in Daulat Nagar.',
+      'In 2009, Mr. Harrish Kumar Jain shifted from textiles to real estate, starting with Shyam Krupa CHSL in Borivali East. With steadfast dedication & the committed team of 5 to 6 members, he finished the project in just 11 months, marking the beginning of his transformative journey in Daulat Nagar.',
     image: '/timeline/shyam-krupa.jpeg',
     imageAlt: 'City skyline lit up at night',
   },
@@ -150,7 +150,7 @@ export const TIMELINE_ITEMS: TimelineItem[] = [
     year: 2019,
     title: 'Formation of BDA',
     description:
-      'As a proactive leader, Mr. Harish Kumar Jain established BDA to represent the voice of small developers to change and affect policies. swiftly amassing over 700 members in just 5 months. His commitment to reforming real estate policies and overcoming bureaucratic hurdles in redevelopment projects is unparalleled.',
+      'As a proactive leader, Mr. Harrish Kumar Jain established BDA to represent the voice of small developers to change and affect policies. swiftly amassing over 700 members in just 5 months. His commitment to reforming real estate policies and overcoming bureaucratic hurdles in redevelopment projects is unparalleled.',
     image: '/timeline/BDA.png',
     imageAlt: 'Engineer reviewing blueprints on site',
   },

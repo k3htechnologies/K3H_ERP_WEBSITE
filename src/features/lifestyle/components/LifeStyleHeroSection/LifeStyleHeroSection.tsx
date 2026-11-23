@@ -15,11 +15,7 @@ const LifeStyleHeroSection = () => {
       >
         <source src="/videos/lifestyle-bg.mp4" type="video/mp4" />
       </video>
-      {/* <img
-        src="/lifestyle-hero.jpg"
-        alt="Project Background"
-        className="absolute inset-0 h-full w-full object-cover"
-      /> */}
+      
       {/* Overlay */}
       <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/30 to-black/60" />
 
@@ -36,14 +32,14 @@ const LifeStyleHeroSection = () => {
                 duration: 0.8,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="text-center font-heading text-3xl md:text-4xl lg:text-[4rem] font-black tracking-wider text-white lg:leading-normal lg:mt-80 mt-96"
+              className="text-center font-heading text-3xl md:text-4xl lg:text-[4rem] font-black tracking-wider text-white lg:leading-normal mt-80"
             >
               Live Beyond the Address
             </motion.h1>
           </Reveal>
         </div>
         {/* Bottom Content */}
-        <div className="pb-40 lg:pb-40">
+        <div className="pb-32 md:pb-40">
           <Reveal>
             <p className="text-montserrat mx-auto mb-10 max-w-4xl text-center leading-relaxed text-white text-lg md:text-xl">
               Where timeless architecture meets meaningful experiences.

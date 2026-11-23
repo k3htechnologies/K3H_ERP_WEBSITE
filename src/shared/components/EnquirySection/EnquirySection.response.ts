@@ -1,6 +1,6 @@
 export interface Locations {
-  VillageMasterId: number;
-  VillageName: string;
+  CityMasterId: number;
+  CityName: string;
 }
 
 export interface Project {

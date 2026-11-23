@@ -117,7 +117,7 @@ export default function ProjectHero() {
             <Reveal delay={0.3}>
               <div className="mt-10 flex flex-wrap gap-5">
                 <button className="border border-white/40 bg-white/10 px-8 py-4 text-sm uppercase tracking-[0.25em] text-white backdrop-blur-sm transition hover:border-primary hover:bg-primary">
-                  Book Site Visit
+                  Book a Site Visit
                 </button>
 
                 <button className="flex items-center gap-2 text-sm uppercase tracking-[0.25em] text-white transition hover:text-primary">

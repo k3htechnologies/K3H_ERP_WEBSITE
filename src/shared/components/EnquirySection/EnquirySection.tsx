@@ -6,7 +6,7 @@ import type {
   EnquiryFormData,
   EnquiryFormErrors,
 } from '@/shared/components/EnquirySection/EnquirySection.types';
-import { EMAIL_REGEX, MOBILE_REGEX } from '@/shared/constants';
+import { EMAIL_REGEX } from '@/shared/constants';
 import type {
   DropdownOption,
   LoadOptionsResult,
@@ -16,6 +16,7 @@ import InputField from '@/shared/components/InputField/InputField';
 import AsyncDropdown from '@/shared/components/AsyncDropdown/AsyncDropdown';
 import Modal from '@/shared/components/Modal/Modal';
 import type { EnquiryPrefillData } from '@/app/provider/EnquiryProvider/EnquiryModalContext';
+import MobileNumberInput from '../MobileNumberInput/MobileNumberInput';
 
 interface EnquirySectionProps {
   prefillData?: EnquiryPrefillData;
@@ -64,8 +65,8 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
     });
     if (response && response.Data && response.Data.length) {
       const data: DropdownOption[] = response?.Data.map((location) => ({
-        id: String(location.VillageMasterId),
-        label: location.VillageName,
+        id: String(location.CityMasterId),
+        label: location.CityName,
       }));
       return {
         data,
@@ -107,7 +108,11 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name } = e.target;
+    let { value } = e.target;
+    if (name === "mobile") {
+      value = value.replace(/\D/g, '').slice(0, 10)
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -137,9 +142,10 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
     }
     if (!formData.mobile.trim()) {
       newErrors.mobile = 'Mobile number is required';
-    } else if (!MOBILE_REGEX.test(formData.mobile)) {
-      newErrors.mobile = 'Enter valid mobile number';
     }
+    // else if (!MOBILE_REGEX.test(formData.mobile.trim())) {
+    //   newErrors.mobile = 'Enter valid mobile number';
+    // }
 
     setErrors(newErrors);
 
@@ -227,10 +233,10 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
               </h2>
 
               <p className="mt-8 max-w-lg text-montserrat text-sm leading-relaxed text-[#43474F]">
-                Whether you're searching for your dream residence or your next
-                investment, our relationship managers are here to guide you
-                through every step—from project selection and pricing to site
-                visits and personalized assistance.
+                Whether you’re looking for your next home or a real estate investment, our team is
+                here to guide you through every step. From exploring projects and understanding
+                pricing to arranging site visits, we provide personalised assistance to help you make
+                an informed decision.
               </p>
               <div className="mt-10 space-y-5">
                 <div className="flex items-start gap-4">
@@ -245,7 +251,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                       href="tel:8989724545"
                       className="mt-1 text-sm font-medium text-primary"
                     >
-                      +91 8989724545
+                      +91 89897 24545
                     </a>
                   </div>
                 </div>
@@ -273,9 +279,14 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                     <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1D1D1D]">
                       Visit us at
                     </p>
-                    <p className="mt-1 text-sm font-medium text-primary">
-                      H.Rishabraj Chambers, Borivali East
-                    </p>
+                    <a
+                      href="https://maps.app.goo.gl/smZQSrHyNaPUrgtn6"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1 inline-block text-sm font-medium text-primary transition-opacity duration-300 hover:opacity-70"
+                    >
+                      H. Rishabraj Chambers, Borivali East
+                    </a>
                   </div>
                 </div>
               </div>
@@ -289,7 +300,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                 <div>
                   <AsyncDropdown
                     label="Project Location"
-                    placeholder="Borivali"
+                    placeholder="Select location"
                     loadOptions={loadLocations}
                     value={location}
                     onChange={setLocation}
@@ -303,7 +314,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   <AsyncDropdown
                     key={location?.id ?? 'empty'}
                     label="Project Name"
-                    placeholder="Rishabraj Avyaana"
+                    placeholder="Enter project name"
                     loadOptions={loadProjectsBasedOnLocation}
                     value={project}
                     onChange={setProject}
@@ -317,7 +328,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   <InputField
                     label="Full Name"
                     name="fullName"
-                    placeholder="Julian Vane"
+                    placeholder="Enter Full Name"
                     value={formData.fullName}
                     onChange={handleChange}
                     error={errors.fullName}
@@ -328,7 +339,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   <InputField
                     label="Email Address"
                     name="email"
-                    placeholder="j.vane@estateelite.com"
+                    placeholder="Enter Email Address"
                     value={formData.email}
                     onChange={handleChange}
                     error={errors.email}
@@ -336,15 +347,14 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                   />
                 </div>
                 <div>
-                  <InputField
-                    label=" Mobile No."
-                    name="mobile"
-                    placeholder="+91 8766565656"
-                    value={formData.mobile}
-                    onChange={handleChange}
+                  <MobileNumberInput
+                    label="Mobile No."
+                    mobileNumber={formData.mobile}
+                    onMobileChange={(value) =>
+                      setFormData(prev => ({ ...prev, mobile: value }))
+                    }
+                    required
                     error={errors.mobile}
-                    mandatory={true}
-                    type="tel"
                   />
                 </div>
 

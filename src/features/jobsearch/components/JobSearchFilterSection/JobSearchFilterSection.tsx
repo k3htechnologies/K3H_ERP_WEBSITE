@@ -29,7 +29,7 @@ const JobSearchFilterSection = () => {
             />
             <input
               type="text"
-              placeholder="Search by role, keyword"
+              placeholder="Search by role"
               className="h-12 w-full rounded-xl bg-white/5 pl-12 pr-4 text-sm text-white placeholder:text-white/45 outline-none transition-all duration-300 focus:border-[#3FA9F5] focus:ring-2 focus:ring-[#3FA9F5]/20"
               style={{
                 border: '1px solid rgba(194, 198, 214, 0.65)',
@@ -41,11 +41,13 @@ const JobSearchFilterSection = () => {
           <div className="hidden h-10 w-px bg-white/10 lg:block" />
           <div className="flex flex-wrap gap-3">
             <FilterDropdown
+              placeholder='Department'
               selectedOption={filters.department}
               options={departments}
               onChange={(option) => setFilter('department', option)}
             />
             <FilterDropdown
+              placeholder='Experience'
               selectedOption={filters.experience}
               options={experience}
               onChange={(option) => setFilter('experience', option)}

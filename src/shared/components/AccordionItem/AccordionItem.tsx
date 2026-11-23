@@ -24,7 +24,7 @@ export default function AccordionItem({
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-6 py-7 text-left transition hover:text-primary"
       >
-        <h3 className="text-cormorant-garamond text-xl text-secondary">
+        <h3 className="font-heading text-xl text-secondary">
           {faq.question}
         </h3>
 

@@ -9,9 +9,5 @@ export const getPostedTime = (dateString: string): string => {
     return 'Posted Today';
   }
 
-  if (diffInDays === 1) {
-    return 'Posted Yesterday';
-  }
-
   return `Posted ${diffInDays} ${diffInDays === 1 ? 'Day' : 'Days'} Ago`;
 };

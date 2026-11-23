@@ -70,14 +70,14 @@ export const NAV_ITEMS = [
     label: 'Projects',
     to: `/${ROUTES.PROJECTS}`,
   },
-  {
-    label: 'Lifestyle',
-    to: `/${ROUTES.LIFESTYLE}`,
-  },
-  {
-    label: 'Media',
-    to: `/${ROUTES.MEDIA}`,
-  },
+  // {
+  //   label: 'Lifestyle',
+  //   to: `/${ROUTES.LIFESTYLE}`,
+  // },
+  // {
+  //   label: 'Media',
+  //   to: `/${ROUTES.MEDIA}`,
+  // },
   {
     label: 'Career',
     to: `/${ROUTES.CAREER}`,
@@ -105,18 +105,18 @@ export const FOOTER_LINKS = [
     label: 'Projects',
     link: `/${ROUTES.PROJECTS}`,
   },
+  // {
+  //   label: 'Lifestyle',
+  //   link: `/${ROUTES.LIFESTYLE}`,
+  // },
   {
-    label: 'Lifestyle',
-    link: `/${ROUTES.LIFESTYLE}`,
-  },
-  {
-    label: 'Careers',
+    label: 'Career',
     link: `/${ROUTES.CAREER}`,
   },
-  {
-    label: 'Media',
-    link: `/${ROUTES.MEDIA}`,
-  },
+  // {
+  //   label: 'Media',
+  //   link: `/${ROUTES.MEDIA}`,
+  // },
   {
     label: 'Contact Us',
     link: `/${ROUTES.CONTACT}`,
@@ -163,9 +163,24 @@ export const SOCIAL_LINKS = [
   },
 ] as const;
 export const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-export const MOBILE_REGEX = /^[0-9+\-\s()]{10,}$/;
+export const MOBILE_REGEX = /^[6-9]\d{9}$/;
 
 export const FILE_ISSUE = {
   SIZE: 'SIZE',
   FORMAT: 'FORMAT',
 };
+
+export const LEGAL_ITEMS = [
+  {
+    label: 'Privacy',
+    link: `/${ROUTES.PRIVACY}`,
+  },
+  {
+    label: "Terms",
+    link: `/${ROUTES.TERMS}`
+  },
+  {
+    label: "Disclaimer",
+    link: `/${ROUTES.DISCLAIMER}`
+  }
+]

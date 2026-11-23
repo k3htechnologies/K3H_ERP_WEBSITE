@@ -15,8 +15,10 @@ const HomePage: React.FC = () => {
   return (
     <>
       <StickyHeroWrapper
-        videoSrc="/videos/HRR-2.mp4"
-        scrollMultiplier={2.5}
+        videoSrc="/videos/HRR-2-desktop.mp4"
+        mobileVideoSrc='/videos/HRR-2-mobile.mp4'
+        scrollMultiplier={1}
+        mobileScrollMultiplier={1}
         key={pathname}
       >
         <HeroSection />

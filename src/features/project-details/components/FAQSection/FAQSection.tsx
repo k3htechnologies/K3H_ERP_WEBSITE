@@ -50,7 +50,7 @@ export default function FAQSection() {
       <section id="faq">
         <div className="container mx-auto max-w-5xl px-6">
           <Reveal>
-            <h2 className="text-center text-cormorant-garamond text-4xl text-secondary lg:text-5xl">
+            <h2 className="text-center font-heading text-4xl text-secondary lg:text-5xl">
               Frequently Asked Questions
             </h2>
           </Reveal>

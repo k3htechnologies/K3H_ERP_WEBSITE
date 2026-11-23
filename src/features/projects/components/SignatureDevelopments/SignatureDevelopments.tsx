@@ -104,7 +104,7 @@ const SignatureDevelopmentSection = () => {
               className="absolute inset-x-4 bottom-4 z-20 rounded-[22px] p-5 sm:inset-x-auto sm:bottom-8 sm:left-8 sm:w-85 sm:rounded-[28px] sm:p-7 lg:bottom-10 lg:left-10"
             >
               <div className="flex flex-wrap gap-2">
-                <span className="text-montserrat rounded-full border border-primary px-2.5 py-1 text-[9px] uppercase tracking-wider text-primary sm:px-3 sm:text-[10px]">
+                <span className="text-montserrat rounded-full px-2.5 py-1 text-[9px] uppercase tracking-wider text-white bg-primary sm:px-3 sm:text-[10px]">
                   Ongoing Project
                 </span>
 
@@ -113,7 +113,7 @@ const SignatureDevelopmentSection = () => {
                 </span>
               </div>
 
-              <h3 className="text-cormorant-garamond mt-4 text-2xl text-white sm:mt-6 sm:text-3xl">
+              <h3 className="font-heading mt-4 text-2xl text-white sm:mt-6 sm:text-3xl">
                 Rishabraj Avyaana
               </h3>
 
@@ -122,11 +122,11 @@ const SignatureDevelopmentSection = () => {
               </p>
 
               <div className="mt-5 space-y-2 text-xs text-white/70 text-montserrat sm:mt-8 sm:space-y-3 sm:text-sm">
-                <div>📍 Goregaon West • Possession Dec 2029</div>
+                <div>Goregaon West</div>
 
                 <div className="flex flex-wrap gap-4 sm:gap-6">
-                  <span>🏠 1, 2 &amp; 3 BHK</span>
-                  <span>✨ 25+ Amenities</span>
+                  <span>1, 2 &amp; 3 BHK</span>
+                  <span>25+ Amenities</span>
                 </div>
               </div>
 

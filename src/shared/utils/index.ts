@@ -61,3 +61,9 @@ export const generateId = () => {
 
   return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 };
+
+export const sendEmail = (email: string) => {
+  if (email) {
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, '_blank');
+  }
+}

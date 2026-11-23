@@ -16,7 +16,7 @@ const JobSearchHeaderSection = () => {
   const { totalRecords } = useJobSearchContext();
 
   return (
-    <section className="bg-[#FBF9F8] pt-16 lg:pt-34 pb-8">
+    <section className="bg-[#FBF9F8] pt-28 lg:pt-34 pb-8">
       <div className="mx-auto w-full px-5 sm:px-8 md:px-12 lg:px-20">
         <motion.div
           variants={containerVariants}
@@ -35,7 +35,7 @@ const JobSearchHeaderSection = () => {
               size={16}
               className="transition-transform duration-300 group-hover:-translate-x-1"
             />
-            <span>Back to Careers</span>
+            <span>Back to Career</span>
           </motion.button>
 
           <Reveal>

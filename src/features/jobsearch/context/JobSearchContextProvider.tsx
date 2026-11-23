@@ -47,21 +47,11 @@ export interface JobSearchFilters {
   location: string;
 }
 
-const DEFAULT_DEPARTMENT_OPTION: FilterDropdownOption = {
-  label: 'All',
-  value: '',
-};
-
-const DEFAULT_EXPERIENCE_OPTION: FilterDropdownOption = {
-  label: 'Experience',
-  value: '',
-};
-
 const DEFAULT_FILTERS: JobSearchFilters = {
   search: '',
   location: 'Mumbai',
-  experience: DEFAULT_EXPERIENCE_OPTION,
-  department: DEFAULT_DEPARTMENT_OPTION,
+  experience: { label: '', value: '' },
+  department: { label: '', value: '' },
 };
 
 const PAGE_SIZE = 4;
@@ -122,22 +112,30 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
         value: String(department.DepartmentMasterId),
       })) ?? [];
 
-    return [DEFAULT_DEPARTMENT_OPTION, ...apiOptions];
+    return [...apiOptions];
   }, [departmentResponse]);
 
   const locations = useMemo(() => ['Mumbai', 'Thane', 'Pune'], []);
   const experience = useMemo(
     () => [
-      DEFAULT_EXPERIENCE_OPTION,
-      { label: '0-2 Years', value: '0,2' },
-      { label: '2-5 Years', value: '2,5' },
-      { label: '5+ Years', value: '5,10' },
+      { label: '0-5 Years', value: '0-5' },
+      { label: '6-10 Years', value: '6-10' },
+      { label: '11-15 Years', value: '11-15' },
+      { label: '15+ Years', value: '15+' },
     ],
     []
   );
 
+  const isSameFilterValue = (a: unknown, b: unknown) => {
+    if (typeof a === 'object' && a && typeof b === 'object' && b) {
+      return (a as FilterDropdownOption).value === (b as FilterDropdownOption).value;
+    }
+    return a === b;
+  };
+
   const setFilter = useCallback(
     <K extends keyof JobSearchFilters>(key: K, value: JobSearchFilters[K]) => {
+      if (isSameFilterValue(filters[key], value)) return;
       setJobs([]);
       setPageNumber(1);
       setFilters((prev) => ({
@@ -145,14 +143,18 @@ export function JobSearchProvider({ children }: PropsWithChildren) {
         [key]: value,
       }));
     },
-    []
+    [filters]
   );
 
   const resetFilters = useCallback(() => {
+    const isDefault = (Object.keys(DEFAULT_FILTERS) as (keyof JobSearchFilters)[])
+      .every((k) => isSameFilterValue(filters[k], DEFAULT_FILTERS[k]));
+    if (isDefault) return;
+
     setJobs([]);
     setPageNumber(1);
     setFilters(DEFAULT_FILTERS);
-  }, []);
+  }, [filters]);
 
   const value = useMemo(
     () => ({

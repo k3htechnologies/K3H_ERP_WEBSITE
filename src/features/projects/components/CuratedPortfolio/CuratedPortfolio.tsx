@@ -74,8 +74,7 @@ const CuratedPortfolioSection = () => {
         }
         sideDescription={
           <span className="text-white">
-            Every home tells a story. These are the voices behind our legacy of
-            trust.
+            An overview of our developments, milestones and evolving presence.
           </span>
         }
       >
@@ -84,11 +83,10 @@ const CuratedPortfolioSection = () => {
             {[...Array(4)].map((_, index) => (
               <div
                 key={index}
-                className={`overflow-hidden rounded-2xl bg-[#394550] animate-pulse ${
-                  index === 0 || index === 3
+                className={`overflow-hidden rounded-2xl bg-[#394550] animate-pulse ${index === 0 || index === 3
                     ? 'md:col-span-2 h-107.5'
                     : 'h-107.5'
-                }`}
+                  }`}
               />
             ))}
           </div>
@@ -137,7 +135,7 @@ function ProjectCard({ project, delay }: ProjectCardProps) {
         animate="rest"
         className="group overflow-hidden rounded-2xl"
       >
-        <div className="relative h-120 overflow-hidden">
+        <div className="relative h-80 md:h-120 overflow-hidden">
           <motion.img
             variants={{
               rest: {
@@ -174,7 +172,7 @@ function ProjectCard({ project, delay }: ProjectCardProps) {
           }}
         >
           <div>
-            <h3 className="text-cormorant-garamond text-2xl text-white">
+            <h3 className="font-heading text-2xl text-white">
               {project.title}
             </h3>
 

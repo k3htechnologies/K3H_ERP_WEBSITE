@@ -8,7 +8,7 @@ const LocationsSections = () => {
     <SectionContainer
       heading={
         <>
-          Mumbai <span className="text-primary">Footprint</span>
+          H. Rishabraj <span className="text-primary">Presence</span>
         </>
       }
       sideDescription={<span>Explore our presence across Mumbai.</span>}

@@ -16,7 +16,6 @@ interface NavbarProps {
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-// Premium, slightly "weighted" spring — used for logo/nav collapse
 const springTransition = {
   type: 'spring' as const,
   stiffness: 260,
@@ -24,7 +23,6 @@ const springTransition = {
   mass: 0.9,
 };
 
-// Softer spring for the whole header hiding/showing on scroll
 const vanishTransition = {
   type: 'spring' as const,
   stiffness: 220,
@@ -32,15 +30,12 @@ const vanishTransition = {
   mass: 1,
 };
 
-// Routes where the floating center logo should NOT appear when the navbar vanishes
 const CENTER_LOGO_HIDDEN_ROUTES: string[] = [
   ROUTES.APPLICATION_FORM,
   ROUTES.LOGIN,
   ROUTES.CONTACT,
 ];
 
-// Single source of truth for every theme-dependent value.
-// Layout, spacing, and animation stay identical across themes — only these tokens swap.
 const THEME_STYLES: Record<
   NavTheme,
   {
@@ -61,7 +56,7 @@ const THEME_STYLES: Record<
       'linear-gradient(160.18deg, rgba(255, 255, 255, 0.08) 14.52%, rgba(153, 153, 153, 0) 88.06%)',
     borderColor: '#FFFFFF1A',
     textIdle: 'text-white',
-    textHover: 'hover:text-primary',
+    textHover: 'hover:font-semibold',
     buttonBorder: 'border-white/30',
     buttonBg: 'bg-white/10',
     buttonText: 'text-white',
@@ -74,7 +69,7 @@ const THEME_STYLES: Record<
       'linear-gradient(160.18deg, rgba(15, 15, 15, 0.05) 14.52%, rgba(15, 15, 15, 0) 88.06%)',
     borderColor: '#0000001A',
     textIdle: 'text-slate-900',
-    textHover: 'hover:text-primary',
+    textHover: 'hover:font-semibold',
     buttonBorder: 'border-slate-900/20',
     buttonBg: 'bg-slate-900/5',
     buttonText: 'text-slate-900',
@@ -111,8 +106,6 @@ const itemVariants = {
   },
 };
 
-// Mobile menu items animate in from the side instead of dropping down,
-// so the desktop and mobile reveals each feel native to their own layout.
 const mobileNavVariants = {
   hidden: {},
   visible: {
@@ -155,8 +148,6 @@ export default function Navbar({
 
   const { openEnquiryModal } = useEnquiryModal();
 
-  // Normalize current path against ROUTES values (which are stored without leading slashes,
-  // e.g. 'about', 'login' — only ROUTES.HOME is '/').
   const currentPath = location.pathname.replace(/^\/+/, '');
   const isCenterLogoAllowedOnRoute = !CENTER_LOGO_HIDDEN_ROUTES.some(
     (route) => route.replace(/^\/+/, '') === currentPath
@@ -169,18 +160,6 @@ export default function Navbar({
 
     const updateVisibility = () => {
       const current = window.scrollY;
-
-      // if (current < 20) {
-      //   setVisible(true);
-      //   setMiddleLogoVisibility(true);
-      // } else
-      //    if (current > lastScrollY.current) {
-      //   setVisible(false);
-      //   setMiddleLogoVisibility(false);
-      // } else {
-      //   setVisible(true);
-      //   setMiddleLogoVisibility(true);
-      // }
 
       if (current < 20) {
         setVisible(true);
@@ -289,10 +268,9 @@ export default function Navbar({
                               to={item.to}
                               onClick={() => setMenuOpen(false)}
                               className={({ isActive }) =>
-                                ` font-medium uppercase tracking-[0.18em] transition-colors ${
-                                  isActive
-                                    ? 'rounded-full bg-primary text-white px-3.5 py-1.5 text-sm'
-                                    : `${t.textIdle} ${t.textHover} text-xs`
+                                ` font-medium uppercase tracking-[0.18em] transition-colors ${isActive
+                                  ? 'rounded-full bg-primary text-white px-3.5 py-1.5 text-sm'
+                                  : `${t.textIdle} ${t.textHover} text-xs`
                                 }`
                               }
                             >
@@ -358,7 +336,7 @@ export default function Navbar({
                 key="mobile-panel"
                 className="lg:hidden overflow-hidden"
                 initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
+                animate={{ height: '100vh', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.35, ease }}
               >
@@ -375,10 +353,9 @@ export default function Navbar({
                           to={item.to}
                           onClick={() => setMenuOpen(false)}
                           className={({ isActive }) =>
-                            `block py-4 text-base font-medium uppercase tracking-[0.14em] transition-colors ${
-                              isActive
-                                ? 'text-primary'
-                                : `${t.textIdle} ${t.textHover}`
+                            `block py-4 text-base font-medium uppercase tracking-[0.14em] transition-colors ${isActive
+                              ? 'text-primary'
+                              : `${t.textIdle} ${t.textHover}`
                             }`
                           }
                         >

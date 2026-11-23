@@ -7,6 +7,7 @@ import Reveal from '@/shared/components/Reveal/Reveal';
 import type { ApplicationFormState } from '@/features/application-form/types/application-form.type';
 import {
   getOptionByValue,
+  QUALIFICATION_RANGE_OPTIONS,
   SALARY_RANGE_OPTIONS,
   STEP_ICONS,
   STEPS,
@@ -66,7 +67,7 @@ const ApplicationFormPage = () => {
   const [profilePhoto, setProfilePhoto] = useState<File | null>(null);
   const [photoPreview, setPhotoPreview] = useState<string>('');
   const [resumeFile, setResumeFile] = useState<File | null>(null);
-  const [resumePreviewUrl, setResumePreviewUrl] = useState('');
+  const [resumePreviewUrl, setResumePreviewUrl] = useState<string>('');
   // const [isDraggingPhoto, setIsDraggingPhoto] = useState(false);
   // const [isDraggingResume, setIsDraggingResume] = useState(false);
   const [modalState, setModalState] = useState({
@@ -98,11 +99,16 @@ const ApplicationFormPage = () => {
       if (resumePreviewUrl) {
         URL.revokeObjectURL(resumePreviewUrl);
       }
+    };
+  }, [resumePreviewUrl]);
+
+  useEffect(() => {
+    return () => {
       if (photoPreview) {
         URL.revokeObjectURL(photoPreview);
       }
     };
-  }, [resumePreviewUrl, photoPreview]);
+  }, [photoPreview]);
 
   const progress = useMemo(() => {
     return ((currentStep + 1) / STEPS.length) * 100;
@@ -169,6 +175,9 @@ const ApplicationFormPage = () => {
   // };
 
   const removePhoto = () => {
+    if (photoPreview) {
+      URL.revokeObjectURL(photoPreview);
+    }
     setProfilePhoto(null);
     setPhotoPreview('');
   };
@@ -216,93 +225,6 @@ const ApplicationFormPage = () => {
     setResumeFile(null);
   };
 
-  // const validateStep = () => {
-  //   const newErrors: Partial<
-  //     Record<keyof ApplicationFormState | 'photo' | 'resume', string>
-  //   > = {};
-
-  //   switch (currentStep) {
-  //     // BASIC DETAILS
-  //     case 0:
-  //       if (!job) newErrors.position = 'Position is required';
-
-  //       if (!formData.referredBy.trim())
-  //         newErrors.referredBy = 'This field is required';
-
-  //       if (!formData.fullName.trim())
-  //         newErrors.fullName = 'Full name is required';
-
-  //       if (!formData.address.trim()) newErrors.address = 'Address is required';
-
-  //       if (!formData.mobile.trim()) {
-  //         newErrors.mobile = 'Mobile number is required';
-  //       } else if (!MOBILE_REGEX.test(formData.mobile)) {
-  //         newErrors.mobile = 'Enter valid mobile number';
-  //       }
-
-  //       if (!formData.email.trim()) {
-  //         newErrors.email = 'Email is required';
-  //       } else if (!EMAIL_REGEX.test(formData.email)) {
-  //         newErrors.email = 'Enter valid email address';
-  //       }
-
-  //       if (!profilePhoto) newErrors.photo = 'Profile photo is required';
-
-  //       if (!resumeFile) newErrors.resume = 'Resume is required';
-
-  //       break;
-
-  //     // EDUCATION
-  //     case 1:
-  //       if (!formData.qualification.trim())
-  //         newErrors.qualification = 'Qualification is required';
-
-  //       if (!formData.university.trim())
-  //         newErrors.university = 'University is required';
-
-  //       if (!formData.graduationYear.trim())
-  //         newErrors.graduationYear = 'Graduation year is required';
-
-  //       if (!formData.percentage.trim())
-  //         newErrors.percentage = 'Percentage is required';
-
-  //       break;
-
-  //     // EXPERIENCE
-  //     case 2:
-  //       if (!formData.company.trim())
-  //         newErrors.company = 'Company name is required';
-
-  //       if (!formData.currentRole.trim())
-  //         newErrors.currentRole = 'Role is required';
-
-  //       if (!formData.experience.trim())
-  //         newErrors.experience = 'Experience is required';
-
-  //       if (!formData.reasonForChange.trim())
-  //         newErrors.reasonForChange = 'Reason is required';
-
-  //       if (!formData.skills.trim()) newErrors.skills = 'Skills are required';
-
-  //       break;
-
-  //     // SALARY
-  //     case 3:
-  //       if (!formData.currentSalary.trim())
-  //         newErrors.currentSalary = 'Current salary is required';
-
-  //       if (!formData.expectedSalary.trim())
-  //         newErrors.expectedSalary = 'Expected salary is required';
-
-  //       if (!formData.noticePeriod.trim())
-  //         newErrors.noticePeriod = 'Notice period is required';
-
-  //       break;
-  //   }
-  //   setErrors(newErrors);
-  //   return Object.keys(newErrors).length === 0;
-  // };
-
   const validateStep = () => {
     const fields = STEP_FIELDS[currentStep] ?? [];
 
@@ -322,7 +244,7 @@ const ApplicationFormPage = () => {
       Record<'position' | 'photo' | 'resume', string>
     > = {};
     if (currentStep === 0) {
-      if (!job) extraErrors.position = 'Position is required';
+      if (!job) extraErrors.position = 'Position applied for is required';
       if (!profilePhoto) extraErrors.photo = 'Profile photo is required';
       if (!resumeFile) extraErrors.resume = 'Resume is required';
     }
@@ -363,6 +285,7 @@ const ApplicationFormPage = () => {
         Photograph: profilePhoto,
         SourceId: formData.referredBy,
         FullName: formData.fullName,
+        Address: formData.address,
         MobileNo: formData.mobile,
         Email: formData.email,
         HighestQualification: formData.qualification,
@@ -555,7 +478,7 @@ const ApplicationFormPage = () => {
             </div> */}
             {/* UPLOAD PHOTO*/}
             <UploadField
-              label="Upload Photograph"
+              label="Profile Photo"
               accept="image/*"
               file={profilePhoto}
               error={errors.photo}
@@ -637,7 +560,7 @@ const ApplicationFormPage = () => {
 
             <AsyncDropdown
               label="Position Applied For"
-              placeholder="Choose a position"
+              placeholder="Select a position"
               loadOptions={loadJobs}
               value={job}
               onChange={setJob}
@@ -648,7 +571,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Sourced Through / Referred By"
               name="referredBy"
-              placeholder="Julian Vane"
+              placeholder="Enter Sourced Through / Referred By"
               value={formData.referredBy}
               onChange={handleChange}
               error={errors.referredBy}
@@ -657,7 +580,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Full Name"
               name="fullName"
-              placeholder="Enter Your Full Legal Name"
+              placeholder="Enter Your Full Name"
               value={formData.fullName}
               onChange={handleChange}
               error={errors.fullName}
@@ -666,7 +589,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Address"
               name="address"
-              placeholder="Enter Your Current Address"
+              placeholder="Enter Your Address"
               value={formData.address}
               onChange={handleChange}
               error={errors.address}
@@ -675,7 +598,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Mobile No."
               name="mobile"
-              placeholder="9876565656"
+              placeholder="Enter Your Mobile No."
               value={formData.mobile}
               onChange={handleChange}
               error={errors.mobile}
@@ -685,7 +608,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Email Address"
               name="email"
-              placeholder="j.vane@estateelite.com"
+              placeholder="Enter Your Email Address"
               type="email"
               value={formData.email}
               onChange={handleChange}
@@ -698,20 +621,23 @@ const ApplicationFormPage = () => {
       case 1:
         return (
           <div className="grid gap-5 md:grid-cols-2">
-            <InputField
-              label="Highest Qualification"
+            <FilterDropdown
               name="qualification"
-              placeholder="MBA in Marketing"
-              value={formData.qualification}
-              onChange={handleChange}
+              theme="light"
+              label="Highest Qualification"
+              mandatory
+              placeholder="Select Highest Qualification"
+              options={QUALIFICATION_RANGE_OPTIONS}
+              selectedOption={getOptionByValue(QUALIFICATION_RANGE_OPTIONS, formData.qualification)}
+              onChange={handleRangeChange('qualification')}
               error={errors.qualification}
-              mandatory={true}
+              containerClass='absolute bottom-0 bg-transperant'
             />
 
             <InputField
               label="University / Institution"
               name="university"
-              placeholder="Harvard Business School"
+              placeholder="Enter University / Institution"
               value={formData.university}
               onChange={handleChange}
               error={errors.university}
@@ -719,9 +645,9 @@ const ApplicationFormPage = () => {
             />
 
             <InputField
-              label="Graduation Year"
+              label="Passing Year"
               name="graduationYear"
-              placeholder="2023"
+              placeholder="Enter Passing Year"
               value={formData.graduationYear}
               onChange={handleChange}
               error={errors.graduationYear}
@@ -731,7 +657,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Percentage / CGPA"
               name="percentage"
-              placeholder="85%"
+              placeholder="Enter Percentage / CGPA"
               value={formData.percentage}
               onChange={handleChange}
               error={errors.percentage}
@@ -746,7 +672,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Current Company"
               name="company"
-              placeholder="Google"
+              placeholder="Enter Current Company"
               value={formData.company}
               onChange={handleChange}
               error={errors.company}
@@ -756,7 +682,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Current Role"
               name="currentRole"
-              placeholder="Senior Designer"
+              placeholder="Enter Current Role"
               value={formData.currentRole}
               onChange={handleChange}
               error={errors.currentRole}
@@ -766,7 +692,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Years Of Experience"
               name="experience"
-              placeholder="5 Years"
+              placeholder="Enter Years Of Experience"
               value={formData.experience}
               onChange={handleChange}
               error={errors.experience}
@@ -776,7 +702,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Reason For Change"
               name="reasonForChange"
-              placeholder="Looking for better opportunities and growth"
+              placeholder="Enter Reason For Change"
               value={formData.reasonForChange}
               onChange={handleChange}
               error={errors.reasonForChange}
@@ -786,7 +712,7 @@ const ApplicationFormPage = () => {
             <InputField
               label="Skills"
               name="skills"
-              placeholder="JavaScript, Java"
+              placeholder="Enter Skills"
               value={formData.skills}
               onChange={handleChange}
               error={errors.skills}
@@ -803,9 +729,9 @@ const ApplicationFormPage = () => {
               theme="light"
               label="Current CTC"
               mandatory
-              placeholder="e.g. ₹12,00,000"
+              placeholder="Select Current CTC"
               options={SALARY_RANGE_OPTIONS}
-              selectedOption={getOptionByValue(formData.currentSalary)}
+              selectedOption={getOptionByValue(SALARY_RANGE_OPTIONS, formData.currentSalary)}
               onChange={handleRangeChange('currentSalary')}
               error={errors.currentSalary}
             />
@@ -815,17 +741,17 @@ const ApplicationFormPage = () => {
               theme="light"
               label="Expected CTC"
               mandatory
-              placeholder="e.g. ₹18,00,000"
+              placeholder="Select Expected CTC"
               options={SALARY_RANGE_OPTIONS}
-              selectedOption={getOptionByValue(formData.expectedSalary)}
+              selectedOption={getOptionByValue(SALARY_RANGE_OPTIONS, formData.expectedSalary)}
               onChange={handleRangeChange('expectedSalary')}
               error={errors.expectedSalary}
             />
 
             <InputField
-              label="Notice Period"
+              label="Notice Period (in a days)"
               name="noticePeriod"
-              placeholder="30 Days"
+              placeholder="Enter Notice Period"
               value={formData.noticePeriod}
               onChange={handleChange}
               error={errors.noticePeriod}
@@ -840,7 +766,7 @@ const ApplicationFormPage = () => {
   };
 
   return (
-    <section className="bg-[#FBF9F8] py-6 md:py-12">
+    <section className="bg-[#FBF9F8] py-12">
       <Container>
         <Reveal>
           <div className="overflow-hidden border border-black/5 bg-white">
@@ -855,12 +781,14 @@ const ApplicationFormPage = () => {
 
             {/* CONTENT */}
             <div className="px-6 py-10 md:px-10 md:py-14 lg:px-14">
-              <h1 className="font-heading-anton text-3xl leading-none text-text md:text-4xl">
-                Start or complete your application
+              <h1 className="font-heading font-bold text-3xl leading-none text-text md:text-4xl">
+                Build Careers. Shape Skylines. Create Tomorrow.
               </h1>
-
+              <p className='mt-4 text-sm leading-relaxed text-about-dark text-montserrat'>
+                Be part of a team that transforms ideas into landmarks and opportunities into success.
+              </p>
               {/* FORM CONTAINER */}
-              <div className="mt-12 bg-[#FAFAFA] p-5 md:p-8 lg:p-10">
+              <div className="mt-10 bg-[#FAFAFA] p-5 md:p-8 lg:p-10">
                 {/* PROGRESS BAR */}
                 <div className='w-full'>
                   <div className="relative h-0.5 w-full bg-black/10">
@@ -937,7 +865,12 @@ const ApplicationFormPage = () => {
                     type="button"
                     onClick={previousStep}
                     disabled={currentStep === 0}
-                    className={`${currentStep === 0 ? 'invisible' : 'inline-flex'} h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-all duration-300 hover:border-primary hover:text-primary disabled:pointer-events-none disabled:opacity-40`}
+                    aria-hidden={currentStep === 0}
+                    tabIndex={currentStep === 0 ? -1 : 0}
+                    className={`inline-flex h-14 items-center justify-center gap-2 border border-black/10 px-6 text-sm font-semibold uppercase tracking-[0.18em] text-text transition-[opacity,border-color,color] duration-300 ease-in-out hover:border-primary hover:text-primary ${currentStep === 0
+                      ? 'pointer-events-none opacity-0'
+                      : 'opacity-100'
+                      }`}
                   >
                     <ChevronLeft size={18} />
                     Previous

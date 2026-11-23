@@ -14,7 +14,9 @@ import ProjectDetails from '@/features/project-details/page';
 import ContactPage from '@/features/contact/page';
 import LifeStylePage from '@/features/lifestyle/page';
 import MediaPage from '@/features/media/page';
-// import RebuildFormAddPage from '@/features/demo/page';
+import Disclaimer from '@/features/disclaimer/page';
+import TermsAndCondition from '@/features/terms-and-condition/page';
+import PrivacyPolicy from '@/features/privacy-policy/page';
 
 const MainRouter: React.FC = () => {
   return (
@@ -34,6 +36,10 @@ const MainRouter: React.FC = () => {
         <Route path={ROUTES.CAREER} element={<CareerPage />} />
         <Route path={ROUTES.CONTACT} element={<ContactPage />} />
         <Route path={ROUTES.JOB_SEARCH} element={<JobSearchPage />} />
+        <Route path={ROUTES.PRIVACY} element={<PrivacyPolicy />} />
+        <Route path={ROUTES.TERMS} element={<TermsAndCondition />} />
+        <Route path={ROUTES.DISCLAIMER} element={<Disclaimer />} />
+
         <Route
           path={ROUTES.APPLICATION_FORM}
           element={<ApplicationFormPage />}
@@ -42,6 +48,7 @@ const MainRouter: React.FC = () => {
         {/* <Route path={ROUTES.REBUILD_FORM} element={<RebuildFormAddPage />} /> */}
       </Route>
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
+
     </Routes>
   );
 };

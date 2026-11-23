@@ -12,7 +12,7 @@ interface ProjectCTAProps {
   backgroundImage?: string;
 }
 
-export default function ProjectCTA({}: ProjectCTAProps) {
+export default function ProjectCTA({ }: ProjectCTAProps) {
   const prefillRef = useRef<EnquiryPrefillData | undefined>(undefined);
   const { openEnquiryModal } = useEnquiryModal();
   const context = useContext(ProjectDetailsContext);
@@ -33,35 +33,11 @@ export default function ProjectCTA({}: ProjectCTAProps) {
   }
   return (
     <section className="relative isolate overflow-hidden bg-background-dark">
-      {/*
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 h-full w-full object-cover"
-      >
-        <source src="/videos/project/cta.mp4" type="video/mp4" />
-      </video>
-      */}
-      {/* <img
-        src={backgroundImage}
-        alt="Project Background"
-        className="absolute inset-0 h-full w-full object-cover"
-      /> */}
-
-      {/* Overlay */}
-      {/* <div className="absolute inset-0 bg-[#091522]/70" />
-      <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-black/30" /> */}
-
-      <div className="container relative z-10 mx-auto flex min-h-125 flex-col items-center justify-center px-6 py-24 text-center lg:min-h-150">
+      <div className="container relative z-10 mx-auto flex min-h-100 flex-col items-center justify-center px-6 py-24 text-center lg:min-h-150">
         <Reveal>
-          <h2 className="max-w-3xl text-cormorant-garamond text-2xl leading-tight text-white lg:text-3xl">
-            Schedule a private site visit today and experience the luxury of{' '}
-            <br />
-            {context && context.data?.ProjectName
-              ? context.data.ProjectName
-              : 'H.RISHABRAJ'}
+          <h2 className="max-w-3xl font-heading text-2xl leading-tight text-white lg:text-3xl">
+            Take a closer look at what we build. Schedule a site visit and experience an H.
+            Rishabraj home firsthand.
           </h2>
         </Reveal>
         <Reveal delay={0.15}>
@@ -80,10 +56,10 @@ export default function ProjectCTA({}: ProjectCTAProps) {
               className="bg-primary px-10 py-5 text-xs font-semibold uppercase tracking-[0.22em] text-white shadow-lg"
               onClick={() => openEnquiryModal(prefillRef.current)}
             >
-              Book Site Visit
+              Book a Site Visit
             </motion.button>
 
-            <motion.button
+            {/* <motion.button
               whileHover={{
                 scale: 1.04,
                 y: -2,
@@ -97,7 +73,7 @@ export default function ProjectCTA({}: ProjectCTAProps) {
               className="border border-white/20 bg-white/10 px-10 py-5 text-xs font-semibold uppercase tracking-[0.22em] text-white backdrop-blur-md transition-colors hover:bg-white/20"
             >
               Get a Call Back
-            </motion.button>
+            </motion.button> */}
           </div>
         </Reveal>
       </div>
