@@ -14,6 +14,7 @@ import ProjectDetails from '@/features/project-details/page';
 import ContactPage from '@/features/contact/page';
 import LifeStylePage from '@/features/lifestyle/page';
 import MediaPage from '@/features/media/page';
+// import RebuildFormAddPage from '@/features/demo/page';
 
 const MainRouter: React.FC = () => {
   return (
@@ -38,6 +39,7 @@ const MainRouter: React.FC = () => {
           element={<ApplicationFormPage />}
         />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        {/* <Route path={ROUTES.REBUILD_FORM} element={<RebuildFormAddPage />} /> */}
       </Route>
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
     </Routes>

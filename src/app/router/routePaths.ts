@@ -15,4 +15,6 @@ export const ROUTES = {
   PRIVACY: 'privacy',
   APPLICATION_FORM: 'application-form',
   PROJECT: 'project/:projectName',
+  // REBUILD_FORM: 'rebuild-form',
+  // REBUILD_LAND_FORM: 'rebuild-land-form'
 };

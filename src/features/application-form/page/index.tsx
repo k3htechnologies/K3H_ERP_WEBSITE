@@ -431,11 +431,7 @@ const ApplicationFormPage = () => {
     navigate(`/${ROUTES.CAREER}`);
   };
 
-  const loadJobs = async ({
-    page,
-    pageSize,
-    keyword,
-  }: {
+  const loadJobs = async ({ page, pageSize, keyword, }: {
     page: number;
     pageSize: number;
     keyword: string;

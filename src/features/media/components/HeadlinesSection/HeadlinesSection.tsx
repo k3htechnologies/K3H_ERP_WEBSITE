@@ -116,11 +116,10 @@ const HeadlinesSection = () => {
                 key={item}
                 onClick={() => setActiveTab(item)}
                 className={`rounded-full border px-5 py-2 text-sm transition-all duration-300
-      ${
-        activeTab === item
-          ? 'border-primary bg-primary text-white'
-          : 'border-neutral-300 text-neutral-600 hover:border-primary hover:text-primary'
-      }`}
+      ${activeTab === item
+                    ? 'border-primary bg-primary text-white'
+                    : 'border-neutral-300 text-neutral-600 hover:border-primary hover:text-primary'
+                  }`}
               >
                 {item}
               </button>
@@ -189,7 +188,7 @@ const HeadlinesSection = () => {
         {/* </Reveal> */}
 
         {/* Side Articles */}
-        <div className="flex h-full flex-col overflow-hidden max-h-200">
+        <div data-lenis-prevent className="flex h-full flex-col overflow-hidden max-h-[600px] lg:max-h-[800px]">
           <div className="sidebar-scroll flex-1 space-y-8 overflow-y-auto pr-2">
             {sideArticles.map((article, index) => (
               <Reveal key={article.id} delay={0.15 * (index + 1)}>

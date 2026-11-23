@@ -3,7 +3,8 @@ export interface Portal {
   title: string;
   subtitle: string;
   description: string;
-  authType: 'otp' | 'redirect';
+  authType: 'otp' | 'redirect' | 'form';
   redirectUrl?: string;
   active: boolean
 }
+

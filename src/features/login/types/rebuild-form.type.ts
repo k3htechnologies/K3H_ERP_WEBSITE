@@ -1,0 +1,36 @@
+export interface RebuildFormState {
+    buildingName: string;
+    country: string;
+    state: string;
+    district: string;
+    city: string;
+    pinCode: string;
+    subdivisionNumber: string;
+    buildingAddress: string;
+    wardNumber: string;
+    totalPlotArea: string;
+    originalConstructionYear: string;
+    buildingType: string;
+    numberOfExistingFloors: string;
+    totalNumberOfExistingFlats: string;
+    latituteLongitude: string;
+    identificationLocation: string;
+    contactPersonName: string;
+    contactPersonMobileNumber: string;
+    contactPersonEmail_id: string;
+    percentageOfMemberInFavour: string;
+    typeOfLandTenure: string;
+    plotShape: string;
+    depthOfPlot: string;
+    roadWidth: string;
+    numberOfExistingWings: string;
+    numberOfFloorPerWing: string;
+    totalBuildUpArea: string;
+    totalCommonArea: string;
+    constructionType: string;
+    remarks: string;
+    isLiftAvailable: boolean;
+    isFireSafetyProvisionsPresent: boolean;
+    isPlotUnderLitigationOrStayOrders: boolean;
+    isConveyanceDeed: boolean;
+}

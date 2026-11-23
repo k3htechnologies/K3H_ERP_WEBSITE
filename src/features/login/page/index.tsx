@@ -1,14 +1,15 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-
 import Container from '@/shared/components/Container/Container';
 import Reveal from '@/shared/components/Reveal/Reveal';
 import InputField from '@/shared/components/InputField/InputField';
-
 import { PORTALS } from '@/features/login/constants/login.constant';
 import type { Portal } from '@/features/login/types/login.type';
 import OtpInput from '@/features/login/components/OtpInput/OtpInput';
+import RebuildFormAdd from '@/features/login/components/RebuildAdd/RebuildFormAdd';
+import RebuildLandAdd from '@/features/login/components/RebuildLandAdd/RebuildLandAdd';
+import VendorManagementAdd from '../components/VendorManagement/VendorManagementAdd';
 
 const LoginPage = () => {
   const [activePortal, setActivePortal] = useState<Portal>(PORTALS[0]);
@@ -125,11 +126,10 @@ const LoginPage = () => {
                       key={portal.id}
                       onClick={() => handlePortalChange(portal)}
                       className={` w-full border p-5 text-left transition-all duration-300
-                          ${
-                            active
-                              ? 'border-primary bg-primary text-white'
-                              : 'border-black/10 bg-white hover:border-primary'
-                          }
+                          ${active
+                          ? 'border-primary bg-primary text-white'
+                          : 'border-black/10 bg-white hover:border-primary'
+                        }
                         `}
                     >
                       <p className="text-[10px] font-semibold uppercase tracking-[0.18em] font-heading">
@@ -173,129 +173,144 @@ const LoginPage = () => {
                     {activePortal.description}
                   </p>
                   {/* CUSTOMER */}
-                  {activePortal.active ? (
-                    activePortal.authType === 'redirect' ? (
-                      <div className="mt-10">
-                        <button
-                          onClick={() => {
-                            if (activePortal.redirectUrl) {
-                              window.open(
-                                activePortal.redirectUrl,
-                                '_blank',
-                                'noopener,noreferrer'
-                              );
-                            }
-                          }}
-                          className=" inline-flex lg:h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white text-montserrat"
-                        >
-                          Open {getButtooLabel()} Portal
-                          <ArrowRight size={18} />
-                        </button>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="mt-10 grid gap-5">
-                          <InputField
-                            label={getIdentifierLabel()}
-                            name="identifier"
-                            value={identifier}
-                            placeholder={getIdentifierLabel()}
-                            onChange={(e) => setIdentifier(e.target.value)}
-                            disabled={otpSent}
-                          />
-                          {otpSent && (
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setOtpSent(false);
-                                setOtp('');
-                                setIdentifier('');
-                              }}
-                              className="mt-2 text-xs font-medium text-primary"
-                            >
-                              Change Mobile Number
-                            </button>
-                          )}
-
-                          {otpSent && (
-                            <Reveal>
-                              <div>
-                                <label className="text-montserrat text-[11px] font-semibold uppercase tracking-widest text-primary-sub">
-                                  One Time Password
-                                </label>
-
-                                <div className="mt-3">
-                                  <OtpInput
-                                    value={otp}
-                                    onChange={setOtp}
-                                    disabled={!otpSent}
-                                  />
-                                  <div className="mt-4 flex items-center gap-4">
-                                    <button
-                                      type="button"
-                                      className="text-xs font-semibold uppercase tracking-wider text-primary"
-                                      onClick={(e) => {
-                                        e.preventDefault();
-                                        setOtpSent(false);
-                                        setOtp('');
-                                        handleSendOtp();
-                                      }}
-                                    >
-                                      Resend OTP
-                                    </button>
-
-                                    <span className="text-xs text-[#76777D]">
-                                      OTP valid for 5 minutes
-                                    </span>
-                                  </div>
-                                </div>
-
-                                <p className="mt-3 text-xs text-primary">
-                                  Enter the verification code sent to your
-                                  registered mobile number.
-                                </p>
-                              </div>
-                            </Reveal>
-                          )}
-                        </div>
-
-                        <div className="mt-8 flex items-center justify-end">
-                          {!otpSent ? (
-                            <button
-                              type="button"
-                              onClick={handleSendOtp}
-                              disabled={!identifier.trim() || isSendingOtp}
-                              className=" inline-flex h-14 items-center justify-center bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white disabled:pointer-events-none disabled:opacity-60"
-                            >
-                              {isSendingOtp ? 'Sending OTP...' : 'Send OTP'}
-                            </button>
-                          ) : (
-                            <button
-                              type="button"
-                              onClick={handleVerifyLogin}
-                              disabled={otp.length !== 6 || isVerifyingOtp}
-                              className=" inline-flex h-14 items-center justify-center bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white disabled:pointer-events-none disabled:opacity-60
-                              "
-                            >
-                              {isVerifyingOtp
-                                ? 'Verifying...'
-                                : 'Verify & Login'}
-                            </button>
-                          )}
-                        </div>
-                      </>
-                    )
-                  ) : (
-                    <div className="mt-10">
-                      <button
-                        disabled
-                        className=" inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white cursor-none text-montserrat"
-                      >
-                        Coming soon...
-                        <ArrowRight size={18} />
-                      </button>
+                  {activePortal.id === 'redevelopment' ? (
+                    <div data-lenis-prevent className="mt-10 overflow-y-auto max-h-[60vh] -mx-8 px-8 lg:-mx-10 lg:px-10">
+                      <RebuildFormAdd />
                     </div>
-                  )}
+                  )
+                    : activePortal.id === 'land' ? (
+                      <div data-lenis-prevent className="mt-10 overflow-y-auto max-h-[60vh] -mx-8 px-8 lg:-mx-10 lg:px-10">
+                        <RebuildLandAdd />
+                      </div>
+                    )
+                      : activePortal.id === 'vendor' ? (
+                        <div data-lenis-prevent className="mt-10 overflow-y-auto max-h-[60vh] -mx-8 px-8 lg:-mx-10 lg:px-10">
+                          <VendorManagementAdd />
+                        </div>
+                      )
+                        : activePortal.active ? (
+                          activePortal.authType === 'redirect' ? (
+                            <div className="mt-10">
+                              <button
+                                onClick={() => {
+                                  if (activePortal.redirectUrl) {
+                                    window.open(
+                                      activePortal.redirectUrl,
+                                      '_blank',
+                                      'noopener,noreferrer'
+                                    );
+                                  }
+                                }}
+                                className=" inline-flex lg:h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white text-montserrat"
+                              >
+                                Open {getButtooLabel()} Portal
+                                <ArrowRight size={18} />
+                              </button>
+                            </div>
+                          ) : (
+                            <>
+                              <div className="mt-10 grid gap-5">
+                                <InputField
+                                  label={getIdentifierLabel()}
+                                  name="identifier"
+                                  value={identifier}
+                                  placeholder={getIdentifierLabel()}
+                                  onChange={(e) => setIdentifier(e.target.value)}
+                                  disabled={otpSent}
+                                />
+                                {otpSent && (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setOtpSent(false);
+                                      setOtp('');
+                                      setIdentifier('');
+                                    }}
+                                    className="mt-2 text-xs font-medium text-primary"
+                                  >
+                                    Change Mobile Number
+                                  </button>
+                                )}
+
+                                {otpSent && (
+                                  <Reveal>
+                                    <div>
+                                      <label className="text-montserrat text-[11px] font-semibold uppercase tracking-widest text-primary-sub">
+                                        One Time Password
+                                      </label>
+
+                                      <div className="mt-3">
+                                        <OtpInput
+                                          value={otp}
+                                          onChange={setOtp}
+                                          disabled={!otpSent}
+                                        />
+                                        <div className="mt-4 flex items-center gap-4">
+                                          <button
+                                            type="button"
+                                            className="text-xs font-semibold uppercase tracking-wider text-primary"
+                                            onClick={(e) => {
+                                              e.preventDefault();
+                                              setOtpSent(false);
+                                              setOtp('');
+                                              handleSendOtp();
+                                            }}
+                                          >
+                                            Resend OTP
+                                          </button>
+
+                                          <span className="text-xs text-[#76777D]">
+                                            OTP valid for 5 minutes
+                                          </span>
+                                        </div>
+                                      </div>
+
+                                      <p className="mt-3 text-xs text-primary">
+                                        Enter the verification code sent to your
+                                        registered mobile number.
+                                      </p>
+                                    </div>
+                                  </Reveal>
+                                )}
+                              </div>
+
+                              <div className="mt-8 flex items-center justify-end">
+                                {!otpSent ? (
+                                  <button
+                                    type="button"
+                                    onClick={handleSendOtp}
+                                    disabled={!identifier.trim() || isSendingOtp}
+                                    className=" inline-flex h-14 items-center justify-center bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white disabled:pointer-events-none disabled:opacity-60"
+                                  >
+                                    {isSendingOtp ? 'Sending OTP...' : 'Send OTP'}
+                                  </button>
+                                ) : (
+                                  <button
+                                    type="button"
+                                    onClick={handleVerifyLogin}
+                                    disabled={otp.length !== 6 || isVerifyingOtp}
+                                    className=" inline-flex h-14 items-center justify-center bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white disabled:pointer-events-none disabled:opacity-60
+                              "
+                                  >
+                                    {isVerifyingOtp
+                                      ? 'Verifying...'
+                                      : 'Verify & Login'}
+                                  </button>
+                                )}
+                              </div>
+                            </>
+                          )
+                        ) : (
+                          <div className="mt-10">
+                            <button
+                              disabled
+                              className=" inline-flex h-14 items-center justify-center gap-2 bg-primary px-8 text-sm font-semibold uppercase tracking-[0.18em] text-white cursor-none text-montserrat"
+                            >
+                              Coming soon...
+                              <ArrowRight size={18} />
+                            </button>
+                          </div>
+                        )}
                 </motion.div>
               </AnimatePresence>
             </div>

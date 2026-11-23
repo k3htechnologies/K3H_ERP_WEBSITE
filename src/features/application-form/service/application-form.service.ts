@@ -8,21 +8,15 @@ import type { JobOpeningResponse } from '@/features/jobsearch/api/jobsearch.resp
 import type { JobSearchRequest } from '@/features/jobsearch/api/jobsearch.request';
 
 export const ApplicationFormService = {
+
   apiCallFetchJobListing: async (request: JobSearchRequest) => {
-    const recordRequest = Object.fromEntries(
-      Object.entries(request).map(([key, value]) => [key, value])
-    );
+    const recordRequest = Object.fromEntries(Object.entries(request).map(([key, value]) => [key, value]));
     const queryParams = createQueryParams(recordRequest);
-    return apiClient.get<JobOpeningResponse>(
-      `${JobSearchApi.PULL_JOBS}?${queryParams}`
-    );
+    return apiClient.get<JobOpeningResponse>(`${JobSearchApi.PULL_JOBS}?${queryParams}`);
   },
-  apiCallApplicationSubmit: async (
-    formData: FormData
-  ): Promise<ApiResponse<ApplicationFormSubmitResponse>> => {
-    return apiClient.post<ApplicationFormSubmitResponse>(
-      `${ApplicationFormApi.SUBMIT_APPLICATION}`,
-      formData
-    );
+
+
+  apiCallApplicationSubmit: async (formData: FormData): Promise<ApiResponse<ApplicationFormSubmitResponse>> => {
+    return apiClient.post<ApplicationFormSubmitResponse>(`${ApplicationFormApi.SUBMIT_APPLICATION}`, formData);
   },
 };

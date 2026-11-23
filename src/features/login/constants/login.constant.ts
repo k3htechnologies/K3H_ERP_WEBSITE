@@ -62,4 +62,26 @@ export const PORTALS: Portal[] = [
       : `${PROD_LOGIN_BASE_ROUTE}?role=ARCHITECT`,
     active: false,
   },
+  {
+    id: 'redevelopment',
+    title: 'Redevelopment Portal',
+    subtitle: 'Re-development',
+    description: 'Access redevelopment tools and opportunities.',
+    authType: 'redirect',
+    redirectUrl: isDevelopment()
+      ? `${DEV_LOGIN_BASE_ROUTE}?role=REDEVELOPMENT`
+      : `${PROD_LOGIN_BASE_ROUTE}?role=REDEVELOPMENT`,
+    active: true,
+  },
+  {
+    id: 'land',
+    title: 'Redevelopment Land Portal',
+    subtitle: 'Re-development Land',
+    description: 'Access redevelopment tools and opportunities.',
+    authType: 'redirect',
+    redirectUrl: isDevelopment()
+      ? `${DEV_LOGIN_BASE_ROUTE}?role=REDEVELOPMENT_LAND`
+      : `${PROD_LOGIN_BASE_ROUTE}?role=REDEVELOPMENT_LAND`,
+    active: false,
+  },
 ];
