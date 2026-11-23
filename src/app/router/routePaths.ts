@@ -16,4 +16,5 @@ export const ROUTES = {
   DISCLAIMER: 'disclaimer',
   APPLICATION_FORM: 'application-form',
   PROJECT: 'project/:projectName',
+  REGISTER_CHANNEL_PARTNER: 'register/channel-partner'
 };

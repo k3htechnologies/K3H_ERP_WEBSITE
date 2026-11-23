@@ -17,6 +17,7 @@ import MediaPage from '@/features/media/page';
 import Disclaimer from '@/features/disclaimer/page';
 import TermsAndCondition from '@/features/terms-and-condition/page';
 import PrivacyPolicy from '@/features/privacy-policy/page';
+import ChannelPartnerRegistrationPage from '@/features/register/channelPartner/pages/ChannelPartnerRegistrationPage';
 
 const MainRouter: React.FC = () => {
   return (
@@ -45,6 +46,8 @@ const MainRouter: React.FC = () => {
           element={<ApplicationFormPage />}
         />
         <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+
+        <Route path={ROUTES.REGISTER_CHANNEL_PARTNER} element={<ChannelPartnerRegistrationPage />} />
       </Route>
       <Route path="*" element={<Navigate to={ROUTES.HOME} replace />} />
 

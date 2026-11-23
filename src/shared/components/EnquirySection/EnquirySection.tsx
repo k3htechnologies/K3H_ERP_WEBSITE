@@ -40,6 +40,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
     fullName: '',
     email: '',
     mobile: '',
+    countryCode: '+91'
   });
   const [modalState, setModalState] = useState({
     isOpen: false,
@@ -164,7 +165,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
         ProjectLocation: project?.label ?? '',
         ProjectId: project?.id ?? '',
         FullName: formData.fullName,
-        MobileNo: formData.mobile,
+        MobileNo: `${formData.countryCode} ${formData.mobile}`,
         EmailAddress: formData.email,
       });
 
@@ -180,6 +181,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
         fullName: '',
         email: '',
         mobile: '',
+        countryCode: '+91'
       });
       setLocation(null);
       setProject(null);
@@ -212,6 +214,7 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
       fullName: '',
       email: '',
       mobile: '',
+      countryCode: '+91'
     });
     setLocation(null);
     setProject(null);
@@ -355,6 +358,9 @@ const EnquirySection = ({ prefillData }: EnquirySectionProps) => {
                     }
                     required
                     error={errors.mobile}
+                    countryCode={formData.countryCode}
+                    onCountryCodeChange={(code) => {
+                      setFormData(prev => ({ ...prev, countryCode: code }))                    }}
                   />
                 </div>
 

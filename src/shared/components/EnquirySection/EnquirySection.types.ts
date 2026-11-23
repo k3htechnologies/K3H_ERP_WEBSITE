@@ -2,6 +2,7 @@ export interface EnquiryFormData {
   fullName: string;
   email: string;
   mobile: string;
+  countryCode: string;
 }
 
 export interface EnquiryFormErrors {

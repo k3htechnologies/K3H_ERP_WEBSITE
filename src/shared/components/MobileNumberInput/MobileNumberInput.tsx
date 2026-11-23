@@ -17,7 +17,9 @@ interface MobileNumberInputProps {
     error?: string;
     required?: boolean;
     disabled?: boolean;
-    isPhoneLogo?: boolean
+    isPhoneLogo?: boolean;
+    countryCode?: string;
+    onCountryCodeChange?: (value: string) => void;
 }
 
 const countries: CountryCode[] = [
@@ -136,7 +138,9 @@ const MobileNumberInput = ({
     error,
     required = false,
     disabled = false,
-    isPhoneLogo = false
+    isPhoneLogo = false,
+    countryCode,
+    onCountryCodeChange
 }: MobileNumberInputProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
@@ -144,15 +148,15 @@ const MobileNumberInput = ({
     const selectedCountry = useMemo(() => {
         return [...countries]
             .sort((a, b) => b.code.length - a.code.length)
-            .find(country => mobileNumber.startsWith(country.code))
+            .find(country => country.code === countryCode)
             ?? countries.find(country => country.countryCode === "IN")!;
-    }, [mobileNumber]);
+    }, [countryCode]);
 
     const handleMobileChange = (value: string) => {
         const numbersOnly = value.replace(/\D/g, "");
 
         onMobileChange(
-            `${selectedCountry.code} ${numbersOnly.slice(0, selectedCountry.mobileLength)}`
+            numbersOnly.slice(0, selectedCountry.mobileLength)
         );
     };
 
@@ -222,11 +226,12 @@ const MobileNumberInput = ({
                                     key={country.countryCode}
                                     type="button"
                                     onClick={() => {
-                                        const phoneNumber = mobileNumber
-                                            .startsWith(selectedCountry.code)
-                                            ? mobileNumber.slice(selectedCountry.code.length).trim()
-                                            : "";
-                                        onMobileChange(`${country.code} ${phoneNumber}`);
+                                        // const phoneNumber = mobileNumber
+                                        //     .startsWith(selectedCountry.code)
+                                        //     ? mobileNumber.slice(selectedCountry.code.length).trim()
+                                        //     : "";
+                                        // onMobileChange(`${country.code} ${phoneNumber}`);
+                                        onCountryCodeChange?.(country.code);
                                         setIsOpen(false);
                                     }}
                                     className={`flex w-22.5 items-center gap-3 px-3 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 ${selectedCountry.countryCode === country.countryCode
@@ -245,11 +250,7 @@ const MobileNumberInput = ({
 
                 <input
                     type="tel"
-                    value={
-                        mobileNumber.startsWith(selectedCountry.code)
-                            ? mobileNumber.slice(selectedCountry.code.length).trim()
-                            : ""
-                    }
+                    value={mobileNumber}
                     disabled={disabled}
                     maxLength={selectedCountry.mobileLength}
                     placeholder="Enter mobile number"
